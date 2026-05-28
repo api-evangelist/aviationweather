@@ -1,0 +1,32 @@
+aid: aviationweather
+name: AviationWeather
+description: "NOAA aviation weather forecasts and observations"
+url: https://www.aviationweather.gov/dataserver
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Weather"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Weather
+  - Public APIs
+apis:
+  - name: AviationWeather
+    description: "NOAA aviation weather forecasts and observations"
+    humanURL: https://www.aviationweather.gov/dataserver
+    baseURL: https://www.aviationweather.gov/dataserver
+    tags:
+      - Weather
+    properties:
+      - type: Documentation
+        url: https://www.aviationweather.gov/dataserver
+common:
+  - type: Website
+    url: https://www.aviationweather.gov/dataserver
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
