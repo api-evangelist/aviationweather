@@ -1,0 +1,43 @@
+{
+  "operation": "GET /api/data/taf",
+  "summary": "Terminal Aerodrome Forecast for Chicago O'Hare (KORD)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/taf?ids=KORD&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "icaoId": "KORD",
+        "dbPopTime": "2023-11-03 23:20:09.000Z",
+        "bulletinTime": "2023-11-03 23:20:00.000Z",
+        "issueTime": "2023-11-03 23:20:00.000Z",
+        "validTimeFrom": 1699056000,
+        "validTimeTo": 1699164000,
+        "rawTAF": "KORD 032320Z 0400/0506 VRB05KT P6SM FEW050 SCT080 OVC110 TEMPO 0401/0403 -SHRA BKN050 OVC080 FM040600 34006KT P6SM FEW015 SCT100 BKN150 FM041400 01008KT P6SM SCT020 SCT100 TEMPO 0415/0419 BKN015 FM050100 32004KT P6SM FEW020 SCT250",
+        "mostRecent": 1,
+        "lat": 41.9602,
+        "lon": -87.9316,
+        "elev": 202,
+        "name": "Chicago/O'Hare Intl, IL, US",
+        "fcsts": [
+          {
+            "timeFrom": 1699056000,
+            "timeTo": 1699077600,
+            "fcstChange": null,
+            "wdir": "VRB",
+            "wspd": 5,
+            "visib": "6+",
+            "clouds": [
+              { "cover": "FEW", "base": 5000 },
+              { "cover": "SCT", "base": 8000 },
+              { "cover": "OVC", "base": 11000 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

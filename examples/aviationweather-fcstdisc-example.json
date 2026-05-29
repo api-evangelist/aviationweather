@@ -1,0 +1,13 @@
+{
+  "operation": "GET /api/data/fcstdisc",
+  "summary": "Area Forecast Discussion for Kansas City WFO",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/fcstdisc?cwa=eax&type=afd"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/plain",
+    "body": "FXUS63 KEAX 041020\nAFDEAX\nArea Forecast Discussion\nNational Weather Service Kansas City/Pleasant Hill MO\n420 AM CST Thu Jan 04 2024\n\n.SHORT TERM... (Today through Friday)..."
+  }
+}

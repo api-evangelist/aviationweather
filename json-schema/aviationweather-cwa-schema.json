@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/aviationweather/json-schema/aviationweather-cwa-schema.json",
+  "title": "AviationWeather Center Weather Advisory (CWA)",
+  "description": "Decoded CWSU CWA as returned by GET /api/data/cwa?format=json.",
+  "type": "object",
+  "properties": {
+    "cwaId":         { "type": "integer" },
+    "cwsu":          { "type": "string", "description": "CWSU identifier (e.g. ZKC, ZNY, ZLA)." },
+    "series":        { "type": "integer", "description": "Advisory series number." },
+    "issueTime":     { "type": "integer" },
+    "validTimeFrom": { "type": "integer" },
+    "validTimeTo":   { "type": "integer" },
+    "hazard":        { "type": "string", "enum": ["TURB","ICE","IFR","CONV","MTN_OBSC","LLWS"] },
+    "rawCwa":        { "type": "string" }
+  }
+}

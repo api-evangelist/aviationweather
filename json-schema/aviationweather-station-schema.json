@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/aviationweather/json-schema/aviationweather-station-schema.json",
+  "title": "AviationWeather Station Info",
+  "description": "Weather observation station metadata as returned by GET /api/data/stationinfo?format=json.",
+  "type": "object",
+  "required": ["icaoId", "lat", "lon"],
+  "properties": {
+    "icaoId":   { "type": "string", "description": "ICAO four-letter station identifier." },
+    "iataId":   { "type": ["string","null"], "description": "IATA three-letter code if assigned." },
+    "faaId":    { "type": ["string","null"], "description": "FAA identifier if assigned." },
+    "wmoId":    { "type": ["integer","null"], "description": "WMO numeric identifier if assigned." },
+    "lat":      { "type": "number" },
+    "lon":      { "type": "number" },
+    "elev":     { "type": "integer", "description": "Elevation in meters." },
+    "site":     { "type": "string", "description": "Site name." },
+    "state":    { "type": ["string","null"], "description": "U.S. state/territory code or international subdivision." },
+    "country":  { "type": "string", "description": "ISO country code." },
+    "priority": { "type": ["integer","null"], "description": "Site priority (1-9, lower = higher priority)." }
+  }
+}

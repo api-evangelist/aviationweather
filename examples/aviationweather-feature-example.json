@@ -1,0 +1,23 @@
+{
+  "operation": "GET /api/data/feature",
+  "summary": "Aviation feature info (geographic point of interest)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/feature?bbox=37,-95,40,-92&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "id": "LAKEMO",
+        "name": "Lake of the Ozarks",
+        "type": "WATER",
+        "lat": 38.1985,
+        "lon": -92.7558,
+        "state": "MO",
+        "country": "US"
+      }
+    ]
+  }
+}

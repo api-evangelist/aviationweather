@@ -1,0 +1,843 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "AviationWeather.gov API — Weather Data"
+  description: >-
+    Weather Data — the operational aviation weather surface of the NOAA/NWS
+    Aviation Weather Center. Lead operation: retrieve current METAR observations
+    for one or more ICAO identifiers in raw, JSON, GeoJSON, XML, or IWXXM format.
+    This capability also exposes Terminal Aerodrome Forecasts (TAFs), pilot reports
+    (PIREPs/AIREPs), domestic SIGMETs, international SIGMETs, AIRMETs, US Graphical
+    AIRMETs, TFM convective forecasts, CWSU center advisories, wind/temp point data,
+    US area forecasts, area forecast discussions, and meteorological information
+    statements. Self-contained Naftiko capability covering one Aviation Weather
+    Center business surface.
+  tags:
+    - Aviation Weather Center
+    - NOAA NWS
+    - Weather Data
+  created: "2026-05-29"
+  modified: "2026-05-29"
+
+binds:
+  - namespace: env
+    keys: {}
+
+capability:
+
+  # ── 1. Consumes — the upstream HTTP API this capability speaks to ─────
+  consumes:
+    - type: http
+      namespace: "aviationweather-weather-data"
+      baseUri: "https://aviationweather.gov"
+      description: "Aviation Weather Center public Data API — Weather Data surface. Self-contained, no shared references."
+      authentication:
+        type: none
+      resources:
+        - name: "metar"
+          path: "/api/data/metar"
+          operations:
+            - name: "getMetar"
+              method: GET
+              description: "Decoded aviation weather observations (METARs)."
+              inputParameters:
+                - name: "ids"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Station identifiers (single ICAO, comma-list, or @<state>)."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box: minLat,minLon,maxLat,maxLon."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format (raw, decoded, json, geojson, xml, iwxxm)."
+                - name: "taf"
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Include TAF alongside METAR."
+                - name: "hours"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Hours back to retrieve."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "taf"
+          path: "/api/data/taf"
+          operations:
+            - name: "getTaf"
+              method: GET
+              description: "Decoded Terminal Aerodrome Forecasts."
+              inputParameters:
+                - name: "ids"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Station identifiers."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "metar"
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Include METAR alongside TAF."
+                - name: "time"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Process by valid or issue time."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "pirep"
+          path: "/api/data/pirep"
+          operations:
+            - name: "getPirep"
+              method: GET
+              description: "Pilot reports issued in PIREP or AIREP format."
+              inputParameters:
+                - name: "id"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Airport ID for center of search."
+                - name: "distance"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Radial distance to search (nm)."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "age"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Hours back."
+                - name: "level"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Level +-3000' to search."
+                - name: "inten"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Minimum intensity (lgt, mod, sev)."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "airsigmet"
+          path: "/api/data/airsigmet"
+          operations:
+            - name: "getAirSigmet"
+              method: GET
+              description: "Domestic SIGMETs for the contiguous United States."
+              inputParameters:
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "hazard"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Hazard (conv, turb, ice, ifr)."
+                - name: "level"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Level +-3000'."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "isigmet"
+          path: "/api/data/isigmet"
+          operations:
+            - name: "getISigmet"
+              method: GET
+              description: "Decoded international SIGMETs."
+              inputParameters:
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "hazard"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Hazard (turb, ice)."
+                - name: "level"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Level +-3000'."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "gairmet"
+          path: "/api/data/gairmet"
+          operations:
+            - name: "getGAirmet"
+              method: GET
+              description: "Decoded G-AIRMETs for the contiguous United States."
+              inputParameters:
+                - name: "product"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Product type (sierra, tango, zulu)."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "hazard"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Hazard type."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+                - name: "fore"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Forecast hour (0, 3, 6, 9, 12)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "airmet"
+          path: "/api/data/airmet"
+          operations:
+            - name: "getAirmet"
+              method: GET
+              description: "AIRMETs (text-format, primarily Alaska)."
+              inputParameters:
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "tcf"
+          path: "/api/data/tcf"
+          operations:
+            - name: "getTcf"
+              method: GET
+              description: "TFM Convective Forecast."
+              inputParameters:
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "cwa"
+          path: "/api/data/cwa"
+          operations:
+            - name: "getCwa"
+              method: GET
+              description: "CWSU Center Weather Advisories."
+              inputParameters:
+                - name: "cwsu"
+                  in: query
+                  type: string
+                  required: false
+                  description: "CWSU identifier (e.g. ZKC, ZNY)."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+                - name: "hazard"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Hazard type."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "windtemp"
+          path: "/api/data/windtemp"
+          operations:
+            - name: "getWindTemp"
+              method: GET
+              description: "Wind and temperature point data forecast."
+              inputParameters:
+                - name: "region"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Region (us, bos, mia, chi, dfw, slc, sfo, alaska, hawaii, other_pac)."
+                - name: "level"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Altitude band (low, high)."
+                - name: "fcst"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Forecast hour."
+              outputRawFormat: text
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "areafcst"
+          path: "/api/data/areafcst"
+          operations:
+            - name: "getAreaForecast"
+              method: GET
+              description: "US Area Forecasts (legacy AFs)."
+              inputParameters:
+                - name: "region"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Area forecast region identifier."
+                - name: "date"
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO 8601 date or Unix epoch."
+              outputRawFormat: text
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "fcstdisc"
+          path: "/api/data/fcstdisc"
+          operations:
+            - name: "getForecastDiscussion"
+              method: GET
+              description: "US Forecast Discussions (AFD-style narratives)."
+              inputParameters:
+                - name: "cwa"
+                  in: query
+                  type: string
+                  required: false
+                  description: "WFO CWA identifier (e.g. eax, lwx)."
+                - name: "type"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Discussion type (afd, etc.)."
+              outputRawFormat: text
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "mis"
+          path: "/api/data/mis"
+          operations:
+            - name: "getMis"
+              method: GET
+              description: "Meteorological Information Statements from CWSUs."
+              inputParameters:
+                - name: "cwsu"
+                  in: query
+                  type: string
+                  required: false
+                  description: "CWSU identifier."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: text
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  # ── 2. REST exposer — required default. One Spectral-compliant resource per consumed op ──
+  exposes:
+    - type: rest
+      namespace: "aviationweather-weather-data-rest"
+      port: 8080
+      description: "REST adapter for AviationWeather.gov Weather Data. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+      resources:
+        - path: "/v1/metars"
+          name: "metars"
+          description: "REST surface for METAR observations."
+          operations:
+            - method: GET
+              name: "getMetar"
+              description: "Get METAR observations."
+              call: "aviationweather-weather-data.getMetar"
+              with:
+                ids: "rest.ids"
+                bbox: "rest.bbox"
+                format: "rest.format"
+                taf: "rest.taf"
+                hours: "rest.hours"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/tafs"
+          name: "tafs"
+          description: "REST surface for Terminal Aerodrome Forecasts."
+          operations:
+            - method: GET
+              name: "getTaf"
+              description: "Get Terminal Aerodrome Forecasts."
+              call: "aviationweather-weather-data.getTaf"
+              with:
+                ids: "rest.ids"
+                bbox: "rest.bbox"
+                format: "rest.format"
+                metar: "rest.metar"
+                time: "rest.time"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/pireps"
+          name: "pireps"
+          description: "REST surface for Pilot Reports."
+          operations:
+            - method: GET
+              name: "getPirep"
+              description: "Get Pilot Reports."
+              call: "aviationweather-weather-data.getPirep"
+              with:
+                id: "rest.id"
+                distance: "rest.distance"
+                bbox: "rest.bbox"
+                format: "rest.format"
+                age: "rest.age"
+                level: "rest.level"
+                inten: "rest.inten"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/air-sigmets"
+          name: "air-sigmets"
+          description: "REST surface for Domestic SIGMETs."
+          operations:
+            - method: GET
+              name: "getAirSigmet"
+              description: "Get Domestic SIGMETs."
+              call: "aviationweather-weather-data.getAirSigmet"
+              with:
+                format: "rest.format"
+                hazard: "rest.hazard"
+                level: "rest.level"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/i-sigmets"
+          name: "i-sigmets"
+          description: "REST surface for International SIGMETs."
+          operations:
+            - method: GET
+              name: "getISigmet"
+              description: "Get International SIGMETs."
+              call: "aviationweather-weather-data.getISigmet"
+              with:
+                format: "rest.format"
+                hazard: "rest.hazard"
+                level: "rest.level"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/g-airmets"
+          name: "g-airmets"
+          description: "REST surface for US Graphical AIRMETs."
+          operations:
+            - method: GET
+              name: "getGAirmet"
+              description: "Get US Graphical AIRMETs."
+              call: "aviationweather-weather-data.getGAirmet"
+              with:
+                product: "rest.product"
+                format: "rest.format"
+                hazard: "rest.hazard"
+                date: "rest.date"
+                fore: "rest.fore"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/airmets"
+          name: "airmets"
+          description: "REST surface for AIRMETs."
+          operations:
+            - method: GET
+              name: "getAirmet"
+              description: "Get AIRMETs."
+              call: "aviationweather-weather-data.getAirmet"
+              with:
+                format: "rest.format"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/convective-forecasts"
+          name: "convective-forecasts"
+          description: "REST surface for TFM Convective Forecast."
+          operations:
+            - method: GET
+              name: "getTcf"
+              description: "Get TFM Convective Forecast."
+              call: "aviationweather-weather-data.getTcf"
+              with:
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/center-advisories"
+          name: "center-advisories"
+          description: "REST surface for CWSU Center Weather Advisories."
+          operations:
+            - method: GET
+              name: "getCwa"
+              description: "Get CWSU Center Weather Advisories."
+              call: "aviationweather-weather-data.getCwa"
+              with:
+                cwsu: "rest.cwsu"
+                format: "rest.format"
+                hazard: "rest.hazard"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/wind-temperatures"
+          name: "wind-temperatures"
+          description: "REST surface for Wind/Temperature point data forecast."
+          operations:
+            - method: GET
+              name: "getWindTemp"
+              description: "Get Wind and Temperature Point Data."
+              call: "aviationweather-weather-data.getWindTemp"
+              with:
+                region: "rest.region"
+                level: "rest.level"
+                fcst: "rest.fcst"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/area-forecasts"
+          name: "area-forecasts"
+          description: "REST surface for US Area Forecasts."
+          operations:
+            - method: GET
+              name: "getAreaForecast"
+              description: "Get US Area Forecasts."
+              call: "aviationweather-weather-data.getAreaForecast"
+              with:
+                region: "rest.region"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/forecast-discussions"
+          name: "forecast-discussions"
+          description: "REST surface for US Forecast Discussions."
+          operations:
+            - method: GET
+              name: "getForecastDiscussion"
+              description: "Get US Forecast Discussions."
+              call: "aviationweather-weather-data.getForecastDiscussion"
+              with:
+                cwa: "rest.cwa"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/meteorological-information-statements"
+          name: "meteorological-information-statements"
+          description: "REST surface for Meteorological Information Statements."
+          operations:
+            - method: GET
+              name: "getMis"
+              description: "Get Meteorological Information Statements."
+              call: "aviationweather-weather-data.getMis"
+              with:
+                cwsu: "rest.cwsu"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+  # ── 3. MCP exposer — required default. One verb-noun tool per consumed op ──
+    - type: mcp
+      namespace: "aviationweather-weather-data-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for AviationWeather.gov Weather Data. One tool per consumed operation, routed inline through this capability's consumes block."
+      tools:
+        - name: "get-metar"
+          description: "Get METAR observations."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getMetar"
+          with:
+            ids: "tools.ids"
+            bbox: "tools.bbox"
+            format: "tools.format"
+            taf: "tools.taf"
+            hours: "tools.hours"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-taf"
+          description: "Get Terminal Aerodrome Forecasts."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getTaf"
+          with:
+            ids: "tools.ids"
+            bbox: "tools.bbox"
+            format: "tools.format"
+            metar: "tools.metar"
+            time: "tools.time"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-pirep"
+          description: "Get Pilot Reports."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getPirep"
+          with:
+            id: "tools.id"
+            distance: "tools.distance"
+            bbox: "tools.bbox"
+            format: "tools.format"
+            age: "tools.age"
+            level: "tools.level"
+            inten: "tools.inten"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-air-sigmet"
+          description: "Get Domestic SIGMETs."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getAirSigmet"
+          with:
+            format: "tools.format"
+            hazard: "tools.hazard"
+            level: "tools.level"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-i-sigmet"
+          description: "Get International SIGMETs."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getISigmet"
+          with:
+            format: "tools.format"
+            hazard: "tools.hazard"
+            level: "tools.level"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-g-airmet"
+          description: "Get US Graphical AIRMETs."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getGAirmet"
+          with:
+            product: "tools.product"
+            format: "tools.format"
+            hazard: "tools.hazard"
+            date: "tools.date"
+            fore: "tools.fore"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-airmet"
+          description: "Get AIRMETs."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getAirmet"
+          with:
+            format: "tools.format"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-convective-forecast"
+          description: "Get TFM Convective Forecast."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getTcf"
+          with:
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-center-advisory"
+          description: "Get CWSU Center Weather Advisories."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getCwa"
+          with:
+            cwsu: "tools.cwsu"
+            format: "tools.format"
+            hazard: "tools.hazard"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-wind-temperatures"
+          description: "Get Wind and Temperature Point Data."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getWindTemp"
+          with:
+            region: "tools.region"
+            level: "tools.level"
+            fcst: "tools.fcst"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-area-forecast"
+          description: "Get US Area Forecasts."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getAreaForecast"
+          with:
+            region: "tools.region"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-forecast-discussion"
+          description: "Get US Forecast Discussions."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getForecastDiscussion"
+          with:
+            cwa: "tools.cwa"
+            type: "tools.type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-meteorological-information-statement"
+          description: "Get Meteorological Information Statements."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-weather-data.getMis"
+          with:
+            cwsu: "tools.cwsu"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."

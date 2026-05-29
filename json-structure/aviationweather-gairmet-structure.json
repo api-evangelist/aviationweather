@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-gairmet-structure.json",
+  "name": "AviationWeather Graphical AIRMET (G-AIRMET)",
+  "description": "Decoded G-AIRMET as returned by GET /api/data/gairmet?format=json.",
+  "type": "object",
+  "properties": {
+    "gairmetId": {
+      "type": "int32"
+    },
+    "product": {
+      "type": "string",
+      "enum": [
+        "sierra",
+        "tango",
+        "zulu"
+      ],
+      "description": "Product type (Sierra=IFR/MTN obs, Tango=turb/wind, Zulu=ice/freezing level)."
+    },
+    "issueTime": {
+      "type": "int32",
+      "description": "UNIX epoch issuance time."
+    },
+    "validTime": {
+      "type": "int32",
+      "description": "UNIX epoch valid time for this forecast snapshot."
+    },
+    "fcstHour": {
+      "type": "int32",
+      "enum": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "description": "Forecast hour from issuance."
+    },
+    "hazard": {
+      "type": "string",
+      "enum": [
+        "turb-hi",
+        "turb-lo",
+        "llws",
+        "sfc_wind",
+        "ifr",
+        "mtn_obs",
+        "ice",
+        "fzlvl"
+      ],
+      "description": "Hazard type."
+    },
+    "tops": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Top altitude (feet)."
+    },
+    "base": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Base altitude (feet)."
+    },
+    "dueTo": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Cause of the hazard (e.g. CIG/VIS, BR/HZ)."
+    },
+    "geometryType": {
+      "type": "string",
+      "enum": [
+        "Polygon",
+        "MultiPolygon",
+        "LineString"
+      ]
+    },
+    "coords": {
+      "type": "array",
+      "description": "Coordinate ring (lon, lat)."
+    }
+  }
+}

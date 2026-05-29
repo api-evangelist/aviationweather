@@ -1,0 +1,475 @@
+# Spectral ruleset for the AviationWeather.gov public Data API.
+#
+# Derived from observation of the upstream OpenAPI 3.1 spec published by
+# the NOAA / NWS Aviation Weather Center (AWC). The provider conventions
+# are: kebab-style lowercase paths under /api/data/{resource}, camelCase
+# JSON response properties, query-only parameters (no path parameters),
+# raw|json|geojson|xml|iwxxm format selector via a `format` query string,
+# bounding-box selection via `bbox`, ICAO identifier selection via `ids`.
+# All endpoints are public (no authentication).
+
+extends: [[spectral:oas, off]]
+
+formats:
+  - oas3
+  - oas3_1
+
+aliases:
+  AviationWeatherJSONMedia:
+    - "$.paths..responses[?(@property.match(/^[2]\\d\\d$/))]..content[?(@property.match(/^application\\/(geo\\+)?json$/))]"
+
+rules:
+
+  # =========================================================================
+  # INFO / METADATA
+  # =========================================================================
+
+  info-title-required:
+    description: Info object MUST have a title.
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+
+  info-title-pattern:
+    description: Info title should reference AviationWeather, AWC, or NWS.
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)(aviationweather|aviation weather|awc|nws)"
+
+  info-description-required:
+    description: Info object MUST have a description.
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  info-description-min-length:
+    description: Info description should be at least 60 characters.
+    severity: warn
+    given: "$.info.description"
+    then:
+      function: length
+      functionOptions:
+        min: 60
+
+  info-version-required:
+    description: Info object MUST declare a version.
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: Info MUST list a contact (the AWC).
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  info-license-required:
+    description: Info MUST declare a license (U.S. Government Work).
+    severity: warn
+    given: "$.info"
+    then:
+      field: license
+      function: truthy
+
+  info-terms-of-service:
+    description: AWC API documents terms of service inline. Reference the public docs page.
+    severity: warn
+    given: "$.info.termsOfService"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)aviationweather\\.gov"
+
+  # =========================================================================
+  # OPENAPI VERSION
+  # =========================================================================
+
+  openapi-version-31:
+    description: The AviationWeather API publishes its schema in OpenAPI 3.1.
+    severity: warn
+    given: "$.openapi"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\.1\\."
+
+  # =========================================================================
+  # SERVERS
+  # =========================================================================
+
+  servers-required:
+    description: A servers block MUST be defined.
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: All server URLs MUST use HTTPS.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-aviationweather-host:
+    description: Production server must point at aviationweather.gov.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "aviationweather\\.gov"
+
+  # =========================================================================
+  # PATHS — NAMING CONVENTIONS
+  # =========================================================================
+
+  paths-api-data-prefix:
+    description: All operational paths MUST be under /api/data/.
+    severity: error
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/data/[a-z0-9]+$"
+
+  paths-lowercase:
+    description: Resource segments MUST be lowercase alphanumeric.
+    severity: error
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z0-9/]+$"
+
+  paths-no-trailing-slash:
+    description: Paths MUST NOT end with a trailing slash.
+    severity: error
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+
+  paths-no-query-string:
+    description: Paths MUST NOT embed a query string — use parameters.
+    severity: error
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  paths-no-path-parameters:
+    description: AWC endpoints are query-only — path parameters are not used.
+    severity: warn
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\{"
+
+  # =========================================================================
+  # OPERATIONS
+  # =========================================================================
+
+  operation-method-get-only:
+    description: All AWC data endpoints are read-only GET operations.
+    severity: error
+    given: "$.paths[*]"
+    then:
+      function: enumeration
+      functionOptions:
+        values: [get, parameters, summary, description, servers]
+
+  operation-summary-required:
+    description: Every operation MUST have a summary.
+    severity: error
+    given: "$.paths..get"
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-title-case:
+    description: Operation summaries should use Title Case starting with a verb.
+    severity: warn
+    given: "$.paths..get.summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(Get|List|Retrieve|Fetch|Search|Query) [A-Z]"
+
+  operation-description-required:
+    description: Every operation MUST have a description.
+    severity: warn
+    given: "$.paths..get"
+    then:
+      field: description
+      function: truthy
+
+  operation-tags-required:
+    description: Every operation MUST declare at least one tag.
+    severity: warn
+    given: "$.paths..get"
+    then:
+      field: tags
+      function: truthy
+
+  operation-200-required:
+    description: Every operation MUST declare a 200 response.
+    severity: error
+    given: "$.paths..get.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  operation-400-defined:
+    description: Operations should declare a 400 response for invalid input.
+    severity: warn
+    given: "$.paths..get.responses"
+    then:
+      field: "400"
+      function: truthy
+
+  # =========================================================================
+  # TAGS
+  # =========================================================================
+
+  tags-defined:
+    description: Global tags array MUST be defined.
+    severity: warn
+    given: "$"
+    then:
+      field: tags
+      function: truthy
+
+  tags-title-case:
+    description: Tag names should use Title Case (e.g. "Weather Data").
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]+$"
+
+  tags-description:
+    description: Every tag should have a description.
+    severity: warn
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+
+  # =========================================================================
+  # PARAMETERS
+  # =========================================================================
+
+  parameter-description-required:
+    description: All parameters MUST have a description.
+    severity: warn
+    given: "$..parameters[?(@.in)]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-camel-case:
+    description: Query parameter names follow camelCase or short lowercase.
+    severity: warn
+    given: "$..parameters[?(@.in=='query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  parameter-format-enum:
+    description: The shared `format` parameter must constrain to AWC formats.
+    severity: warn
+    given: "$..parameters[?(@.name=='format')].schema.enum"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          items:
+            type: string
+            enum: [raw, decoded, json, geojson, xml, iwxxm, csv]
+
+  parameter-ids-shape:
+    description: The `ids` parameter is a comma-delimited list of ICAO identifiers.
+    severity: info
+    given: "$..parameters[?(@.name=='ids')]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-bbox-shape:
+    description: The `bbox` parameter is a `minLat,minLon,maxLat,maxLon` string.
+    severity: info
+    given: "$..parameters[?(@.name=='bbox')]"
+    then:
+      field: description
+      function: truthy
+
+  # =========================================================================
+  # RESPONSES
+  # =========================================================================
+
+  response-description-required:
+    description: All responses MUST have a description.
+    severity: warn
+    given: "$..responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-200-has-content:
+    description: 200 responses MUST declare content (one or more media types).
+    severity: warn
+    given: "$..responses['200']"
+    then:
+      field: content
+      function: truthy
+
+  response-supports-json:
+    description: 200 responses should expose application/json when JSON output is supported.
+    severity: info
+    given: "$..responses['200'].content"
+    then:
+      field: application/json
+      function: truthy
+
+  # =========================================================================
+  # SCHEMAS — PROPERTY NAMING
+  # =========================================================================
+
+  schema-property-camel-case:
+    description: JSON response properties follow camelCase (icaoId, validTimeFrom, etc.).
+    severity: warn
+    given: "$.components.schemas..properties[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  schema-property-description:
+    description: Schema properties should have a description.
+    severity: info
+    given: "$.components.schemas..properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-icao-id-field:
+    description: ICAO identifier fields use `icaoId` (camelCase) not `icao_id` or `ICAOId`.
+    severity: warn
+    given: "$.components.schemas..properties[?(@property.match(/^(icao_id|ICAOId|ICAOID|icaoid)$/))]~"
+    then:
+      function: falsy
+
+  schema-unix-time-field:
+    description: UNIX-epoch timestamp fields end in `Time` and are integers.
+    severity: info
+    given: "$.components.schemas..properties[?(@property.match(/Time$/))]"
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "^(integer|string)$"
+
+  schema-coords-array:
+    description: Coordinate arrays MUST be [lon, lat] with exactly two items.
+    severity: info
+    given: "$.components.schemas..properties.coordinates"
+    then:
+      field: minItems
+      function: truthy
+
+  # =========================================================================
+  # SECURITY
+  # =========================================================================
+
+  security-no-key-required:
+    description: AWC is an open public service — no authentication required.
+    severity: warn
+    given: "$"
+    then:
+      field: security
+      function: falsy
+
+  components-security-schemes-empty:
+    description: No securitySchemes are needed for the public AWC API.
+    severity: info
+    given: "$.components.securitySchemes"
+    then:
+      function: falsy
+
+  # =========================================================================
+  # HTTP METHOD CONVENTIONS
+  # =========================================================================
+
+  method-no-request-body:
+    description: GET operations MUST NOT include a requestBody.
+    severity: error
+    given: "$.paths..get"
+    then:
+      field: requestBody
+      function: falsy
+
+  method-no-mutating-verbs:
+    description: AWC API does not expose POST/PUT/PATCH/DELETE.
+    severity: error
+    given: "$.paths[*]"
+    then:
+      function: enumeration
+      functionOptions:
+        values: [get, parameters, summary, description, servers]
+
+  # =========================================================================
+  # GENERAL QUALITY
+  # =========================================================================
+
+  no-empty-descriptions:
+    description: Descriptions MUST NOT be empty strings.
+    severity: warn
+    given: "$..description"
+    then:
+      function: truthy
+
+  external-docs-encouraged:
+    description: Operations should link to the AWC docs page via externalDocs.
+    severity: info
+    given: "$.paths..get"
+    then:
+      field: externalDocs
+      function: truthy
+
+  examples-encouraged:
+    description: Schemas should provide example values to aid client implementers.
+    severity: info
+    given: "$.components.schemas..properties[*]"
+    then:
+      field: examples
+      function: truthy
+
+  rate-limit-documented:
+    description: API description should mention the 100 req/min rate limit.
+    severity: info
+    given: "$.info.description"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)(rate limit|requests per minute|req/min|100)"

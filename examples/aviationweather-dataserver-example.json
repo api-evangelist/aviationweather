@@ -1,0 +1,13 @@
+{
+  "operation": "GET /api/data/dataserver",
+  "summary": "Legacy ADDS Text Data Server passthrough — METARs in CSV",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/dataserver?dataSource=metars&requestType=retrieve&format=csv&stationString=KMCI&hoursBeforeNow=1"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/csv",
+    "body": "No errors\nNo warnings\n1 ms data source=metars\n1 results\nraw_text,station_id,observation_time,latitude,longitude,temp_c,dewpoint_c,wind_dir_degrees,wind_speed_kt,visibility_statute_mi,altim_in_hg,sea_level_pressure_mb,corrected,auto,auto_station,maintenance_indicator_on,no_signal,lightning_sensor_off,freezing_rain_sensor_off,present_weather_sensor_off,wx_string,sky_cover,cloud_base_ft_agl,sky_cover,cloud_base_ft_agl,flight_category,three_hr_pressure_tendency_mb,maxT_c,minT_c,maxT24hr_c,minT24hr_c,precip_in,pcp3hr_in,pcp6hr_in,pcp24hr_in,snow_in,vert_vis_ft,metar_type,elevation_m\nKMCI 040153Z 18012G18KT 10SM CLR 14/M01 A2992 RMK AO2 SLP130 T01391011,KMCI,2024-01-04T01:53:00Z,39.3,-94.72,13.9,-1.1,180,12,10.0,29.92,1013.0,,TRUE,TRUE,,,,,, ,,,,,VFR,,,,,,,,,,,,METAR,309.0"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-isigmet-structure.json",
+  "name": "AviationWeather International SIGMET",
+  "description": "Decoded international SIGMET as returned by GET /api/data/isigmet?format=json.",
+  "type": "object",
+  "properties": {
+    "isigmetId": {
+      "type": "int32"
+    },
+    "icaoId": {
+      "type": "string",
+      "description": "Issuing MWO ICAO identifier."
+    },
+    "firId": {
+      "type": "string",
+      "description": "Flight Information Region ICAO."
+    },
+    "firName": {
+      "type": "string"
+    },
+    "seriesId": {
+      "type": "string",
+      "description": "Series identifier (e.g. A12)."
+    },
+    "hazard": {
+      "type": "string",
+      "enum": [
+        "TURB",
+        "ICE",
+        "CONV",
+        "VA",
+        "TC",
+        "DS",
+        "SS",
+        "RDOACT"
+      ],
+      "description": "Hazard type."
+    },
+    "qualifier": {
+      "type": "string",
+      "description": "Severity qualifier (e.g. SEV)."
+    },
+    "validTimeFrom": {
+      "type": "int32"
+    },
+    "validTimeTo": {
+      "type": "int32"
+    },
+    "rawSigmet": {
+      "type": "string"
+    },
+    "base": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Base altitude (feet)."
+    },
+    "top": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Top altitude (feet)."
+    },
+    "dir": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Movement direction."
+    },
+    "spd": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Movement speed (knots)."
+    },
+    "geom": {
+      "type": "string",
+      "description": "Geometry type (POLY, LINE, POINT)."
+    },
+    "coords": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "double"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-pirep-structure.json",
+  "name": "AviationWeather Pilot Report (PIREP/AIREP)",
+  "description": "Decoded pilot report as returned by GET /api/data/pirep?format=json.",
+  "type": "object",
+  "properties": {
+    "receiptTime": {
+      "type": "string",
+      "description": "Receipt time of the report."
+    },
+    "obsTime": {
+      "type": "int32",
+      "description": "Observation time (UNIX epoch)."
+    },
+    "rawOb": {
+      "type": "string",
+      "description": "Raw report text."
+    },
+    "acType": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Aircraft type (e.g. B737, E170)."
+    },
+    "fltlvl": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Flight level (hundreds of feet)."
+    },
+    "lat": {
+      "type": "double"
+    },
+    "lon": {
+      "type": "double"
+    },
+    "tbInt1": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Turbulence intensity (e.g. LGT, MOD, SEV)."
+    },
+    "tbType1": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Turbulence type (e.g. CHOP, CAT)."
+    },
+    "tbFreq1": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Turbulence frequency (e.g. OCNL, CONT)."
+    },
+    "tbBas1": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Turbulence base (feet)."
+    },
+    "tbTop1": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Turbulence top (feet)."
+    },
+    "icIntens1": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Icing intensity."
+    },
+    "icType1": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Icing type (RIME, CLEAR, MIXED)."
+    },
+    "icBas1": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "icTop1": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "cloudCvg1": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Cloud cover at level."
+    },
+    "cloudBas1": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "cloudTop1": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "remarks": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

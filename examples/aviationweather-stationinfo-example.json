@@ -1,0 +1,27 @@
+{
+  "operation": "GET /api/data/stationinfo",
+  "summary": "Station info for KMCI (Kansas City International)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/stationinfo?ids=KMCI&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "icaoId": "KMCI",
+        "iataId": "MCI",
+        "faaId": "MCI",
+        "wmoId": 72446,
+        "lat": 39.2976,
+        "lon": -94.7139,
+        "elev": 312,
+        "site": "Kansas City Intl",
+        "state": "MO",
+        "country": "US",
+        "priority": 4
+      }
+    ]
+  }
+}

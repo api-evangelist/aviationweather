@@ -1,0 +1,13 @@
+{
+  "operation": "GET /api/data/mis",
+  "summary": "Meteorological Impact Statement for Kansas City CWSU",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/mis?cwsu=zkc"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/plain",
+    "body": "ZKC MIS 01 VALID 041500-050300\n... POTENTIAL FOR SEVERE THUNDERSTORMS..."
+  }
+}

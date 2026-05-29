@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "@version": 1.1,
+
+    "schema": "https://schema.org/",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "time": "http://www.w3.org/2006/time#",
+    "awc": "https://aviationweather.gov/ontology/",
+
+    "id": "@id",
+    "type": "@type",
+
+    "GovernmentOrganization": "schema:GovernmentOrganization",
+    "Dataset":                "schema:Dataset",
+    "DataCatalog":            "schema:DataCatalog",
+    "Place":                  "schema:Place",
+    "GeoCoordinates":         "schema:GeoCoordinates",
+    "Observation":            "sosa:Observation",
+    "Sensor":                 "sosa:Sensor",
+    "FeatureOfInterest":      "sosa:FeatureOfInterest",
+    "ObservableProperty":     "sosa:ObservableProperty",
+
+    "AviationWeatherCenter":  "awc:AviationWeatherCenter",
+    "METAR":                  "awc:METAR",
+    "TAF":                    "awc:TerminalAerodromeForecast",
+    "PIREP":                  "awc:PilotReport",
+    "AIRMET":                 "awc:AIRMET",
+    "GAIRMET":                "awc:GraphicalAIRMET",
+    "SIGMET":                 "awc:SIGMET",
+    "InternationalSIGMET":    "awc:InternationalSIGMET",
+    "ConvectiveSIGMET":       "awc:ConvectiveSIGMET",
+    "CenterWeatherAdvisory":  "awc:CenterWeatherAdvisory",
+    "ConvectiveForecast":     "awc:ConvectiveForecast",
+    "AreaForecast":           "awc:AreaForecast",
+    "ForecastDiscussion":     "awc:ForecastDiscussion",
+    "MeteorologicalInformationStatement": "awc:MIS",
+    "WindTempForecast":       "awc:WindTempForecast",
+    "Station":                "awc:Station",
+    "Airport":                "awc:Airport",
+    "Runway":                 "awc:Runway",
+    "Navaid":                 "awc:Navaid",
+    "Fix":                    "awc:Fix",
+    "Feature":                "awc:Feature",
+    "Obstacle":               "awc:Obstacle",
+    "FlightInformationRegion":"awc:FIR",
+    "CWSU":                   "awc:CWSU",
+
+    "icaoId":   { "@id": "awc:icaoId" },
+    "iataId":   { "@id": "awc:iataId" },
+    "faaId":    { "@id": "awc:faaId" },
+    "wmoId":    { "@id": "awc:wmoId", "@type": "xsd:integer" },
+
+    "obsTime":       { "@id": "sosa:resultTime",       "@type": "xsd:dateTime" },
+    "receiptTime":   { "@id": "awc:receiptTime",       "@type": "xsd:dateTime" },
+    "reportTime":    { "@id": "awc:reportTime",        "@type": "xsd:dateTime" },
+    "issueTime":     { "@id": "awc:issueTime",         "@type": "xsd:dateTime" },
+    "validTimeFrom": { "@id": "awc:validTimeFrom",     "@type": "xsd:dateTime" },
+    "validTimeTo":   { "@id": "awc:validTimeTo",       "@type": "xsd:dateTime" },
+    "bulletinTime":  { "@id": "awc:bulletinTime",      "@type": "xsd:dateTime" },
+
+    "lat":  { "@id": "schema:latitude",  "@type": "xsd:decimal" },
+    "lon":  { "@id": "schema:longitude", "@type": "xsd:decimal" },
+    "elev": { "@id": "schema:elevation", "@type": "xsd:integer" },
+
+    "temp":   { "@id": "awc:temperatureCelsius",  "@type": "xsd:decimal" },
+    "dewp":   { "@id": "awc:dewpointCelsius",     "@type": "xsd:decimal" },
+    "wdir":   { "@id": "awc:windDirectionDeg",    "@type": "xsd:integer" },
+    "wspd":   { "@id": "awc:windSpeedKt",         "@type": "xsd:integer" },
+    "wgst":   { "@id": "awc:windGustKt",          "@type": "xsd:integer" },
+    "visib":  { "@id": "awc:visibilitySM" },
+    "altim":  { "@id": "awc:altimeterHpa",        "@type": "xsd:decimal" },
+    "slp":    { "@id": "awc:seaLevelPressureHpa", "@type": "xsd:decimal" },
+    "wxString": { "@id": "awc:presentWeather" },
+    "fltCat":   { "@id": "awc:flightCategory" },
+    "vertVis":  { "@id": "awc:verticalVisibilityFt", "@type": "xsd:integer" },
+
+    "clouds": { "@id": "awc:cloudLayers", "@container": "@list" },
+    "fcsts":  { "@id": "awc:forecastPeriods", "@container": "@list" },
+
+    "rawOb":       { "@id": "awc:rawObservation" },
+    "rawTAF":      { "@id": "awc:rawTAF" },
+    "rawAirSigmet":{ "@id": "awc:rawAirSigmet" },
+    "rawSigmet":   { "@id": "awc:rawSigmet" },
+    "rawAirmet":   { "@id": "awc:rawAirmet" },
+    "rawCwa":      { "@id": "awc:rawCwa" },
+
+    "hazard":   { "@id": "awc:hazardType" },
+    "severity": { "@id": "awc:severity" },
+    "product":  { "@id": "awc:productCode" },
+    "fcstHour": { "@id": "awc:forecastHour", "@type": "xsd:integer" },
+
+    "name":     "schema:name",
+    "site":     "schema:name",
+    "state":    "schema:addressRegion",
+    "country":  "schema:addressCountry",
+
+    "runways":  { "@id": "awc:runway", "@container": "@list" },
+    "freqs":    { "@id": "awc:frequencies" },
+
+    "operatedBy": {
+      "@type": "@id",
+      "@id":   "schema:provider"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "operation": "GET /api/data/tcf",
+  "summary": "TFM Convective Forecast (GeoJSON)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/tcf?format=geojson"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/geo+json",
+    "body": {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "fcstHr": 2,
+            "validTime": 1704380400,
+            "issueTime": 1704378600,
+            "coverage": "MED",
+            "tops": 35000,
+            "dir": "E",
+            "spd": 30,
+            "lineWidth": null
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[-92.0,32.0],[-91.0,32.0],[-91.0,33.0],[-92.0,33.0],[-92.0,32.0]]]
+          }
+        }
+      ]
+    }
+  }
+}

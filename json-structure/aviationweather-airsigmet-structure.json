@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-airsigmet-structure.json",
+  "name": "AviationWeather Domestic SIGMET",
+  "description": "Decoded domestic SIGMET as returned by GET /api/data/airsigmet?format=json.",
+  "type": "object",
+  "properties": {
+    "airSigmetId": {
+      "type": "int32",
+      "description": "Internal AWC identifier."
+    },
+    "icaoId": {
+      "type": "string",
+      "description": "Issuing center ICAO (typically KKCI for AWC)."
+    },
+    "receiptTime": {
+      "type": "string"
+    },
+    "validTimeFrom": {
+      "type": "int32",
+      "description": "UNIX epoch start."
+    },
+    "validTimeTo": {
+      "type": "int32",
+      "description": "UNIX epoch end."
+    },
+    "alphaChar": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Alpha designator (A-Z) for the SIGMET series."
+    },
+    "hazard": {
+      "type": "string",
+      "enum": [
+        "CONV",
+        "TURB",
+        "ICE",
+        "IFR",
+        "MTN_OBSC",
+        "ASH",
+        "TC",
+        "DS",
+        "SS"
+      ],
+      "description": "Hazard type."
+    },
+    "severity": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Severity (e.g. MOD, SEV)."
+    },
+    "rawAirSigmet": {
+      "type": "string",
+      "description": "Raw SIGMET text."
+    },
+    "altitudeHi1": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Top altitude (feet)."
+    },
+    "altitudeLow1": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Base altitude (feet)."
+    },
+    "movementDir": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Movement direction (degrees true)."
+    },
+    "movementSpd": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Movement speed (knots)."
+    },
+    "geometry": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Geometry as WKT polygon."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "operation": "GET /api/data/airport",
+  "summary": "Airport metadata for KMCI",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/airport?ids=KMCI&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "id": "KMCI",
+        "icaoId": "KMCI",
+        "iataId": "MCI",
+        "name": "Kansas City Intl",
+        "state": "MO",
+        "country": "US",
+        "source": "FAA",
+        "type": "LARGE_AIRPORT",
+        "lat": 39.2976,
+        "lon": -94.7139,
+        "elev": 312,
+        "magdec": "3E",
+        "owner": "PUBLIC",
+        "runways": [
+          { "id": "01L/19R", "dimension": "10801x150", "surface": "CON" },
+          { "id": "01R/19L", "dimension": "10801x150", "surface": "CON" },
+          { "id": "09/27",   "dimension": "9501x150",  "surface": "CON" }
+        ],
+        "freqs": "TWR 128.2 GND 121.9 ATIS 128.375"
+      }
+    ]
+  }
+}

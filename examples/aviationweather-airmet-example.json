@@ -1,0 +1,24 @@
+{
+  "operation": "GET /api/data/airmet",
+  "summary": "AIRMETs for Alaska region (text-format AIRMETs)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/airmet?format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "airmetId": 7001,
+        "icaoId": "PAWU",
+        "issueTime": "2024-01-04 12:00:00.000Z",
+        "validTimeFrom": 1704373200,
+        "validTimeTo": 1704387600,
+        "product": "SIERRA",
+        "hazard": "IFR",
+        "rawAirmet": "WAAK01 PAWU 041200\nAIRMET SIERRA FOR IFR AND MOUNTAIN OBSCURATION..."
+      }
+    ]
+  }
+}

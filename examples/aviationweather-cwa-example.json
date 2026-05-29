@@ -1,0 +1,24 @@
+{
+  "operation": "GET /api/data/cwa",
+  "summary": "CWSU Center Weather Advisories for ZKC (Kansas City Center)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/cwa?cwsu=zkc&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "cwaId": 401,
+        "cwsu": "ZKC",
+        "series": 101,
+        "issueTime": 1704380400,
+        "validTimeFrom": 1704380400,
+        "validTimeTo": 1704387600,
+        "hazard": "TURB",
+        "rawCwa": "ZKC1 CWA 041440\nZKC CWA 101 VALID UNTIL 041640..."
+      }
+    ]
+  }
+}

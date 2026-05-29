@@ -1,0 +1,30 @@
+{
+  "operation": "GET /api/data/airsigmet",
+  "summary": "Active domestic SIGMETs for icing hazard",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/airsigmet?hazard=ice&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "airSigmetId": 12345,
+        "icaoId": "KKCI",
+        "receiptTime": "2024-01-04 13:55:00.000Z",
+        "validTimeFrom": 1704373200,
+        "validTimeTo": 1704387600,
+        "alphaChar": "C",
+        "hazard": "ICE",
+        "severity": "MOD",
+        "rawAirSigmet": "WAUS41 KKCI 041355\nSIERRA UPDATE 2 FOR ICING AND FRZLVL VALID UNTIL 042000\n...",
+        "altitudeHi1": 18000,
+        "altitudeLow1": 0,
+        "movementDir": 270,
+        "movementSpd": 25,
+        "geometry": "POLYGON((...))"
+      }
+    ]
+  }
+}

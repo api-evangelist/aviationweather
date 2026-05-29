@@ -1,0 +1,27 @@
+{
+  "operation": "GET /api/data/gairmet",
+  "summary": "Graphical AIRMET for IFR conditions, current forecast hour",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/gairmet?hazard=ifr&fore=0&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "gairmetId": 99001,
+        "product": "sierra",
+        "issueTime": 1704380400,
+        "validTime": 1704380400,
+        "fcstHour": 0,
+        "hazard": "ifr",
+        "tops": null,
+        "base": null,
+        "dueTo": "CIG/VIS",
+        "geometryType": "Polygon",
+        "coords": [[-95.0,41.0],[-93.0,41.0],[-93.0,43.0],[-95.0,43.0],[-95.0,41.0]]
+      }
+    ]
+  }
+}

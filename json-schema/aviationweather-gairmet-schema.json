@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/aviationweather/json-schema/aviationweather-gairmet-schema.json",
+  "title": "AviationWeather Graphical AIRMET (G-AIRMET)",
+  "description": "Decoded G-AIRMET as returned by GET /api/data/gairmet?format=json.",
+  "type": "object",
+  "properties": {
+    "gairmetId":     { "type": "integer" },
+    "product":       { "type": "string", "enum": ["sierra","tango","zulu"], "description": "Product type (Sierra=IFR/MTN obs, Tango=turb/wind, Zulu=ice/freezing level)." },
+    "issueTime":     { "type": "integer", "description": "UNIX epoch issuance time." },
+    "validTime":     { "type": "integer", "description": "UNIX epoch valid time for this forecast snapshot." },
+    "fcstHour":      { "type": "integer", "enum": [0,3,6,9,12], "description": "Forecast hour from issuance." },
+    "hazard":        { "type": "string", "enum": ["turb-hi","turb-lo","llws","sfc_wind","ifr","mtn_obs","ice","fzlvl"], "description": "Hazard type." },
+    "tops":          { "type": ["integer","null"], "description": "Top altitude (feet)." },
+    "base":          { "type": ["integer","null"], "description": "Base altitude (feet)." },
+    "dueTo":         { "type": ["string","null"], "description": "Cause of the hazard (e.g. CIG/VIS, BR/HZ)." },
+    "geometryType":  { "type": "string", "enum": ["Polygon","MultiPolygon","LineString"] },
+    "coords":        { "type": "array", "description": "Coordinate ring (lon, lat)." }
+  }
+}

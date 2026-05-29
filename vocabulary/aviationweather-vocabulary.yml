@@ -1,0 +1,456 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "AviationWeather.gov (NOAA/NWS Aviation Weather Center)"
+  description: >-
+    Unified vocabulary covering the operational dimension (OpenAPI 3.1 endpoints
+    published at aviationweather.gov/api/data) and the capability dimension
+    (Naftiko capability files generated for the Weather Data and Navigational
+    Data surfaces). Resources are aviation meteorology entities; actions are
+    all read-only retrievals; personas span pilots, dispatchers, ATC, and
+    weather analysts.
+  created: "2026-05-29"
+  modified: "2026-05-29"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OPERATIONAL DIMENSION (from OpenAPI)
+# ─────────────────────────────────────────────────────────────────────────────
+operational:
+
+  apis:
+    - name: "Aviation Weather Data API"
+      namespace: aviationweather
+      version: "v4.0"
+      baseUrl: "https://aviationweather.gov/api/data"
+      status: active
+      authentication: none
+      rateLimit: "100 req/min per user"
+      historicalDepth: "15 days"
+
+  resources:
+    - name: metar
+      api: aviationweather
+      path: /api/data/metar
+      domain: Weather Data
+      actions: [getMetar]
+      description: Decoded surface aviation weather observations.
+    - name: taf
+      api: aviationweather
+      path: /api/data/taf
+      domain: Weather Data
+      actions: [getTaf]
+      description: Terminal Aerodrome Forecasts.
+    - name: pirep
+      api: aviationweather
+      path: /api/data/pirep
+      domain: Weather Data
+      actions: [getPirep]
+      description: Pilot reports (PIREP/AIREP).
+    - name: airsigmet
+      api: aviationweather
+      path: /api/data/airsigmet
+      domain: Weather Data
+      actions: [getAirSigmet]
+      description: Domestic SIGMETs for the contiguous United States.
+    - name: isigmet
+      api: aviationweather
+      path: /api/data/isigmet
+      domain: Weather Data
+      actions: [getISigmet]
+      description: International SIGMETs.
+    - name: gairmet
+      api: aviationweather
+      path: /api/data/gairmet
+      domain: Weather Data
+      actions: [getGAirmet]
+      description: Graphical AIRMETs for the contiguous United States.
+    - name: airmet
+      api: aviationweather
+      path: /api/data/airmet
+      domain: Weather Data
+      actions: [getAirmet]
+      description: AIRMETs (text-format, primarily Alaska).
+    - name: tcf
+      api: aviationweather
+      path: /api/data/tcf
+      domain: Weather Data
+      actions: [getTcf]
+      description: TFM Convective Forecast.
+    - name: cwa
+      api: aviationweather
+      path: /api/data/cwa
+      domain: Weather Data
+      actions: [getCwa]
+      description: CWSU Center Weather Advisories.
+    - name: windtemp
+      api: aviationweather
+      path: /api/data/windtemp
+      domain: Weather Data
+      actions: [getWindTemp]
+      description: Wind and temperature point data forecasts.
+    - name: areafcst
+      api: aviationweather
+      path: /api/data/areafcst
+      domain: Weather Data
+      actions: [getAreaForecast]
+      description: US Area Forecasts.
+    - name: fcstdisc
+      api: aviationweather
+      path: /api/data/fcstdisc
+      domain: Weather Data
+      actions: [getForecastDiscussion]
+      description: Area Forecast Discussions.
+    - name: mis
+      api: aviationweather
+      path: /api/data/mis
+      domain: Weather Data
+      actions: [getMis]
+      description: Meteorological Information Statements.
+    - name: stationinfo
+      api: aviationweather
+      path: /api/data/stationinfo
+      domain: Navigational Data
+      actions: [getStationInfo]
+      description: Observation station metadata.
+    - name: airport
+      api: aviationweather
+      path: /api/data/airport
+      domain: Navigational Data
+      actions: [getAirport]
+      description: Airport metadata including runways and frequencies.
+    - name: navaid
+      api: aviationweather
+      path: /api/data/navaid
+      domain: Navigational Data
+      actions: [getNavaid]
+      description: Navigational aids (VOR, NDB, DME).
+    - name: fix
+      api: aviationweather
+      path: /api/data/fix
+      domain: Navigational Data
+      actions: [getFix]
+      description: Navigational fixes and waypoints.
+    - name: feature
+      api: aviationweather
+      path: /api/data/feature
+      domain: Navigational Data
+      actions: [getFeature]
+      description: Geographic features.
+    - name: obstacle
+      api: aviationweather
+      path: /api/data/obstacle
+      domain: Navigational Data
+      actions: [getObstacle]
+      description: Tall structures and obstacles.
+    - name: dataserver
+      api: aviationweather
+      path: /api/data/dataserver
+      domain: Legacy
+      actions: [getDataServer]
+      description: Legacy ADDS Text Data Server passthrough.
+
+  actions:
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: Retrieve a resource snapshot from the public AWC service.
+
+  schemas:
+    weatherObservations:
+      - METARproperties
+      - METARJSON
+      - METARGeoJSON
+      - METARXML
+      - METARtext
+    forecasts:
+      - TAFproperties
+      - TAFJSON
+      - TAFGeoJSON
+      - TAFtext
+      - TcfGeoJSON
+    pilotReports:
+      - PIREPJSON
+      - PIREPGeoJSON
+      - PIREPXML
+      - PIREPtext
+    advisories:
+      - AirSigmetJSON
+      - AirSigmetGeoJSON
+      - ISigmetJSON
+      - ISigmetGeoJSON
+      - GairmetJSON
+      - GairmetGeoJSON
+      - AirmetJSON
+      - AirmetGeoJSON
+      - CwaJSON
+      - CwaGeoJSON
+    reference:
+      - StationInfoJSON
+      - StationInfoGeoJSON
+      - StationInfoXML
+      - CloudInfo
+    errors:
+      - ErrorJSON
+      - ErrorXML
+
+  parameters:
+    selectors:
+      - name: ids
+        description: ICAO identifier, comma-list, or @<state> abbreviation.
+      - name: id
+        description: Single identifier used for radial-distance selection (PIREP).
+      - name: bbox
+        description: Bounding box "minLat,minLon,maxLat,maxLon".
+      - name: distance
+        description: Radial distance in nautical miles from a center ID.
+    temporal:
+      - name: date
+        description: ISO 8601 datetime or Unix epoch.
+      - name: hours
+        description: Hours back from now.
+      - name: age
+        description: Hours back (PIREP).
+      - name: time
+        description: TAF temporal mode (valid|issue).
+      - name: fore
+        description: G-AIRMET forecast hour (0, 3, 6, 9, 12).
+      - name: fcst
+        description: Wind/Temp forecast hour.
+    filters:
+      - name: hazard
+        description: Hazard type filter (conv, turb, ice, ifr, ...).
+      - name: level
+        description: Altitude band centered ±3000 ft.
+      - name: inten
+        description: Minimum intensity (lgt, mod, sev).
+      - name: product
+        description: Product code (sierra, tango, zulu) for G-AIRMET.
+      - name: cwsu
+        description: CWSU identifier for CWA and MIS endpoints.
+      - name: cwa
+        description: WFO identifier for forecast discussion.
+      - name: region
+        description: Region selector for area forecasts and wind/temp.
+      - name: type
+        description: Discussion type for fcstdisc.
+    output:
+      - name: format
+        description: Response format (raw|decoded|json|geojson|xml|iwxxm).
+      - name: metar
+        description: Include METAR alongside TAF (boolean).
+      - name: taf
+        description: Include TAF alongside METAR (boolean).
+
+  enums:
+    formats:
+      - raw
+      - decoded
+      - json
+      - geojson
+      - xml
+      - iwxxm
+      - csv
+    flightCategories:
+      - VFR
+      - MVFR
+      - IFR
+      - LIFR
+    cloudCovers:
+      - CLR
+      - SKC
+      - NSC
+      - FEW
+      - SCT
+      - BKN
+      - OVC
+      - VV
+      - NCD
+      - TCU
+      - CB
+    metarTypes:
+      - METAR
+      - SPECI
+      - SYNOP
+      - BUOY
+      - CMAN
+    tafChangeTypes:
+      - TEMPO
+      - FM
+      - BECMG
+      - PROB
+    hazardTypes:
+      - conv
+      - turb
+      - ice
+      - ifr
+      - mtn_obs
+      - llws
+      - sfc_wind
+      - turb-hi
+      - turb-lo
+      - fzlvl
+    gairmetProducts:
+      - sierra
+      - tango
+      - zulu
+    sigmetSeverities:
+      - LGT
+      - MOD
+      - SEV
+      - EXTRM
+
+  authentication:
+    - scheme: none
+      description: "No authentication. Public service rate-limited to 100 req/min per user."
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CAPABILITY DIMENSION (from Naftiko)
+# ─────────────────────────────────────────────────────────────────────────────
+capability:
+
+  workflows:
+    - name: AviationWeather Weather Data
+      file: capabilities/aviationweather-weather-data.yaml
+      description: All operational aviation weather products under the Weather Data tag.
+      apisCombined: [aviationweather]
+      toolCount: 13
+      personas: [Pilot, Dispatcher, AirTrafficControl, WeatherAnalyst]
+      domains: [Weather Data]
+    - name: AviationWeather Navigational Data
+      file: capabilities/aviationweather-navigational-data.yaml
+      description: Aviation reference data (stations, airports, navaids, fixes, features, obstacles).
+      apisCombined: [aviationweather]
+      toolCount: 6
+      personas: [Pilot, Dispatcher, EFBDeveloper, Researcher]
+      domains: [Navigational Data]
+
+  personas:
+    - id: Pilot
+      name: Pilot
+      description: General aviation, commercial, or military pilot consulting weather products for pre-flight and en-route decisions.
+      workflows: [AviationWeather Weather Data, AviationWeather Navigational Data]
+    - id: Dispatcher
+      name: Airline / Charter Dispatcher
+      description: Operations professional planning routes and fuel loads around forecast hazards.
+      workflows: [AviationWeather Weather Data, AviationWeather Navigational Data]
+    - id: AirTrafficControl
+      name: Air Traffic Controller / CWSU
+      description: ATC personnel consuming CWAs and MIS from their CWSU.
+      workflows: [AviationWeather Weather Data]
+    - id: WeatherAnalyst
+      name: Aviation Meteorologist / Forecaster
+      description: Analyst producing or validating aviation weather products.
+      workflows: [AviationWeather Weather Data]
+    - id: EFBDeveloper
+      name: EFB / Flight Planning App Developer
+      description: Software developer integrating AWC data into electronic flight bags and pre-flight briefing tools.
+      workflows: [AviationWeather Weather Data, AviationWeather Navigational Data]
+    - id: Researcher
+      name: Researcher / Data Scientist
+      description: Academic or commercial researcher consuming historical aviation weather data.
+      workflows: [AviationWeather Weather Data, AviationWeather Navigational Data]
+
+  domains:
+    - id: Weather Data
+      description: Decoded operational weather products (observations, forecasts, advisories).
+      resources: [metar, taf, pirep, airsigmet, isigmet, gairmet, airmet, tcf, cwa, windtemp, areafcst, fcstdisc, mis]
+    - id: Navigational Data
+      description: Aviation reference data (stations, airports, navaids, fixes, features, obstacles).
+      resources: [stationinfo, airport, navaid, fix, feature, obstacle]
+    - id: Legacy
+      description: Legacy ADDS Text Data Server passthrough for backward compatibility.
+      resources: [dataserver]
+
+  namespaces:
+    consumed:
+      - aviationweather-weather-data
+      - aviationweather-navigational-data
+    restExposed:
+      - aviationweather-weather-data-rest:8080
+      - aviationweather-navigational-data-rest:8080
+    mcpExposed:
+      - aviationweather-weather-data-mcp:9090
+      - aviationweather-navigational-data-mcp:9090
+
+  binds: []
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CROSS-REFERENCE
+# ─────────────────────────────────────────────────────────────────────────────
+crossReference:
+  - resource: metar
+    operations: [getMetar]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, AirTrafficControl, WeatherAnalyst, EFBDeveloper, Researcher]
+  - resource: taf
+    operations: [getTaf]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, AirTrafficControl, WeatherAnalyst, EFBDeveloper]
+  - resource: pirep
+    operations: [getPirep]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, WeatherAnalyst]
+  - resource: airsigmet
+    operations: [getAirSigmet]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, AirTrafficControl, WeatherAnalyst]
+  - resource: isigmet
+    operations: [getISigmet]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, WeatherAnalyst]
+  - resource: gairmet
+    operations: [getGAirmet]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, EFBDeveloper]
+  - resource: airmet
+    operations: [getAirmet]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher]
+  - resource: tcf
+    operations: [getTcf]
+    workflows: [AviationWeather Weather Data]
+    personas: [Dispatcher, AirTrafficControl]
+  - resource: cwa
+    operations: [getCwa]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher, AirTrafficControl]
+  - resource: windtemp
+    operations: [getWindTemp]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher]
+  - resource: areafcst
+    operations: [getAreaForecast]
+    workflows: [AviationWeather Weather Data]
+    personas: [Pilot, Dispatcher]
+  - resource: fcstdisc
+    operations: [getForecastDiscussion]
+    workflows: [AviationWeather Weather Data]
+    personas: [WeatherAnalyst, Dispatcher]
+  - resource: mis
+    operations: [getMis]
+    workflows: [AviationWeather Weather Data]
+    personas: [AirTrafficControl, Dispatcher]
+  - resource: stationinfo
+    operations: [getStationInfo]
+    workflows: [AviationWeather Navigational Data]
+    personas: [EFBDeveloper, Researcher]
+  - resource: airport
+    operations: [getAirport]
+    workflows: [AviationWeather Navigational Data]
+    personas: [Pilot, EFBDeveloper, Researcher]
+  - resource: navaid
+    operations: [getNavaid]
+    workflows: [AviationWeather Navigational Data]
+    personas: [Pilot, EFBDeveloper]
+  - resource: fix
+    operations: [getFix]
+    workflows: [AviationWeather Navigational Data]
+    personas: [Pilot, Dispatcher, EFBDeveloper]
+  - resource: feature
+    operations: [getFeature]
+    workflows: [AviationWeather Navigational Data]
+    personas: [EFBDeveloper, Researcher]
+  - resource: obstacle
+    operations: [getObstacle]
+    workflows: [AviationWeather Navigational Data]
+    personas: [Pilot, EFBDeveloper]

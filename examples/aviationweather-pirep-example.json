@@ -1,0 +1,29 @@
+{
+  "operation": "GET /api/data/pirep",
+  "summary": "Pilot reports near Columbia (COU) within 200 nm",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/pirep?id=COU&distance=200&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "receiptTime": "2024-01-04 00:13:00.000Z",
+        "obsTime": 1704327120,
+        "rawOb": "COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW",
+        "acType": "E170",
+        "fltlvl": 140,
+        "lat": 38.65,
+        "lon": -92.65,
+        "tbInt1": "LGT-MOD",
+        "tbType1": "CHOP",
+        "tbFreq1": null,
+        "tbBas1": 14000,
+        "tbTop1": 17000,
+        "remarks": "DURC"
+      }
+    ]
+  }
+}

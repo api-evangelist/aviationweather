@@ -1,0 +1,13 @@
+{
+  "operation": "GET /api/data/areafcst",
+  "summary": "US Area Forecast for the Gulf of Mexico region",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/areafcst?region=gulf"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/plain",
+    "body": "FAUS3 KKCI 041245\nGFAACUS3\nAREA FORECAST FOR GULF OF MEXICO\nSYNOPSIS AND VFR CLDS/WX\nSYNOPSIS VALID UNTIL 050100\nCLOUDS/WEATHER VALID UNTIL 041900...OUTLOOK VALID 041900-050100\n..."
+  }
+}

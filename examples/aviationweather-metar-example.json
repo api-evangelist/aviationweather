@@ -1,0 +1,40 @@
+{
+  "operation": "GET /api/data/metar",
+  "summary": "METAR observation for Chicago O'Hare (KORD)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/metar?ids=KORD&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "icaoId": "KORD",
+        "receiptTime": "2023-11-03 21:54:03.000Z",
+        "obsTime": 1699048260,
+        "reportTime": "2023-11-03 22:00:00.000Z",
+        "temp": 14.4,
+        "dewp": 2.8,
+        "wdir": 230,
+        "wspd": 6,
+        "wgst": 12,
+        "visib": "10+",
+        "altim": 1016.3,
+        "slp": 1016.2,
+        "wxString": "-RA",
+        "metarType": "METAR",
+        "rawOb": "KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028",
+        "lat": 41.9602,
+        "lon": -87.9316,
+        "elev": 202,
+        "name": "Chicago/O'Hare Intl, IL, US",
+        "clouds": [
+          { "cover": "BKN", "base": 11000 },
+          { "cover": "OVC", "base": 25000 }
+        ],
+        "fltCat": "VFR"
+      }
+    ]
+  }
+}

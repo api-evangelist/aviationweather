@@ -1,0 +1,373 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "AviationWeather.gov API — Navigational Data"
+  description: >-
+    Navigational Data — the aviation reference data surface of the NOAA/NWS
+    Aviation Weather Center. Lead operation: retrieve station metadata for
+    one or more ICAO identifiers. Also covers airport details (including
+    runways and frequencies), NAVAIDs (VORs, NDBs, DMEs), navigation fixes
+    and waypoints, geographic features, and obstacles. All endpoints are
+    public, read-only GETs returning JSON, GeoJSON, or XML.
+    Self-contained Naftiko capability covering one Aviation Weather Center
+    business surface.
+  tags:
+    - Aviation Weather Center
+    - NOAA NWS
+    - Navigational Data
+  created: "2026-05-29"
+  modified: "2026-05-29"
+
+binds:
+  - namespace: env
+    keys: {}
+
+capability:
+
+  # ── 1. Consumes ─────────────────────────────────────────────────────────
+  consumes:
+    - type: http
+      namespace: "aviationweather-navigational-data"
+      baseUri: "https://aviationweather.gov"
+      description: "Aviation Weather Center public Data API — Navigational Data surface. Self-contained, no shared references."
+      authentication:
+        type: none
+      resources:
+        - name: "stationinfo"
+          path: "/api/data/stationinfo"
+          operations:
+            - name: "getStationInfo"
+              method: GET
+              description: "Weather observation station information."
+              inputParameters:
+                - name: "ids"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Station identifiers."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format (json, geojson, xml)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "airport"
+          path: "/api/data/airport"
+          operations:
+            - name: "getAirport"
+              method: GET
+              description: "Airport information including runways and frequencies."
+              inputParameters:
+                - name: "ids"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Airport identifiers."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "navaid"
+          path: "/api/data/navaid"
+          operations:
+            - name: "getNavaid"
+              method: GET
+              description: "Navigational aid info (VOR/NDB/DME)."
+              inputParameters:
+                - name: "ids"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Navaid identifiers."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "fix"
+          path: "/api/data/fix"
+          operations:
+            - name: "getFix"
+              method: GET
+              description: "Navigational fix and waypoint info."
+              inputParameters:
+                - name: "ids"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Fix identifiers."
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "feature"
+          path: "/api/data/feature"
+          operations:
+            - name: "getFeature"
+              method: GET
+              description: "Geographic feature info (geographic points of interest)."
+              inputParameters:
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "obstacle"
+          path: "/api/data/obstacle"
+          operations:
+            - name: "getObstacle"
+              method: GET
+              description: "Aviation obstacle info (tall structures)."
+              inputParameters:
+                - name: "bbox"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box."
+                - name: "format"
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  # ── 2. REST exposer ────────────────────────────────────────────────────
+  exposes:
+    - type: rest
+      namespace: "aviationweather-navigational-data-rest"
+      port: 8080
+      description: "REST adapter for AviationWeather.gov Navigational Data. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+      resources:
+        - path: "/v1/stations"
+          name: "stations"
+          description: "REST surface for station info."
+          operations:
+            - method: GET
+              name: "getStationInfo"
+              description: "Get station info."
+              call: "aviationweather-navigational-data.getStationInfo"
+              with:
+                ids: "rest.ids"
+                bbox: "rest.bbox"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/airports"
+          name: "airports"
+          description: "REST surface for airport info."
+          operations:
+            - method: GET
+              name: "getAirport"
+              description: "Get airport info."
+              call: "aviationweather-navigational-data.getAirport"
+              with:
+                ids: "rest.ids"
+                bbox: "rest.bbox"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/navaids"
+          name: "navaids"
+          description: "REST surface for navigational aid info."
+          operations:
+            - method: GET
+              name: "getNavaid"
+              description: "Get navaid info."
+              call: "aviationweather-navigational-data.getNavaid"
+              with:
+                ids: "rest.ids"
+                bbox: "rest.bbox"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/fixes"
+          name: "fixes"
+          description: "REST surface for navigational fix/waypoint info."
+          operations:
+            - method: GET
+              name: "getFix"
+              description: "Get fix and waypoint info."
+              call: "aviationweather-navigational-data.getFix"
+              with:
+                ids: "rest.ids"
+                bbox: "rest.bbox"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/features"
+          name: "features"
+          description: "REST surface for geographic feature info."
+          operations:
+            - method: GET
+              name: "getFeature"
+              description: "Get geographic feature info."
+              call: "aviationweather-navigational-data.getFeature"
+              with:
+                bbox: "rest.bbox"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/obstacles"
+          name: "obstacles"
+          description: "REST surface for obstacle info."
+          operations:
+            - method: GET
+              name: "getObstacle"
+              description: "Get obstacle info."
+              call: "aviationweather-navigational-data.getObstacle"
+              with:
+                bbox: "rest.bbox"
+                format: "rest.format"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+  # ── 3. MCP exposer ─────────────────────────────────────────────────────
+    - type: mcp
+      namespace: "aviationweather-navigational-data-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for AviationWeather.gov Navigational Data. One tool per consumed operation, routed inline through this capability's consumes block."
+      tools:
+        - name: "get-station-info"
+          description: "Get station info."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-navigational-data.getStationInfo"
+          with:
+            ids: "tools.ids"
+            bbox: "tools.bbox"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-airport"
+          description: "Get airport info."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-navigational-data.getAirport"
+          with:
+            ids: "tools.ids"
+            bbox: "tools.bbox"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-navaid"
+          description: "Get navaid info."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-navigational-data.getNavaid"
+          with:
+            ids: "tools.ids"
+            bbox: "tools.bbox"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-fix"
+          description: "Get fix and waypoint info."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-navigational-data.getFix"
+          with:
+            ids: "tools.ids"
+            bbox: "tools.bbox"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-feature"
+          description: "Get geographic feature info."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-navigational-data.getFeature"
+          with:
+            bbox: "tools.bbox"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-obstacle"
+          description: "Get obstacle info."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "aviationweather-navigational-data.getObstacle"
+          with:
+            bbox: "tools.bbox"
+            format: "tools.format"
+          outputParameters:
+            - type: object
+              mapping: "$."

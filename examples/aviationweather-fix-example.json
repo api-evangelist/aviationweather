@@ -1,0 +1,23 @@
+{
+  "operation": "GET /api/data/fix",
+  "summary": "Navigational fix/waypoint info for BARBQ",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/fix?ids=BARBQ&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "id": "BARBQ",
+        "type": "WAYPOINT",
+        "lat": 39.1421,
+        "lon": -94.5985,
+        "state": "MO",
+        "country": "US",
+        "use": "BOTH"
+      }
+    ]
+  }
+}

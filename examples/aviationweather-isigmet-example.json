@@ -1,0 +1,32 @@
+{
+  "operation": "GET /api/data/isigmet",
+  "summary": "International SIGMETs for turbulence",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/isigmet?hazard=turb&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "isigmetId": 5544,
+        "icaoId": "RJTD",
+        "firId": "RJJJ",
+        "firName": "FUKUOKA FIR",
+        "seriesId": "A12",
+        "hazard": "TURB",
+        "qualifier": "SEV",
+        "validTimeFrom": 1704380400,
+        "validTimeTo": 1704402000,
+        "rawSigmet": "WSJP31 RJTD 041500\nRJJJ SIGMET A12 VALID 041500/042100 RJTD-\n...",
+        "base": 30000,
+        "top": 40000,
+        "dir": "W",
+        "spd": 40,
+        "geom": "POLY",
+        "coords": [[140.0,35.0],[141.0,35.5],[140.5,36.0]]
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "operation": "GET /api/data/obstacle",
+  "summary": "Aviation obstacle info (tall structures near a bounding box)",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/obstacle?bbox=39,-95,40,-94&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "id": "OBST123",
+        "type": "TOWER",
+        "lat": 39.45,
+        "lon": -94.62,
+        "msl": 1675,
+        "agl": 642,
+        "lighting": "RED",
+        "marking": "P",
+        "country": "US"
+      }
+    ]
+  }
+}

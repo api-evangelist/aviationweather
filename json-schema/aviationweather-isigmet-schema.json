@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/aviationweather/json-schema/aviationweather-isigmet-schema.json",
+  "title": "AviationWeather International SIGMET",
+  "description": "Decoded international SIGMET as returned by GET /api/data/isigmet?format=json.",
+  "type": "object",
+  "properties": {
+    "isigmetId":     { "type": "integer" },
+    "icaoId":        { "type": "string", "description": "Issuing MWO ICAO identifier." },
+    "firId":         { "type": "string", "description": "Flight Information Region ICAO." },
+    "firName":       { "type": "string" },
+    "seriesId":      { "type": "string", "description": "Series identifier (e.g. A12)." },
+    "hazard":        { "type": "string", "enum": ["TURB","ICE","CONV","VA","TC","DS","SS","RDOACT"], "description": "Hazard type." },
+    "qualifier":     { "type": "string", "description": "Severity qualifier (e.g. SEV)." },
+    "validTimeFrom": { "type": "integer" },
+    "validTimeTo":   { "type": "integer" },
+    "rawSigmet":     { "type": "string" },
+    "base":          { "type": ["integer","null"], "description": "Base altitude (feet)." },
+    "top":           { "type": ["integer","null"], "description": "Top altitude (feet)." },
+    "dir":           { "type": ["string","null"], "description": "Movement direction." },
+    "spd":           { "type": ["integer","null"], "description": "Movement speed (knots)." },
+    "geom":          { "type": "string", "description": "Geometry type (POLY, LINE, POINT)." },
+    "coords":        { "type": "array", "items": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 } }
+  }
+}

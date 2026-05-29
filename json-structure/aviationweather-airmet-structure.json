@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-airmet-structure.json",
+  "name": "AviationWeather AIRMET",
+  "description": "Decoded AIRMET as returned by GET /api/data/airmet?format=json. AIRMETs are typically issued for Alaska and the legacy CONUS text product.",
+  "type": "object",
+  "properties": {
+    "airmetId": {
+      "type": "int32"
+    },
+    "icaoId": {
+      "type": "string",
+      "description": "Issuing center ICAO."
+    },
+    "issueTime": {
+      "type": "string"
+    },
+    "validTimeFrom": {
+      "type": "int32"
+    },
+    "validTimeTo": {
+      "type": "int32"
+    },
+    "product": {
+      "type": "string",
+      "enum": [
+        "SIERRA",
+        "TANGO",
+        "ZULU"
+      ]
+    },
+    "hazard": {
+      "type": "string",
+      "enum": [
+        "IFR",
+        "MTN OBSC",
+        "TURB",
+        "ICE",
+        "FZLVL",
+        "SFC WIND"
+      ]
+    },
+    "rawAirmet": {
+      "type": "string"
+    }
+  }
+}

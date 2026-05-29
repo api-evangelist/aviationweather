@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-airport-structure.json",
+  "name": "AviationWeather Airport Info",
+  "description": "Airport metadata as returned by GET /api/data/airport?format=json.",
+  "type": "object",
+  "required": [
+    "icaoId"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Primary identifier (often same as ICAO)."
+    },
+    "icaoId": {
+      "type": "string",
+      "description": "ICAO identifier."
+    },
+    "iataId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "IATA identifier."
+    },
+    "name": {
+      "type": "string"
+    },
+    "state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "country": {
+      "type": "string"
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Data source (e.g. FAA, ICAO)."
+    },
+    "type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Airport type/size classification."
+    },
+    "lat": {
+      "type": "double"
+    },
+    "lon": {
+      "type": "double"
+    },
+    "elev": {
+      "type": "int32",
+      "description": "Elevation (meters)."
+    },
+    "magdec": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Magnetic declination (e.g. \"3E\")."
+    },
+    "owner": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Ownership (PUBLIC, PRIVATE, MILITARY)."
+    },
+    "runways": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Runway identifier (e.g. 01L/19R)."
+          },
+          "dimension": {
+            "type": "string",
+            "description": "Length x width in feet."
+          },
+          "surface": {
+            "type": "string",
+            "description": "Surface code (CON, ASP, GVL, TURF, WATER, ...)."
+          }
+        }
+      }
+    },
+    "freqs": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Tower/ground/ATIS frequencies as space-delimited string."
+    }
+  }
+}

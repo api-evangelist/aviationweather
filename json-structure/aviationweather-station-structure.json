@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-station-structure.json",
+  "name": "AviationWeather Station Info",
+  "description": "Weather observation station metadata as returned by GET /api/data/stationinfo?format=json.",
+  "type": "object",
+  "required": [
+    "icaoId",
+    "lat",
+    "lon"
+  ],
+  "properties": {
+    "icaoId": {
+      "type": "string",
+      "description": "ICAO four-letter station identifier."
+    },
+    "iataId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "IATA three-letter code if assigned."
+    },
+    "faaId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "FAA identifier if assigned."
+    },
+    "wmoId": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "WMO numeric identifier if assigned."
+    },
+    "lat": {
+      "type": "double"
+    },
+    "lon": {
+      "type": "double"
+    },
+    "elev": {
+      "type": "int32",
+      "description": "Elevation in meters."
+    },
+    "site": {
+      "type": "string",
+      "description": "Site name."
+    },
+    "state": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "U.S. state/territory code or international subdivision."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO country code."
+    },
+    "priority": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Site priority (1-9, lower = higher priority)."
+    }
+  }
+}

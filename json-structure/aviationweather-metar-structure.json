@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-metar-structure.json",
+  "name": "AviationWeather METAR Observation",
+  "description": "Decoded METAR (or SPECI/SYNOP/BUOY/CMAN) aviation weather observation as returned by GET /api/data/metar?format=json.",
+  "type": "object",
+  "required": [
+    "icaoId",
+    "obsTime",
+    "rawOb"
+  ],
+  "properties": {
+    "icaoId": {
+      "type": "string",
+      "description": "ICAO identifier of the reporting station.",
+      "examples": [
+        "KORD"
+      ]
+    },
+    "receiptTime": {
+      "type": "string",
+      "description": "Time the observation was received (yyyy-mm-dd hh:mm:ss.sssZ)."
+    },
+    "obsTime": {
+      "type": "int32",
+      "description": "Observation time (UNIX epoch seconds)."
+    },
+    "reportTime": {
+      "type": "string",
+      "description": "Time of the report (yyyy-mm-dd hh:mm:ss.sssZ)."
+    },
+    "temp": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Temperature in degrees Celsius."
+    },
+    "dewp": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Dewpoint temperature in degrees Celsius."
+    },
+    "wdir": {
+      "type": [
+        "integer",
+        "string",
+        "null"
+      ],
+      "description": "Wind direction in degrees, or VRB for variable."
+    },
+    "wspd": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Wind speed in knots."
+    },
+    "wgst": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Wind gust in knots."
+    },
+    "visib": {
+      "type": [
+        "number",
+        "string",
+        "null"
+      ],
+      "description": "Visibility in statute miles; \"10+\" denotes >10 SM."
+    },
+    "altim": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Altimeter setting in hectopascals."
+    },
+    "slp": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Sea level pressure in hectopascals."
+    },
+    "wxString": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Encoded present weather string (e.g. -RA, +TSRA)."
+    },
+    "presTend": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Pressure tendency over last 3 hours in hPa."
+    },
+    "maxT": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Maximum temperature over last 6 hours (C)."
+    },
+    "minT": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Minimum temperature over last 6 hours (C)."
+    },
+    "maxT24": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Maximum temperature over last 24 hours (C)."
+    },
+    "minT24": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Minimum temperature over last 24 hours (C)."
+    },
+    "precip": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Precipitation over last hour (inches)."
+    },
+    "pcp3hr": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Precipitation over last 3 hours (inches)."
+    },
+    "pcp6hr": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Precipitation over last 6 hours (inches)."
+    },
+    "pcp24hr": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Precipitation over last 24 hours (inches)."
+    },
+    "snow": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Snow depth (inches)."
+    },
+    "vertVis": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Vertical visibility in feet."
+    },
+    "metarType": {
+      "type": "string",
+      "enum": [
+        "METAR",
+        "SPECI",
+        "SYNOP",
+        "BUOY",
+        "CMAN"
+      ],
+      "description": "Observation encoding type."
+    },
+    "rawOb": {
+      "type": "string",
+      "description": "Raw text of the observation."
+    },
+    "lat": {
+      "type": "double",
+      "description": "Latitude of site (decimal degrees)."
+    },
+    "lon": {
+      "type": "double",
+      "description": "Longitude of site (decimal degrees)."
+    },
+    "elev": {
+      "type": "int32",
+      "description": "Elevation in meters."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the site."
+    },
+    "clouds": {
+      "type": "array",
+      "description": "Cloud layers reported.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cover": {
+            "type": "string",
+            "enum": [
+              "CLR",
+              "SKC",
+              "NSC",
+              "FEW",
+              "SCT",
+              "BKN",
+              "OVC",
+              "VV",
+              "NCD",
+              "TCU",
+              "CB"
+            ],
+            "description": "Cloud cover code."
+          },
+          "base": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Cloud base in feet AGL."
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Cloud type qualifier."
+          }
+        }
+      }
+    },
+    "fltCat": {
+      "type": "string",
+      "enum": [
+        "VFR",
+        "MVFR",
+        "IFR",
+        "LIFR",
+        ""
+      ],
+      "description": "Flight category."
+    }
+  }
+}

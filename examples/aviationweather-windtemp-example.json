@@ -1,0 +1,13 @@
+{
+  "operation": "GET /api/data/windtemp",
+  "summary": "Wind/Temp point data for FL240 over the CONUS region",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/windtemp?region=us&level=high&fcst=24"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/plain",
+    "body": "DATA BASED ON 040000Z   \nVALID 041800Z   FOR USE 1500-2100Z. TEMPS NEG ABV 24000\nFT  3000    6000    9000   12000   18000   24000  30000  34000  39000\nDEN     9900   2113   2225+12 2335+05 2545-13 2660-26 277541 268455 257960\nFOR     9900   2117   2229+13 2342+04 2552-14 2666-27 278342 269356 258561"
+  }
+}

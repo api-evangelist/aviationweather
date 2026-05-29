@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/aviationweather/refs/heads/main/json-structure/aviationweather-taf-structure.json",
+  "name": "AviationWeather Terminal Aerodrome Forecast (TAF)",
+  "description": "Decoded TAF as returned by GET /api/data/taf?format=json.",
+  "type": "object",
+  "required": [
+    "icaoId",
+    "rawTAF",
+    "validTimeFrom",
+    "validTimeTo"
+  ],
+  "properties": {
+    "icaoId": {
+      "type": "string",
+      "description": "ICAO identifier of the forecast site."
+    },
+    "dbPopTime": {
+      "type": "string",
+      "description": "Time product was received."
+    },
+    "bulletinTime": {
+      "type": "string",
+      "description": "Official bulletin time."
+    },
+    "issueTime": {
+      "type": "string",
+      "description": "Time the TAF was issued."
+    },
+    "validTimeFrom": {
+      "type": "int32",
+      "description": "Start of validity period (UNIX epoch seconds)."
+    },
+    "validTimeTo": {
+      "type": "int32",
+      "description": "End of validity period (UNIX epoch seconds)."
+    },
+    "rawTAF": {
+      "type": "string",
+      "description": "Raw TAF text."
+    },
+    "mostRecent": {
+      "type": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "description": "1 if most recent TAF for the site."
+    },
+    "remarks": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Additional remarks."
+    },
+    "lat": {
+      "type": "double",
+      "description": "Latitude (decimal degrees)."
+    },
+    "lon": {
+      "type": "double",
+      "description": "Longitude (decimal degrees)."
+    },
+    "elev": {
+      "type": "int32",
+      "description": "Elevation (meters)."
+    },
+    "prior": {
+      "type": "int32",
+      "minimum": 0,
+      "maximum": 9,
+      "description": "Site priority for progressive disclosure."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the site."
+    },
+    "fcsts": {
+      "type": "array",
+      "description": "Individual forecast periods within the TAF.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timeFrom": {
+            "type": "int32",
+            "description": "Forecast validity start (UNIX epoch)."
+          },
+          "timeTo": {
+            "type": "int32",
+            "description": "Forecast validity end (UNIX epoch)."
+          },
+          "timeBec": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "End of BECMG transition (UNIX epoch)."
+          },
+          "fcstChange": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              null,
+              "TEMPO",
+              "FM",
+              "BECMG",
+              "PROB"
+            ],
+            "description": "Change type."
+          },
+          "probability": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Probability from PROB30 / PROB40 groups."
+          },
+          "wdir": {
+            "type": [
+              "integer",
+              "string",
+              "null"
+            ],
+            "description": "Wind direction in degrees or VRB."
+          },
+          "wspd": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Wind speed (knots)."
+          },
+          "wgst": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Wind gust (knots)."
+          },
+          "wshearHgt": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Wind shear top in feet."
+          },
+          "wshearDir": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Wind direction at top of shear layer."
+          },
+          "wshearSpd": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Wind speed at top of shear layer (knots)."
+          },
+          "visib": {
+            "type": [
+              "number",
+              "string",
+              "null"
+            ],
+            "description": "Visibility (SM); 6+ for >6 SM."
+          },
+          "altim": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Altimeter setting (hPa)."
+          },
+          "vertVis": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Vertical visibility (feet)."
+          },
+          "wxString": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Encoded present weather."
+          },
+          "notDecoded": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Text that could not be decoded."
+          },
+          "clouds": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "icgTurb": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "var": {
+                  "type": "string",
+                  "enum": [
+                    "ICE",
+                    "TURB"
+                  ]
+                },
+                "intensity": {
+                  "type": "int32"
+                },
+                "minAlt": {
+                  "type": "int32",
+                  "description": "Minimum altitude (feet)."
+                },
+                "maxAlt": {
+                  "type": "int32",
+                  "description": "Maximum altitude (feet)."
+                }
+              }
+            }
+          },
+          "temp": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "validTime": {
+                  "type": "int32",
+                  "description": "Time of max/min (UNIX epoch)."
+                },
+                "sfcTemp": {
+                  "type": "int32",
+                  "description": "Surface temperature (C)."
+                },
+                "maxOrMin": {
+                  "type": "string",
+                  "enum": [
+                    "MAX",
+                    "MIN"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

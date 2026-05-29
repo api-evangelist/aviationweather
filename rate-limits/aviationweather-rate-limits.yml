@@ -1,0 +1,121 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+
+provider: AviationWeather.gov (NOAA/NWS Aviation Weather Center)
+providerId: aviationweather
+created: '2026-05-29'
+modified: '2026-05-29'
+reconciled: true
+
+tags:
+  - Rate Limiting
+  - Government
+  - Weather
+  - Aviation
+  - Open Data
+  - NOAA NWS
+
+description: >-
+  The AviationWeather.gov public Data API is rate-limited per consumer (IP-based,
+  no API key required) at 100 requests per minute. In addition, the docs request
+  that no single endpoint be polled more frequently than once per minute per
+  thread. Most endpoints return a maximum of 400 entries per response. The
+  historical depth of the database is up to 15 days. Limits apply uniformly to
+  all formats (raw, decoded, json, geojson, xml, iwxxm) and to all endpoints
+  including reference data (stations, airports, navaids). Exceeding the limits
+  results in temporary access blocks; the docs encourage waiting between
+  consecutive requests and caching responses for short windows. No paid tier or
+  raise-via-support process is published — the service is funded as a public
+  good by NOAA/NWS.
+
+sources:
+  - https://aviationweather.gov/data/api/
+  - https://aviationweather.gov/data/schema/openapi.yaml
+  - https://aviationweather.gov/help/
+
+responseCodes:
+  throttled: 429
+  invalidInput: 400
+  serverError: 500
+
+limits:
+  - name: Global request rate per consumer
+    scope: IP
+    metric: requests_per_minute
+    limit: 100
+    timeFrame: minute
+    notes: >-
+      Applies globally to the consumer (identified by source IP since there is
+      no API key). Exceeding this returns HTTP 429 and may trigger a temporary
+      block. Documented at aviationweather.gov/data/api/.
+
+  - name: Per-endpoint polling cap
+    scope: IP/endpoint/thread
+    metric: requests_per_minute
+    limit: 1
+    timeFrame: minute
+    notes: >-
+      No single endpoint should be consumed more frequently than once per
+      minute from a single thread. This is the recommended minimum interval
+      between calls to the same path from the same client thread.
+
+  - name: Response entry cap
+    scope: response
+    metric: varies
+    limit: '400 entries per response'
+    notes: >-
+      Most endpoints return at most 400 records per response. Use bbox/ids
+      narrowing or pagination via temporal parameters (date, hours, age) to
+      stay within the cap.
+
+  - name: Historical depth
+    scope: dataset
+    metric: varies
+    limit: '15 days'
+    notes: >-
+      The weather database currently allows access to up to the previous
+      15 days of data. Older data is not available via this API and must be
+      obtained from NOAA archives (NCEI).
+
+policies:
+  - name: No authentication
+    description: >-
+      The API does not require an API key. Limits are enforced per source IP,
+      so consumers behind NAT or shared egress IPs share quota.
+
+  - name: Wait between requests
+    description: >-
+      The provider recommends waiting between consecutive requests rather than
+      issuing tight loops. Combined with the 1 req/min per-endpoint
+      recommendation, this favors batched polling over fan-out.
+
+  - name: Cache short-window results
+    description: >-
+      METARs typically update at 5-10 minute intervals (or on SPECI events);
+      TAFs at 6-hour intervals plus amendments. Caching responses for at least
+      one minute is appropriate and reduces load.
+
+  - name: No paid tier
+    description: >-
+      There is no raise-via-support or paid uplift. Consumers needing higher
+      throughput should use NOAA WIFS (Weather Information For System) or FAA
+      SWIM for operational bulk distribution.
+
+  - name: Retry on 429
+    description: >-
+      On HTTP 429, back off for at least one minute before retrying. There is
+      no documented Retry-After header at this time, so use a fixed minimum
+      backoff of 60 seconds with jitter.
+
+  - name: Use appropriate selector
+    description: >-
+      Prefer `ids` (ICAO list) or `bbox` (bounding box) to limit returned
+      records rather than scanning all data and filtering client-side.
+      `@<state>` selectors (e.g. `@KS`) return all stations in a U.S. state.
+
+  - name: Public domain output
+    description: >-
+      Output data is U.S. Government Work (public domain) per the NWS
+      disclaimer. Attribution to NOAA/NWS/AWC is encouraged but not legally
+      required.

@@ -1,0 +1,27 @@
+{
+  "operation": "GET /api/data/navaid",
+  "summary": "Navigational aid info for MCI VOR",
+  "request": {
+    "method": "GET",
+    "url": "https://aviationweather.gov/api/data/navaid?ids=MCI&format=json"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": [
+      {
+        "id": "MCI",
+        "name": "KANSAS CITY",
+        "type": "VOR/DME",
+        "freq": "112.6",
+        "channel": "73X",
+        "lat": 39.2737,
+        "lon": -94.7322,
+        "elev": 1024,
+        "magvar": 3,
+        "state": "MO",
+        "country": "US"
+      }
+    ]
+  }
+}
