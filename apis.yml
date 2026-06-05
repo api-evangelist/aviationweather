@@ -1,14 +1,12 @@
 aid: aviationweather
 name: Aviation Weather Center
 description: >-
-  The NOAA/NWS Aviation Weather Center (AWC) public data API provides
-  machine-to-machine access to operational aviation weather products including
-  METARs, TAFs, pilot reports (PIREPs/AIREPs), SIGMETs (domestic and
-  international), G-AIRMETs and AIRMETs, Center Weather Advisories (CWAs),
-  TFM convective forecasts (TCFs), area forecasts, area forecast discussions,
-  meteorological information statements (MIS), and reference data for stations,
-  airports, NAVAIDs, fixes, features, and obstacles. Responses are available
-  in raw text, JSON, GeoJSON, XML, and (for METAR/TAF) IWXXM formats.
+  The NOAA/NWS Aviation Weather Center (AWC) public data API provides machine-to-machine access to operational aviation
+  weather products including METARs, TAFs, pilot reports (PIREPs/AIREPs), SIGMETs (domestic and international),
+  G-AIRMETs and AIRMETs, Center Weather Advisories (CWAs), TFM convective forecasts (TCFs), area forecasts, area
+  forecast discussions, meteorological information statements (MIS), and reference data for stations, airports, NAVAIDs,
+  fixes, features, and obstacles. Responses are available in raw text, JSON, GeoJSON, XML, and (for METAR/TAF) IWXXM
+  formats.
 url: https://aviationweather.gov/data/api/
 specificationVersion: '0.20'
 created: '2026-05-28'
@@ -34,15 +32,11 @@ tags:
 apis:
   - name: Aviation Weather Data API
     description: >-
-      Public REST API exposing operational aviation weather products
-      produced by the NOAA/NWS Aviation Weather Center. Endpoints cover
-      decoded weather observations (METAR), terminal forecasts (TAF),
-      pilot reports (PIREP/AIREP), domestic and international SIGMETs,
-      G-AIRMETs and AIRMETs, CWAs, TFM convective forecasts, area
-      forecasts, forecast discussions, meteorological information
-      statements, plus reference data for stations, airports, NAVAIDs,
-      fixes, features, and obstacles. All endpoints are public and
-      do not require an API key.
+      Public REST API exposing operational aviation weather products produced by the NOAA/NWS Aviation Weather Center.
+      Endpoints cover decoded weather observations (METAR), terminal forecasts (TAF), pilot reports (PIREP/AIREP),
+      domestic and international SIGMETs, G-AIRMETs and AIRMETs, CWAs, TFM convective forecasts, area forecasts,
+      forecast discussions, meteorological information statements, plus reference data for stations, airports, NAVAIDs,
+      fixes, features, and obstacles. All endpoints are public and do not require an API key.
     humanURL: https://aviationweather.gov/data/api/
     baseURL: https://aviationweather.gov/api/data
     tags:
@@ -71,12 +65,6 @@ apis:
         url: https://aviationweather.gov/api/data
       - type: Status
         url: https://aviationweather.gov/
-      - type: NaftikoCapability
-        title: Weather Data
-        url: capabilities/aviationweather-weather-data.yaml
-      - type: NaftikoCapability
-        title: Navigational Data
-        url: capabilities/aviationweather-navigational-data.yaml
       - type: JSONSchema
         title: METAR
         url: json-schema/aviationweather-metar-schema.json
