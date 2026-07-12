@@ -165,6 +165,8 @@ apis:
         title: Data Server (legacy)
         url: examples/aviationweather-dataserver-example.json
 common:
+  - type: DomainSecurity
+    url: security/aviationweather-domain-security.yml
   - type: Website
     url: https://aviationweather.gov/
   - type: Agency
