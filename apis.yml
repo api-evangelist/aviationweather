@@ -165,6 +165,8 @@ apis:
         title: Data Server (legacy)
         url: examples/aviationweather-dataserver-example.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/aviationweather-agentic-access.yml
   - type: DomainSecurity
     url: security/aviationweather-domain-security.yml
   - type: Website
