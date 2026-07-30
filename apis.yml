@@ -1,4 +1,16 @@
 aid: aviationweather
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/aviationweather.png
 name: Aviation Weather Center
 description: >-
   The NOAA/NWS Aviation Weather Center (AWC) public data API provides machine-to-machine access to operational aviation
@@ -30,140 +42,194 @@ tags:
   - Open Data
   - Public APIs
 apis:
-  - name: Aviation Weather Data API
-    description: >-
-      Public REST API exposing operational aviation weather products produced by the NOAA/NWS Aviation Weather Center.
-      Endpoints cover decoded weather observations (METAR), terminal forecasts (TAF), pilot reports (PIREP/AIREP),
-      domestic and international SIGMETs, G-AIRMETs and AIRMETs, CWAs, TFM convective forecasts, area forecasts,
-      forecast discussions, meteorological information statements, plus reference data for stations, airports, NAVAIDs,
-      fixes, features, and obstacles. All endpoints are public and do not require an API key.
-    humanURL: https://aviationweather.gov/data/api/
-    baseURL: https://aviationweather.gov/api/data
-    tags:
-      - Weather
-      - Aviation
-      - Government
-      - Open Data
-    properties:
-      - type: Documentation
-        url: https://aviationweather.gov/data/api/
-      - type: OpenAPI
-        url: openapi/aviationweather-openapi.yml
-      - type: OpenAPISource
-        url: https://aviationweather.gov/data/schema/openapi.yaml
-      - type: Examples
-        url: https://aviationweather.gov/data/example/
-      - type: TermsOfService
-        url: https://aviationweather.gov/data/api/
-      - type: RateLimits
-        url: rate-limits/aviationweather-rate-limits.yml
-      - type: GovernmentAPI
-        url: https://aviationweather.gov/data/api/
-      - type: DataAPI
-        url: https://aviationweather.gov/api/data
-      - type: OpenDataAPI
-        url: https://aviationweather.gov/api/data
-      - type: Status
-        url: https://aviationweather.gov/
-      - type: JSONSchema
-        title: METAR
-        url: json-schema/aviationweather-metar-schema.json
-      - type: JSONSchema
-        title: TAF
-        url: json-schema/aviationweather-taf-schema.json
-      - type: JSONSchema
-        title: PIREP
-        url: json-schema/aviationweather-pirep-schema.json
-      - type: JSONSchema
-        title: AIRSIGMET
-        url: json-schema/aviationweather-airsigmet-schema.json
-      - type: JSONSchema
-        title: ISIGMET
-        url: json-schema/aviationweather-isigmet-schema.json
-      - type: JSONSchema
-        title: GAIRMET
-        url: json-schema/aviationweather-gairmet-schema.json
-      - type: JSONSchema
-        title: AIRMET
-        url: json-schema/aviationweather-airmet-schema.json
-      - type: JSONSchema
-        title: CWA
-        url: json-schema/aviationweather-cwa-schema.json
-      - type: JSONSchema
-        title: Station
-        url: json-schema/aviationweather-station-schema.json
-      - type: JSONSchema
-        title: Airport
-        url: json-schema/aviationweather-airport-schema.json
-      - type: JSONStructure
-        title: METAR
-        url: json-structure/aviationweather-metar-structure.json
-      - type: JSONStructure
-        title: TAF
-        url: json-structure/aviationweather-taf-structure.json
-      - type: JSONStructure
-        title: Airport
-        url: json-structure/aviationweather-airport-structure.json
-      - type: ExamplePayload
-        title: METAR
-        url: examples/aviationweather-metar-example.json
-      - type: ExamplePayload
-        title: TAF
-        url: examples/aviationweather-taf-example.json
-      - type: ExamplePayload
-        title: PIREP
-        url: examples/aviationweather-pirep-example.json
-      - type: ExamplePayload
-        title: Domestic SIGMET
-        url: examples/aviationweather-airsigmet-example.json
-      - type: ExamplePayload
-        title: International SIGMET
-        url: examples/aviationweather-isigmet-example.json
-      - type: ExamplePayload
-        title: G-AIRMET
-        url: examples/aviationweather-gairmet-example.json
-      - type: ExamplePayload
-        title: AIRMET
-        url: examples/aviationweather-airmet-example.json
-      - type: ExamplePayload
-        title: TFM Convective Forecast
-        url: examples/aviationweather-tcf-example.json
-      - type: ExamplePayload
-        title: CWA
-        url: examples/aviationweather-cwa-example.json
-      - type: ExamplePayload
-        title: Wind/Temp
-        url: examples/aviationweather-windtemp-example.json
-      - type: ExamplePayload
-        title: Area Forecast
-        url: examples/aviationweather-areafcst-example.json
-      - type: ExamplePayload
-        title: Forecast Discussion
-        url: examples/aviationweather-fcstdisc-example.json
-      - type: ExamplePayload
-        title: MIS
-        url: examples/aviationweather-mis-example.json
-      - type: ExamplePayload
-        title: Station Info
-        url: examples/aviationweather-stationinfo-example.json
-      - type: ExamplePayload
-        title: Airport
-        url: examples/aviationweather-airport-example.json
-      - type: ExamplePayload
-        title: NAVAID
-        url: examples/aviationweather-navaid-example.json
-      - type: ExamplePayload
-        title: Fix
-        url: examples/aviationweather-fix-example.json
-      - type: ExamplePayload
-        title: Feature
-        url: examples/aviationweather-feature-example.json
-      - type: ExamplePayload
-        title: Obstacle
-        url: examples/aviationweather-obstacle-example.json
-      - type: ExamplePayload
-        title: Data Server (legacy)
-        url: examples/aviationweather-dataserver-example.json
+- aid: aviationweather:aviationweather-navigational-data-api
+  name: Aviation Weather Center Navigational Data API
+  description: Decoded navigational information
+  humanURL: https://aviationweather.gov/data/api/
+  baseURL: https://aviationweather.gov/api/data
+  tags:
+  - Navigational Data
+  properties:
+  - type: OpenAPI
+    url: openapi/aviationweather-navigational-data-api-openapi.yml
+  - type: Documentation
+    url: https://aviationweather.gov/data/api/
+  - type: OpenAPISource
+    url: https://aviationweather.gov/data/schema/openapi.yaml
+  - type: Examples
+    url: https://aviationweather.gov/data/example/
+  - type: TermsOfService
+    url: https://aviationweather.gov/data/api/
+  - type: RateLimits
+    url: rate-limits/aviationweather-rate-limits.yml
+  - type: GovernmentAPI
+    url: https://aviationweather.gov/data/api/
+  - type: DataAPI
+    url: https://aviationweather.gov/api/data
+  - type: OpenDataAPI
+    url: https://aviationweather.gov/api/data
+  - type: Status
+    url: https://aviationweather.gov/
+  - type: JSONSchema
+    url: json-schema/aviationweather-metar-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-taf-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-pirep-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-airsigmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-isigmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-gairmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-airmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-cwa-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-station-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-airport-schema.json
+  - type: JSONStructure
+    url: json-structure/aviationweather-metar-structure.json
+  - type: JSONStructure
+    url: json-structure/aviationweather-taf-structure.json
+  - type: JSONStructure
+    url: json-structure/aviationweather-airport-structure.json
+  - type: ExamplePayload
+    url: examples/aviationweather-metar-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-taf-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-pirep-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-airsigmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-isigmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-gairmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-airmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-tcf-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-cwa-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-windtemp-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-areafcst-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-fcstdisc-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-mis-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-stationinfo-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-airport-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-navaid-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-fix-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-feature-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-obstacle-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-dataserver-example.json
+- aid: aviationweather:aviationweather-weather-data-api
+  name: Aviation Weather Center Weather Data API
+  description: Decoded weather information
+  humanURL: https://aviationweather.gov/data/api/
+  baseURL: https://aviationweather.gov/api/data
+  tags:
+  - Weather Data
+  properties:
+  - type: OpenAPI
+    url: openapi/aviationweather-weather-data-api-openapi.yml
+  - type: Documentation
+    url: https://aviationweather.gov/data/api/
+  - type: OpenAPISource
+    url: https://aviationweather.gov/data/schema/openapi.yaml
+  - type: Examples
+    url: https://aviationweather.gov/data/example/
+  - type: TermsOfService
+    url: https://aviationweather.gov/data/api/
+  - type: RateLimits
+    url: rate-limits/aviationweather-rate-limits.yml
+  - type: GovernmentAPI
+    url: https://aviationweather.gov/data/api/
+  - type: DataAPI
+    url: https://aviationweather.gov/api/data
+  - type: OpenDataAPI
+    url: https://aviationweather.gov/api/data
+  - type: Status
+    url: https://aviationweather.gov/
+  - type: JSONSchema
+    url: json-schema/aviationweather-metar-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-taf-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-pirep-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-airsigmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-isigmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-gairmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-airmet-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-cwa-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-station-schema.json
+  - type: JSONSchema
+    url: json-schema/aviationweather-airport-schema.json
+  - type: JSONStructure
+    url: json-structure/aviationweather-metar-structure.json
+  - type: JSONStructure
+    url: json-structure/aviationweather-taf-structure.json
+  - type: JSONStructure
+    url: json-structure/aviationweather-airport-structure.json
+  - type: ExamplePayload
+    url: examples/aviationweather-metar-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-taf-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-pirep-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-airsigmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-isigmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-gairmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-airmet-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-tcf-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-cwa-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-windtemp-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-areafcst-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-fcstdisc-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-mis-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-stationinfo-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-airport-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-navaid-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-fix-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-feature-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-obstacle-example.json
+  - type: ExamplePayload
+    url: examples/aviationweather-dataserver-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/aviationweather-agentic-access.yml
