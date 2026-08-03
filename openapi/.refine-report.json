@@ -1,0 +1,19 @@
+{
+  "provider": "aviationweather",
+  "sources": [
+    "aviationweather-navigational-data-api-openapi.yml",
+    "aviationweather-weather-data-api-openapi.yml"
+  ],
+  "outputs": [
+    "aviationweather-navigational-data-api-openapi.yml",
+    "aviationweather-weather-data-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "aviationweather-navigational-data-api-openapi.yml: dangling $ref: #/components/responses/400",
+    "aviationweather-weather-data-api-openapi.yml: dangling $ref: #/components/responses/400"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
