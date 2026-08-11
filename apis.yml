@@ -255,7 +255,7 @@ common:
   - type: RecentChanges
     url: https://aviationweather.gov/data/api/
   - type: OpenAPI
-    url: openapi/aviationweather-openapi.yml
+    url: openapi/_original/aviationweather-openapi.yml
   - type: Vocabulary
     url: vocabulary/aviationweather-vocabulary.yml
   - type: JSONLD
