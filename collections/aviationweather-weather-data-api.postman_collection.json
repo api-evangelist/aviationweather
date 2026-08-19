@@ -1,0 +1,2344 @@
+{
+  "item": [
+    {
+      "id": "17334c34-e392-44af-abad-b7c803a5091e",
+      "name": "Weather Data",
+      "description": {
+        "content": "Decoded weather information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d74c7dd4-2824-4d5d-a588-0358fac04890",
+          "name": "Get METAR Observations",
+          "request": {
+            "name": "Get METAR Observations",
+            "description": {
+              "content": "Decoded aviation weather observations. Station identifiers or a bounding box is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "metar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Station ID(s)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "taf",
+                  "value": "false",
+                  "description": "Include TAF"
+                },
+                {
+                  "disabled": false,
+                  "key": "hours",
+                  "value": "1.5",
+                  "description": "Hours back to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0733fe30-8cca-4ee2-a706-5f9bab958bb9",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "metar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "taf",
+                      "value": "false"
+                    },
+                    {
+                      "key": "hours",
+                      "value": "1.5"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icaoId\": \"KORD\",\n    \"receiptTime\": \"2023-11-03 21:54:03.000Z\",\n    \"obsTime\": 1699048260,\n    \"reportTime\": \"2023-11-03 22:00:00.000Z\",\n    \"temp\": 14.4,\n    \"dewp\": 2.8,\n    \"wdir\": 3712,\n    \"wspd\": 6,\n    \"wgst\": 12,\n    \"visib\": 2835.17906110051,\n    \"altim\": 1016.3,\n    \"slp\": 1016.2,\n    \"wxString\": \"-RA\",\n    \"presTend\": null,\n    \"maxT\": 23.4,\n    \"minT\": 12.3,\n    \"maxT24\": 23.4,\n    \"minT24\": 12.3,\n    \"precip\": 0.01,\n    \"pcp3hr\": 0.1,\n    \"pcp6hr\": 0.23,\n    \"pcp24hr\": 0.53,\n    \"snow\": 1,\n    \"vertVis\": 100,\n    \"metarType\": \"METAR\",\n    \"rawOb\": \"KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028\",\n    \"lat\": 41.9602,\n    \"lon\": -87.9316,\n    \"elev\": 202,\n    \"name\": \"Chicago/O'Hare Intl\",\n    \"fltCat\": \"IFR\"\n  },\n  {\n    \"icaoId\": \"KORD\",\n    \"receiptTime\": \"2023-11-03 21:54:03.000Z\",\n    \"obsTime\": 1699048260,\n    \"reportTime\": \"2023-11-03 22:00:00.000Z\",\n    \"temp\": 14.4,\n    \"dewp\": 2.8,\n    \"wdir\": 2502,\n    \"wspd\": 6,\n    \"wgst\": 12,\n    \"visib\": 5291.311286916177,\n    \"altim\": 1016.3,\n    \"slp\": 1016.2,\n    \"wxString\": \"-RA\",\n    \"presTend\": null,\n    \"maxT\": 23.4,\n    \"minT\": 12.3,\n    \"maxT24\": 23.4,\n    \"minT24\": 12.3,\n    \"precip\": 0.01,\n    \"pcp3hr\": 0.1,\n    \"pcp6hr\": 0.23,\n    \"pcp24hr\": 0.53,\n    \"snow\": 1,\n    \"vertVis\": 100,\n    \"metarType\": \"METAR\",\n    \"rawOb\": \"KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028\",\n    \"lat\": 41.9602,\n    \"lon\": -87.9316,\n    \"elev\": 202,\n    \"name\": \"Chicago/O'Hare Intl\",\n    \"fltCat\": \"IFR\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e20186a-958d-4318-a5a4-c83356f8666f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "metar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "taf",
+                      "value": "false"
+                    },
+                    {
+                      "key": "hours",
+                      "value": "1.5"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff4414a2-00ee-4923-a3df-b572c73c248e",
+          "name": "Get TAFs",
+          "request": {
+            "name": "Get TAFs",
+            "description": {
+              "content": "Decoded Terminal Aerodrome Forecast products. Station identifiers or a bounding box is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "taf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Station ID(s)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "metar",
+                  "value": "<boolean>",
+                  "description": "Include METAR"
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<string>",
+                  "description": "Process time by valid (default) or issuance time"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d06ff2f3-8d77-4209-974b-94af71b1825b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "taf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "metar",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icaoId\": \"KORD\",\n    \"dbPopTime\": \"2023-11-03 23:20:09.000Z\",\n    \"bulletinTime\": \"2023-11-03 23:20:00.000Z\",\n    \"issueTime\": \"2023-11-03 23:20:00.000Z\",\n    \"validTimeFrom\": 1699056000,\n    \"validTimeTo\": 1699164000,\n    \"rawTAF\": \"KORD 032320Z 0400/0506 VRB05KT P6SM FEW050 SCT080 OVC110 TEMPO 0401/0403 -SHRA BKN050 OVC080 FM040600 34006KT P6SM FEW015 SCT100 BKN150 FM041400 01008KT P6SM SCT020 SCT100 TEMPO 0415/0419 BKN015 FM050100 32004KT P6SM FEW020 SCT250\",\n    \"mostRecent\": 1,\n    \"remarks\": \"RMK PGG\",\n    \"lat\": 41.9602,\n    \"lon\": -87.9316,\n    \"elev\": 202,\n    \"prior\": 0,\n    \"name\": \"Chicago/O'Hare Intl\",\n    \"fcsts\": [\n      {\n        \"timeFrom\": 1699056000,\n        \"timeTo\": 1699077600,\n        \"timeBec\": 1699153200,\n        \"fcstChange\": null,\n        \"probability\": 30,\n        \"wdir\": 3806,\n        \"wspd\": 5,\n        \"wgst\": 12,\n        \"wshearHgt\": 2000,\n        \"wshearDir\": 200,\n        \"wshearSpd\": 40,\n        \"visib\": 9988.060419134757,\n        \"altim\": 1016.2,\n        \"vertVis\": 100,\n        \"wxString\": \"-SHRA\",\n        \"notDecoded\": \"ROTOR CONEXIST\",\n        \"clouds\": [],\n        \"icgTurb\": [\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          },\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          }\n        ],\n        \"temp\": [\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          },\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          }\n        ]\n      },\n      {\n        \"timeFrom\": 1699056000,\n        \"timeTo\": 1699077600,\n        \"timeBec\": 1699153200,\n        \"fcstChange\": null,\n        \"probability\": 30,\n        \"wdir\": 7524,\n        \"wspd\": 5,\n        \"wgst\": 12,\n        \"wshearHgt\": 2000,\n        \"wshearDir\": 200,\n        \"wshearSpd\": 40,\n        \"visib\": 7572.044732619965,\n        \"altim\": 1016.2,\n        \"vertVis\": 100,\n        \"wxString\": \"-SHRA\",\n        \"notDecoded\": \"ROTOR CONEXIST\",\n        \"clouds\": [],\n        \"icgTurb\": [\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          },\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          }\n        ],\n        \"temp\": [\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          },\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"icaoId\": \"KORD\",\n    \"dbPopTime\": \"2023-11-03 23:20:09.000Z\",\n    \"bulletinTime\": \"2023-11-03 23:20:00.000Z\",\n    \"issueTime\": \"2023-11-03 23:20:00.000Z\",\n    \"validTimeFrom\": 1699056000,\n    \"validTimeTo\": 1699164000,\n    \"rawTAF\": \"KORD 032320Z 0400/0506 VRB05KT P6SM FEW050 SCT080 OVC110 TEMPO 0401/0403 -SHRA BKN050 OVC080 FM040600 34006KT P6SM FEW015 SCT100 BKN150 FM041400 01008KT P6SM SCT020 SCT100 TEMPO 0415/0419 BKN015 FM050100 32004KT P6SM FEW020 SCT250\",\n    \"mostRecent\": 1,\n    \"remarks\": \"RMK PGG\",\n    \"lat\": 41.9602,\n    \"lon\": -87.9316,\n    \"elev\": 202,\n    \"prior\": 0,\n    \"name\": \"Chicago/O'Hare Intl\",\n    \"fcsts\": [\n      {\n        \"timeFrom\": 1699056000,\n        \"timeTo\": 1699077600,\n        \"timeBec\": 1699153200,\n        \"fcstChange\": null,\n        \"probability\": 30,\n        \"wdir\": 8727,\n        \"wspd\": 5,\n        \"wgst\": 12,\n        \"wshearHgt\": 2000,\n        \"wshearDir\": 200,\n        \"wshearSpd\": 40,\n        \"visib\": 1968.346384523605,\n        \"altim\": 1016.2,\n        \"vertVis\": 100,\n        \"wxString\": \"-SHRA\",\n        \"notDecoded\": \"ROTOR CONEXIST\",\n        \"clouds\": [],\n        \"icgTurb\": [\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          },\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          }\n        ],\n        \"temp\": [\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          },\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          }\n        ]\n      },\n      {\n        \"timeFrom\": 1699056000,\n        \"timeTo\": 1699077600,\n        \"timeBec\": 1699153200,\n        \"fcstChange\": null,\n        \"probability\": 30,\n        \"wdir\": 2509,\n        \"wspd\": 5,\n        \"wgst\": 12,\n        \"wshearHgt\": 2000,\n        \"wshearDir\": 200,\n        \"wshearSpd\": 40,\n        \"visib\": 4100.838792500128,\n        \"altim\": 1016.2,\n        \"vertVis\": 100,\n        \"wxString\": \"-SHRA\",\n        \"notDecoded\": \"ROTOR CONEXIST\",\n        \"clouds\": [],\n        \"icgTurb\": [\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          },\n          {\n            \"var\": \"TURB\",\n            \"intensity\": 2,\n            \"minAlt\": 9000,\n            \"maxAlt\": 18000\n          }\n        ],\n        \"temp\": [\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          },\n          {\n            \"validTime\": 1699369200,\n            \"sfcTemp\": 1,\n            \"maxOrMin\": \"MAX\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9c7cd78-de21-4d66-8845-5487046dbbac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "taf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "metar",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcbe9965-318b-4b3a-a684-805b5dcd72f8",
+          "name": "Get Pilot Reports",
+          "request": {
+            "name": "Get Pilot Reports",
+            "description": {
+              "content": "Pilot reports issued in PIREP or AIREP format. Bounding box, or center point identifier and radial distance, required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "pirep"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Airport ID for center of search"
+                },
+                {
+                  "disabled": false,
+                  "key": "distance",
+                  "value": "<number>",
+                  "description": "Radial distance to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "age",
+                  "value": "<number>",
+                  "description": "Hours Back"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<number>",
+                  "description": "Level +-3000' to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "inten",
+                  "value": "<string>",
+                  "description": "Minimum intensity"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54ab0e2c-5fae-44f6-9633-4e2d6cf94974",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "pirep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "age",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "inten",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"receiptTime\": \"2023-11-07 18:08:15.000Z\",\n    \"obsTime\": 1699379880,\n    \"qcField\": 0,\n    \"icaoId\": \"KWBC\",\n    \"acType\": \"LJ35\",\n    \"lat\": 40.938,\n    \"lon\": -90.4311,\n    \"fltLvl\": \"230\",\n    \"fltLvlType\": \"UNKN\",\n    \"visib\": \"string\",\n    \"wxString\": \"string\",\n    \"temp\": 1287.5876201493952,\n    \"wdir\": 1532.5149129053239,\n    \"wspd\": 5175.7440084466625,\n    \"icgBas1\": 5065.951109476489,\n    \"icgTop1\": null,\n    \"icgInt1\": \"LGT\",\n    \"icgType1\": \"string\",\n    \"icgBas2\": 8585.641856270766,\n    \"icgTop2\": 3521.978377782146,\n    \"icgInt2\": \"NEGclr\",\n    \"icgType2\": \"MIXED\",\n    \"tbBas1\": 921.9659854226669,\n    \"tbTop1\": 671.1114159479681,\n    \"tbInt1\": \"LGT-MOD\",\n    \"tbType1\": \"CAT\",\n    \"tbFreq1\": \"OCNL\",\n    \"tbBas2\": 4452.22061076837,\n    \"tbTop2\": 6955.67556026413,\n    \"tbInt2\": \"LGT-MOD\",\n    \"tbType2\": \"CHOP\",\n    \"tbFreq2\": \"ISOL\",\n    \"vertGust\": 1013.0583041437013,\n    \"brkAction\": \"MED\",\n    \"pirepType\": \"PIREP\",\n    \"rawOb\": \"COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW\"\n  },\n  {\n    \"receiptTime\": \"2023-11-07 18:08:15.000Z\",\n    \"obsTime\": 1699379880,\n    \"qcField\": 0,\n    \"icaoId\": \"KWBC\",\n    \"acType\": \"LJ35\",\n    \"lat\": 40.938,\n    \"lon\": -90.4311,\n    \"fltLvl\": \"230\",\n    \"fltLvlType\": \"OTHER\",\n    \"visib\": \"string\",\n    \"wxString\": \"string\",\n    \"temp\": 3706.5139630067233,\n    \"wdir\": 8412.42436671162,\n    \"wspd\": 8220.538644443686,\n    \"icgBas1\": 8539.375774528618,\n    \"icgTop1\": \"RIME\",\n    \"icgInt1\": \"LGT\",\n    \"icgType1\": \"string\",\n    \"icgBas2\": 2534.479059878124,\n    \"icgTop2\": 1638.34543673282,\n    \"icgInt2\": \"HVY\",\n    \"icgType2\": \"MIXED\",\n    \"tbBas1\": 8305.06133402547,\n    \"tbTop1\": 1391.2067554716411,\n    \"tbInt1\": \"LGT-MOD\",\n    \"tbType1\": \"CAT\",\n    \"tbFreq1\": \"OCNL\",\n    \"tbBas2\": 5614.778675145136,\n    \"tbTop2\": 4879.765596213506,\n    \"tbInt2\": \"LGT-MOD\",\n    \"tbType2\": \"LLWS\",\n    \"tbFreq2\": \"OCNL\",\n    \"vertGust\": 6222.832896889649,\n    \"brkAction\": \"POOR\",\n    \"pirepType\": \"PIREP\",\n    \"rawOb\": \"COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac1ff11-0b99-4661-baae-17bd6d43e218",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "pirep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "age",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "inten",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91785cc4-6583-4532-9f8c-6fdc59eb0955",
+          "name": "Get Domestic SIGMETs",
+          "request": {
+            "name": "Get Domestic SIGMETs",
+            "description": {
+              "content": "Domestic SIGMETs for the contiguous United States. Does not include SIGMETs issued by the US in international format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "airsigmet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "Product type"
+                },
+                {
+                  "disabled": false,
+                  "key": "hazard",
+                  "value": "<string>",
+                  "description": "Hazard"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<number>",
+                  "description": "The level +-3000' to search"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed8e4095-1154-4643-bf51-62f81d44bcd8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "airsigmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icaoId\": \"KKCI\",\n    \"alphaChar\": \"W\",\n    \"seriesId\": \"NOVEMBER 7\",\n    \"receiptTime\": \"2025-09-27 11:48:24.974000+00:00\",\n    \"creationTime\": \"2025-09-27T11:55:00.000Z8\",\n    \"validTimeFrom\": 1758974100,\n    \"validTimeTo\": 1758981300,\n    \"airSigmetType\": \"SIGMET\",\n    \"hazard\": \"CONVECTIVE\",\n    \"qualifier\": \"OCNL\",\n    \"altitudeHi1\": 35000,\n    \"altitudeHi2\": 35000,\n    \"altitudeLo1\": 248,\n    \"altitudeLo2\": 673,\n    \"movementDir\": 90,\n    \"movementSpd\": 10,\n    \"postProcessFlag\": 10,\n    \"severity\": 5,\n    \"rawAirSigmet\": \"WSUS33 KKCI 271155\\\\nSIGW \\\\nCONVECTIVE SIGMET 24W\\\\nVALID UNTIL 1355Z\\\\nAZ CA\\\\nFROM 10SSW EED-30NNE BZA-50S TRM-30NNW TRM-10SSW EED\\\\nAREA TS MOV FROM 09010KT. TOPS TO FL350.\\\\n\\\\nOUTLOOK VALID 271355-271755\\\\nFROM BCE-RSK-60SSW SJN-BZA-HEC-BCE\\\\nWST ISSUANCES POSS. REFER TO MOST RECENT ACUS01 KWNS FROM STORM\\\\nPREDICTION CENTER FOR SYNOPSIS AND METEOROLOGICAL DETAILS.\"\n  },\n  {\n    \"icaoId\": \"KKCI\",\n    \"alphaChar\": \"W\",\n    \"seriesId\": \"NOVEMBER 7\",\n    \"receiptTime\": \"2025-09-27 11:48:24.974000+00:00\",\n    \"creationTime\": \"2025-09-27T11:55:00.000Z8\",\n    \"validTimeFrom\": 1758974100,\n    \"validTimeTo\": 1758981300,\n    \"airSigmetType\": \"SIGMET\",\n    \"hazard\": \"CONVECTIVE\",\n    \"qualifier\": \"OCNL\",\n    \"altitudeHi1\": 35000,\n    \"altitudeHi2\": 35000,\n    \"altitudeLo1\": 5501,\n    \"altitudeLo2\": 6140,\n    \"movementDir\": 90,\n    \"movementSpd\": 10,\n    \"postProcessFlag\": 10,\n    \"severity\": 5,\n    \"rawAirSigmet\": \"WSUS33 KKCI 271155\\\\nSIGW \\\\nCONVECTIVE SIGMET 24W\\\\nVALID UNTIL 1355Z\\\\nAZ CA\\\\nFROM 10SSW EED-30NNE BZA-50S TRM-30NNW TRM-10SSW EED\\\\nAREA TS MOV FROM 09010KT. TOPS TO FL350.\\\\n\\\\nOUTLOOK VALID 271355-271755\\\\nFROM BCE-RSK-60SSW SJN-BZA-HEC-BCE\\\\nWST ISSUANCES POSS. REFER TO MOST RECENT ACUS01 KWNS FROM STORM\\\\nPREDICTION CENTER FOR SYNOPSIS AND METEOROLOGICAL DETAILS.\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b13dce7-4c7b-4242-b71a-266790e3a90b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "airsigmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "722689fe-9acc-49bd-adcc-55004142b5db",
+          "name": "Get International SIGMETs",
+          "request": {
+            "name": "Get International SIGMETs",
+            "description": {
+              "content": "Decoded international SIGMETs. This does not include SIGMETs issued by the United States in domestic format (i.e. convective and non-convective domestic SIGMETS).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "isigmet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "hazard",
+                  "value": "<string>",
+                  "description": "Hazard"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<number>",
+                  "description": "Level +-3000' to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80d55da0-c0ff-49ef-8635-929368b211f3",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "isigmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icaoId\": \"PAWU\",\n    \"firId\": \"PAZA\",\n    \"firName\": \"ANCHORAGE\",\n    \"receiptTime\": \"2024-12-05 02:00:48+00:00\",\n    \"validTimeFrom\": 1733364000,\n    \"validTimeTo\": 1733378400,\n    \"seriesId\": \"LIMA 2\",\n    \"hazard\": \"TURB\",\n    \"qualifier\": \"OCNL\",\n    \"base\": 37000,\n    \"top\": 42000,\n    \"geom\": \"LINE\",\n    \"dir\": \"string\",\n    \"spd\": 1631.4352247703312,\n    \"chng\": \"string\"\n  },\n  {\n    \"icaoId\": \"PAWU\",\n    \"firId\": \"PAZA\",\n    \"firName\": \"ANCHORAGE\",\n    \"receiptTime\": \"2024-12-05 02:00:48+00:00\",\n    \"validTimeFrom\": 1733364000,\n    \"validTimeTo\": 1733378400,\n    \"seriesId\": \"LIMA 2\",\n    \"hazard\": \"TURB\",\n    \"qualifier\": \"OCNL\",\n    \"base\": 37000,\n    \"top\": 42000,\n    \"geom\": \"AREA\",\n    \"dir\": \"string\",\n    \"spd\": 3415.312813348206,\n    \"chng\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebafcd98-c7de-4eb0-8112-7ab6b5235451",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "isigmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfb64140-b462-42ca-bc82-07ebac85d566",
+          "name": "Get US Graphical AIRMETs",
+          "request": {
+            "name": "Get US Graphical AIRMETs",
+            "description": {
+              "content": "Decoded G-AIRMETs for the contiguous United States. See /api/data/airmet for similar advisories over Alaska.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "gairmet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Product type"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "hazard",
+                  "value": "<string>",
+                  "description": "Hazard"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fore",
+                  "value": "<number>",
+                  "description": "Forecast hour from selected forecast package"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "884270fc-83ea-4cfa-bdea-339740a2d5a7",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "gairmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    },
+                    {
+                      "key": "fore",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"tag\": \"1C\",\n    \"forecastHour\": 0,\n    \"validTime\": \"2025-09-30 03:00:00+00:00\",\n    \"hazard\": \"IFR\",\n    \"geometryType\": \"LINE\",\n    \"latlonpairs\": 23,\n    \"due_to\": \"CIG BLW 010/VIS BLW 3SM PCPN/BR\",\n    \"receiptTime\": 1759200749,\n    \"issueTime\": 1759200300,\n    \"expireTime\": 1759222800,\n    \"product\": \"TANGO\"\n  },\n  {\n    \"tag\": \"1C\",\n    \"forecastHour\": 0,\n    \"validTime\": \"2025-09-30 03:00:00+00:00\",\n    \"hazard\": \"IFR\",\n    \"geometryType\": \"AREA\",\n    \"latlonpairs\": 23,\n    \"due_to\": \"CIG BLW 010/VIS BLW 3SM PCPN/BR\",\n    \"receiptTime\": 1759200749,\n    \"issueTime\": 1759200300,\n    \"expireTime\": 1759222800,\n    \"product\": \"TANGO\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93ebd7cd-eac7-4a32-8b07-9b29f0b8de05",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "gairmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    },
+                    {
+                      "key": "fore",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "411fa253-f03d-47ae-afc7-ec0f2d6c1a0a",
+          "name": "Get AIRMETs",
+          "request": {
+            "name": "Get AIRMETs",
+            "description": {
+              "content": "Decoded domestic AIRMETs (Alaska only). See /api/data/gairmet for similar advisories over the contiguous United States.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "airmet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "hazard",
+                  "value": "<string>",
+                  "description": "Hazard"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<number>",
+                  "description": "Level +-3000' to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "483717e7-a3db-4e7c-8f78-2665f7ac702b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "airmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2d7ba1e-48ae-4e6c-9c4c-fd6f648c1deb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "airmet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3907dbc-b6b1-4647-a06b-8cb6196d6927",
+          "name": "Get TFM Convective Forecast",
+          "request": {
+            "name": "Get TFM Convective Forecast",
+            "description": {
+              "content": "Traffic Flow Management (TFM) Convective Forecast. See https://aviationweather.gov/tcf/ for more information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "tcf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52e69982-0ef9-441d-a7b3-18880c6ebdef",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "tcf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": 2294.1677285173278,\n      \"properties\": {\n        \"validTime\": \"string\",\n        \"issueTime\": \"string\",\n        \"coverage\": \"medium\",\n        \"confidence\": \"high\",\n        \"tops\": 390,\n        \"labelpos\": [\n          -87.9316,\n          41.9602\n        ]\n      },\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          5445.421054524058,\n          3501.3146659914173,\n          6926.669554669776,\n          135.29955539663408\n        ]\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": 7104.686881980542,\n      \"properties\": {\n        \"validTime\": \"string\",\n        \"issueTime\": \"string\",\n        \"coverage\": \"sparse\",\n        \"confidence\": \"high\",\n        \"tops\": 290,\n        \"labelpos\": [\n          -87.9316,\n          41.9602\n        ]\n      },\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          8980.26347045485,\n          6200.596340569486,\n          3599.6709131930106,\n          5518.91455711429\n        ]\n      }\n    }\n  ],\n  \"issueTime\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33167cfc-8504-413b-a40c-d334b31ee5f4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "tcf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abde4f87-1f55-4192-8dec-ba304a89bdeb",
+          "name": "Get CWSU Center Advisories",
+          "request": {
+            "name": "Get CWSU Center Advisories",
+            "description": {
+              "content": "Center Weather Advisories issued by NWS Center Weather Service Units (CWSUs)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "cwa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hazard",
+                  "value": "<string>",
+                  "description": "Hazard"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "String (`yyyymmdd_hhmm`) or ISO 8601 Date (`yyyy-mm-ddThh:mm:ssZ`)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa969d17-386f-42bf-b8d9-7ef3820a9c2e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "cwa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cwsu\": \"ZJX\",\n    \"name\": \"Jacksonville\",\n    \"receiptTime\": \"2025-09-30 03:00:00+00:00\",\n    \"validTimeFrom\": 1733364000,\n    \"validTimeTo\": 1733378400,\n    \"hazard\": \"IFR\",\n    \"seriesId\": 101,\n    \"qualifier\": \"string\",\n    \"base\": 6574,\n    \"top\": 2094,\n    \"geom\": \"AREA\",\n    \"rawText\": \"string\"\n  },\n  {\n    \"cwsu\": \"ZJX\",\n    \"name\": \"Jacksonville\",\n    \"receiptTime\": \"2025-09-30 03:00:00+00:00\",\n    \"validTimeFrom\": 1733364000,\n    \"validTimeTo\": 1733378400,\n    \"hazard\": \"IFR\",\n    \"seriesId\": 101,\n    \"qualifier\": \"string\",\n    \"base\": 1759,\n    \"top\": 2663,\n    \"geom\": \"LINE\",\n    \"rawText\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dc55fb0-a586-4352-8ae0-f64bd7f5752a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "cwa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hazard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    },
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "714e39da-fcba-49db-a3f5-e486c5566fe6",
+          "name": "Get Wind and Temperature Point Data",
+          "request": {
+            "name": "Get Wind and Temperature Point Data",
+            "description": {
+              "content": "Wind and temperature information from the legacy FD winds",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "windtemp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Region:\n * `us` - All contiguous US sites\n * `bos` - Northeast\n * `mia` - Southeast\n * `chi` - North central\n * `dfw` - South central\n * `slc` - Rocky Mountain\n * `sfo` - Pacific Coast\n * `alaska` - Alaska\n * `hawaii` - Hawaii\n * `other_pac` - Western Pacific\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "Level"
+                },
+                {
+                  "disabled": false,
+                  "key": "fcst",
+                  "value": "<string>",
+                  "description": "Forecast cycle"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba7b6314-7eb0-4bc5-9538-bf9399f4a15e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "windtemp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fcst",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29e6a27c-1a0c-4d79-a846-7e7dffd761bb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "windtemp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fcst",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4e88106-d03c-4d25-9c15-5ffcad3ed58a",
+          "name": "Get US Area Forecasts",
+          "request": {
+            "name": "Get US Area Forecasts",
+            "description": {
+              "content": "Text Area Forecasts for the United States outside the contiguous states (Alaska)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "areafcst"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "(Required) Date\n * `aknorth` - Northern half of Alaska\n * `akcentral` - Interior Alaska\n * `aksouth` - Southcentral Alaska\n * `aksouthwest` - Alaska Peninsula\n * `aksoutheast` - Eastern Gulf of Alaska\n * `akpanhandle` - Alaska\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9320157-7db2-4568-af0f-9bac3ae7b805",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "areafcst"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23eebe83-0b37-4c0b-b16b-cd9162bd7cfe",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "areafcst"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0488137-6072-4059-a4e3-bb415913f0f1",
+          "name": "Get US Forecast Discussions",
+          "request": {
+            "name": "Get US Forecast Discussions",
+            "description": {
+              "content": "Aviation Forecast Discussions issued by NWS Weather Forecast Offices. Returns aviation section or full discussion issued within the past six hours.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "fcstdisc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cwa",
+                  "value": "<string>",
+                  "description": "County Warning Area (WFO)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Type of output:\n * `afd` - aviation discussion\n * `af` - full discussion\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13b08af1-53f5-4556-81c0-90fa42aefb08",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "fcstdisc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cwa",
+                      "value": ""
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3fc0ce66-c4eb-46b7-9e4c-d44f3ea1332c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "fcstdisc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cwa",
+                      "value": ""
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92b576d7-8374-42a8-a48c-7270b667a7bc",
+          "name": "Get Meteorological Information Statement",
+          "request": {
+            "name": "Get Meteorological Information Statement",
+            "description": {
+              "content": "Meteorological Information Statements issued by NWS Center Weather Service Units (CWSU)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "mis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "loc",
+                  "value": "<string>",
+                  "description": "CWSU"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "text",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2727820-c733-4d0d-b910-e778d3c7a95f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "mis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loc",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9019741-5333-4209-a3dd-7d61a7a50989",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "mis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loc",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "text"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7356b950-e23a-44a5-8f6b-2cc191340760",
+          "name": "Get Data Server",
+          "request": {
+            "name": "Get Data Server",
+            "description": {
+              "content": "Compatibility layer with previous Text Data Service. Station identifiers or a bounding box, as well as a time selection, are required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "dataserver"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "dataSource",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "stationString",
+                  "value": "<string>",
+                  "description": "Station ID(s)"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundingBox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<string>",
+                  "description": "Start time\n * `yyyymmdd_hhmm`\n * `yyyy-mm-ddThh:mm:ssZ`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<string>",
+                  "description": "End time\n * `yyyymmdd_hhmm`\n * `yyyy-mm-ddThh:mm:ssZ`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hoursBeforeNow",
+                  "value": "<number>",
+                  "description": "Number of hours before now to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "xml",
+                  "description": "Output format (TAFs not available in CSV format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "mostRecentForEachStation",
+                  "value": "<string>",
+                  "description": "Most recent per station (METARs and TAFs only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "radialDistance",
+                  "value": "<string>",
+                  "description": "Circular bounds defined by latitude, longitude and radial distance in statute miles (PIREPS only)"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3836378-2e9d-469b-b828-5471699dc169",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "dataserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataSource",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stationString",
+                      "value": ""
+                    },
+                    {
+                      "key": "boundingBox",
+                      "value": ""
+                    },
+                    {
+                      "key": "startTime",
+                      "value": ""
+                    },
+                    {
+                      "key": "endTime",
+                      "value": ""
+                    },
+                    {
+                      "key": "hoursBeforeNow",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "mostRecentForEachStation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radialDistance",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3761b1c0-ce18-474e-9e13-a355db82f7e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "dataserver"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataSource",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stationString",
+                      "value": ""
+                    },
+                    {
+                      "key": "boundingBox",
+                      "value": ""
+                    },
+                    {
+                      "key": "startTime",
+                      "value": ""
+                    },
+                    {
+                      "key": "endTime",
+                      "value": ""
+                    },
+                    {
+                      "key": "hoursBeforeNow",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "mostRecentForEachStation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radialDistance",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://aviationweather.gov",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4c718df5-160a-43ff-9a74-4c6fe9e2ccaa",
+    "name": "AviationWeather.gov Navigational Data Weather Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Schema for the public data API of AviationWeather.gov, operated by the NOAA/NWS\nAviation Weather Center (AWC). Provides machine-to-machine access to operational\naviation weather products including METARs, TAFs, PIREPs, SIGMETs, AIRMETs,\nG-AIRMETs, CWAs, TFM convective forecasts, area forecasts, forecast discussions,\nmeteorological information statements, and reference data for stations, airports,\nNAVAIDs, fixes, features, and obstacles.\n\nRate limit: 100 requests per minute per user. Most endpoints return a maximum of\n400 entries. Historical depth is up to 15 days. No API key required.\n\nContact Support:\n Name: NOAA / NWS Aviation Weather Center",
+      "type": "text/plain"
+    }
+  }
+}

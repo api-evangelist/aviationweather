@@ -1,0 +1,874 @@
+{
+  "item": [
+    {
+      "id": "a332baa9-84be-404b-8c1c-d76d9e5f8984",
+      "name": "Navigational Data",
+      "description": {
+        "content": "Decoded navigational information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2d2e975-fd4c-4e9c-a14f-893d872ff2ed",
+          "name": "Get Station Info",
+          "request": {
+            "name": "Get Station Info",
+            "description": {
+              "content": "Station observation location information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "stationinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Station ID(s)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2dd3374-256a-4c81-bd66-7201c38ede80",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "stationinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icaoId\": \"string\",\n    \"iataId\": \"string\",\n    \"faaId\": \"string\",\n    \"site\": \"string\",\n    \"lat\": 2680.9975692416488,\n    \"lon\": 2764.893493704057,\n    \"elev\": 8643.286582878121,\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"priority\": 7701.723699993099,\n    \"siteType\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"icaoId\": \"string\",\n    \"iataId\": \"string\",\n    \"faaId\": \"string\",\n    \"site\": \"string\",\n    \"lat\": 1963.997863271657,\n    \"lon\": 5543.521618624688,\n    \"elev\": 3332.6727633607525,\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"priority\": 8385.082748837953,\n    \"siteType\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a88d754b-2b37-4585-a6e4-ed3e578d771b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "stationinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daefec20-7e44-4dc6-b2d8-55b7ad083f11",
+          "name": "Get Airport Info",
+          "request": {
+            "name": "Get Airport Info",
+            "description": {
+              "content": "Information about airports",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "airport"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Station ID(s)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "decoded",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3537fd04-67b1-4402-9f77-1c4297afa706",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "airport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "decoded"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icaoId\": \"KMCI\",\n    \"iataId\": \"MCI\",\n    \"faaId\": \"MCI\",\n    \"name\": \"KANSAS CITY/KANSAS CITY INTL\",\n    \"state\": \"MO\",\n    \"country\": \"US\",\n    \"source\": \"FAA\",\n    \"type\": \"ARP\",\n    \"lat\": \"string\",\n    \"lon\": \"string\",\n    \"elev\": \"string\",\n    \"magdec\": \"02E\",\n    \"owner\": \"P\"\n  },\n  {\n    \"icaoId\": \"KMCI\",\n    \"iataId\": \"MCI\",\n    \"faaId\": \"MCI\",\n    \"name\": \"KANSAS CITY/KANSAS CITY INTL\",\n    \"state\": \"MO\",\n    \"country\": \"US\",\n    \"source\": \"FAA\",\n    \"type\": \"ARP\",\n    \"lat\": \"string\",\n    \"lon\": \"string\",\n    \"elev\": \"string\",\n    \"magdec\": \"02E\",\n    \"owner\": \"P\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c409328-fae7-4106-b5c8-aa5ef34a3b53",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "airport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "decoded"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b637c382-441a-4228-bc15-8dbf8f95fd74",
+          "name": "Get Navigational Aid Info",
+          "request": {
+            "name": "Get Navigational Aid Info",
+            "description": {
+              "content": "Navigational aid data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "navaid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "three character identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6d3f7fc-2c1e-4bb9-b46f-679b7cf8b812",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "navaid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"MCI\",\n    \"type\": \"VORTAC\",\n    \"name\": \"Kansas City\",\n    \"state\": \"MO\",\n    \"country\": \"US\",\n    \"lat\": 39.2853,\n    \"lon\": -94.7371,\n    \"elev\": 310,\n    \"freq\": 113.25,\n    \"mag_dec\": \"05E\"\n  },\n  {\n    \"id\": \"MCI\",\n    \"type\": \"VORTAC\",\n    \"name\": \"Kansas City\",\n    \"state\": \"MO\",\n    \"country\": \"US\",\n    \"lat\": 39.2853,\n    \"lon\": -94.7371,\n    \"elev\": 310,\n    \"freq\": 113.25,\n    \"mag_dec\": \"05E\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1771b4ec-e9b1-40d9-9c40-d67f31be9aed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "navaid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42662499-2b2d-40c6-a6cf-63b4c2face2c",
+          "name": "Get Navigational Fix and Waypoint Info",
+          "request": {
+            "name": "Get Navigational Fix and Waypoint Info",
+            "description": {
+              "content": "Navigational fix data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "fix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "5 letter Fix ID(s)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b96e310-ac33-462b-af4d-edad67ff5175",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "fix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"BARBQ\",\n    \"type\": \"I\",\n    \"lat\": 39.0811,\n    \"lon\": -94.7681\n  },\n  {\n    \"id\": \"BARBQ\",\n    \"type\": \"I\",\n    \"lat\": 39.0811,\n    \"lon\": -94.7681\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b12df5f9-de39-48b9-84d6-d8748f492d0f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "fix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": ""
+                    },
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10355e96-3133-4ea7-b561-64153f20308b",
+          "name": "Get Feature Info",
+          "request": {
+            "name": "Get Feature Info",
+            "description": {
+              "content": "Additional geographic features",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "feature"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db7f5726-dd83-41c0-897f-530675785b80",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "feature"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0c07227-257d-41fb-8141-26a0410098d8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "feature"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "614d753f-ce31-43af-b480-1d4bb62a3fcd",
+          "name": "Get Obstacle Info",
+          "request": {
+            "name": "Get Obstacle Info",
+            "description": {
+              "content": "Aviation obstacle information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data",
+                "obstacle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "Geographic bounding box (lat0, lon0, lat1, lon1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "raw",
+                  "description": "Format"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23ecde46-9ca1-410b-9a64-8edacc5f2a19",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "obstacle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1adc8239-b51f-4074-a02e-e08447e182e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data",
+                    "obstacle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": ""
+                    },
+                    {
+                      "key": "format",
+                      "value": "raw"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://aviationweather.gov",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a0751ef0-6d3f-4536-909d-be212f26788c",
+    "name": "AviationWeather.gov Navigational Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Schema for the public data API of AviationWeather.gov, operated by the NOAA/NWS\nAviation Weather Center (AWC). Provides machine-to-machine access to operational\naviation weather products including METARs, TAFs, PIREPs, SIGMETs, AIRMETs,\nG-AIRMETs, CWAs, TFM convective forecasts, area forecasts, forecast discussions,\nmeteorological information statements, and reference data for stations, airports,\nNAVAIDs, fixes, features, and obstacles.\n\nRate limit: 100 requests per minute per user. Most endpoints return a maximum of\n400 entries. Historical depth is up to 15 days. No API key required.\n\nContact Support:\n Name: NOAA / NWS Aviation Weather Center",
+      "type": "text/plain"
+    }
+  }
+}
