@@ -1,22 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AviationWeather.gov Navigational Data API
   description: 'Schema for the public data API of AviationWeather.gov, operated by the NOAA/NWS
 
-    Aviation Weather Center (AWC). Provides machine-to-machine access to operational
-
-    aviation weather products including METARs, TAFs, PIREPs, SIGMETs, AIRMETs,
-
-    G-AIRMETs, CWAs, TFM convective forecasts, area forecasts, forecast discussions,
-
-    meteorological information statements, and reference data for stations, airports,
-
-    NAVAIDs, fixes, features, and obstacles.
-
-
-    Rate limit: 100 requests per minute per user. Most endpoints return a maximum of
-
-    400 entries. Historical depth is up to 15 days. No API key required.'
+    Aviation Weather Center (AWC).'
   termsOfService: https://aviationweather.gov/data/api/
   contact:
     name: NOAA / NWS Aviation Weather Center
@@ -57,6 +44,8 @@ paths:
                 $ref: '#/components/schemas/StationInfoXML'
         400:
           $ref: '#/components/responses/400'
+      operationId: getApiDataStationinfo
+      x-operation-id-source: derived
   /api/data/airport:
     get:
       tags:
@@ -144,6 +133,8 @@ paths:
                       type: array
         400:
           $ref: '#/components/responses/400'
+      operationId: getApiDataAirport
+      x-operation-id-source: derived
   /api/data/navaid:
     get:
       tags:
@@ -217,6 +208,8 @@ paths:
                       - 05E
         400:
           $ref: '#/components/responses/400'
+      operationId: getApiDataNavaid
+      x-operation-id-source: derived
   /api/data/fix:
     get:
       tags:
@@ -266,6 +259,8 @@ paths:
                       - -94.7681
         400:
           $ref: '#/components/responses/400'
+      operationId: getApiDataFix
+      x-operation-id-source: derived
   /api/data/feature:
     get:
       tags:
@@ -280,6 +275,8 @@ paths:
           description: successful operation
         400:
           $ref: '#/components/responses/400'
+      operationId: getApiDataFeature
+      x-operation-id-source: derived
   /api/data/obstacle:
     get:
       tags:
@@ -294,67 +291,9 @@ paths:
           description: successful operation
         400:
           $ref: '#/components/responses/400'
+      operationId: getApiDataObstacle
+      x-operation-id-source: derived
 components:
-  parameters:
-    RawJSONGeo:
-      name: format
-      in: query
-      description: Format
-      required: false
-      explode: true
-      schema:
-        type: string
-        enum:
-        - raw
-        - json
-        - geojson
-        default: raw
-    ids:
-      name: ids
-      in: query
-      description: Station ID(s)
-      required: false
-      examples:
-        '-':
-          value: ''
-        id:
-          summary: A single ICAO Id
-          value: KMCI
-        ids:
-          summary: A list of ICAO Ids separated by commas
-          value: KMCI,KORD,KBOS
-        states:
-          summary: A 2 letter state abbreviation preceded by a @
-          value: '@WA'
-      schema:
-        type: string
-    RawJSONGeoXML:
-      name: format
-      in: query
-      description: Format
-      required: false
-      explode: true
-      schema:
-        type: string
-        enum:
-        - raw
-        - json
-        - geojson
-        - xml
-        default: raw
-    bbox:
-      name: bbox
-      in: query
-      description: Geographic bounding box (lat0, lon0, lat1, lon1)
-      required: false
-      examples:
-        '-':
-          value: ''
-        box:
-          summary: A small box around Chicago
-          value: 40,-90,45,-85
-      schema:
-        type: string
   schemas:
     StationInfoJSON:
       type: array
@@ -396,68 +335,6 @@ components:
             description: METAR and/or TAF availability
             items:
               type: string
-    StationInfoXML:
-      xml:
-        name: response
-      type: object
-      properties:
-        request_index:
-          type: number
-        data_source:
-          properties:
-            name:
-              type: string
-              enum:
-              - aircraftreports
-              xml:
-                attribute: true
-        request:
-          properties:
-            type:
-              type: string
-              enum:
-              - retrieve
-              xml:
-                attribute: true
-        errors: null
-        warnings: null
-        time_taken_ms:
-          type: number
-        data:
-          type: array
-          xml:
-            name: data
-            wrapped: true
-          items:
-            type: object
-            xml:
-              name: Station
-            properties:
-              station_id:
-                type: string
-              iata_id:
-                type: string
-              wmo_id:
-                type: string
-              faa_id:
-                type: string
-              latitude:
-                type: string
-              longitude:
-                type: string
-              elevation_m:
-                type: string
-              site:
-                type: string
-              state:
-                type: string
-              country:
-                type: string
-              site_type:
-                type: object
-                properties:
-                  METAR: null
-                  TAF: null
     StationInfoGeoJSON:
       type: object
       properties:
@@ -524,3 +401,125 @@ components:
                     examples:
                     - - -87.9316
                       - 41.9602
+    StationInfoXML:
+      xml:
+        name: response
+      type: object
+      properties:
+        request_index:
+          type: number
+        data_source:
+          properties:
+            name:
+              type: string
+              enum:
+              - aircraftreports
+              xml:
+                attribute: true
+        request:
+          properties:
+            type:
+              type: string
+              enum:
+              - retrieve
+              xml:
+                attribute: true
+        errors: null
+        warnings: null
+        time_taken_ms:
+          type: number
+        data:
+          type: array
+          xml:
+            name: data
+            wrapped: true
+          items:
+            type: object
+            xml:
+              name: Station
+            properties:
+              station_id:
+                type: string
+              iata_id:
+                type: string
+              wmo_id:
+                type: string
+              faa_id:
+                type: string
+              latitude:
+                type: string
+              longitude:
+                type: string
+              elevation_m:
+                type: string
+              site:
+                type: string
+              state:
+                type: string
+              country:
+                type: string
+              site_type:
+                type: object
+                properties:
+                  METAR: null
+                  TAF: null
+  parameters:
+    RawJSONGeo:
+      name: format
+      in: query
+      description: Format
+      required: false
+      explode: true
+      schema:
+        type: string
+        enum:
+        - raw
+        - json
+        - geojson
+        default: raw
+    bbox:
+      name: bbox
+      in: query
+      description: Geographic bounding box (lat0, lon0, lat1, lon1)
+      required: false
+      examples:
+        '-':
+          value: ''
+        box:
+          summary: A small box around Chicago
+          value: 40,-90,45,-85
+      schema:
+        type: string
+    ids:
+      name: ids
+      in: query
+      description: Station ID(s)
+      required: false
+      examples:
+        '-':
+          value: ''
+        id:
+          summary: A single ICAO Id
+          value: KMCI
+        ids:
+          summary: A list of ICAO Ids separated by commas
+          value: KMCI,KORD,KBOS
+        states:
+          summary: A 2 letter state abbreviation preceded by a @
+          value: '@WA'
+      schema:
+        type: string
+    RawJSONGeoXML:
+      name: format
+      in: query
+      description: Format
+      required: false
+      explode: true
+      schema:
+        type: string
+        enum:
+        - raw
+        - json
+        - geojson
+        - xml
+        default: raw

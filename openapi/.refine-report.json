@@ -1,8 +1,7 @@
 {
   "provider": "aviationweather",
   "sources": [
-    "aviationweather-navigational-data-api-openapi.yml",
-    "aviationweather-weather-data-api-openapi.yml"
+    "_original/aviationweather-openapi.yml"
   ],
   "outputs": [
     "aviationweather-navigational-data-api-openapi.yml",
@@ -10,10 +9,16 @@
   ],
   "archived": [],
   "errors": [
-    "aviationweather-navigational-data-api-openapi.yml: dangling $ref: #/components/responses/400",
-    "aviationweather-weather-data-api-openapi.yml: dangling $ref: #/components/responses/400"
+    "aviationweather-openapi.yml: dangling $ref: #/components/responses/400"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "aviationweather-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "aviationweather-navigational-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "aviationweather-weather-data-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
