@@ -770,152 +770,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PIREPXML:
-      xml:
-        name: response
-      type: object
-      properties:
-        request_index:
-          type: number
-        data_source:
-          properties:
-            name:
-              type: string
-              enum:
-              - aircraftreports
-              xml:
-                attribute: true
-        request:
-          properties:
-            type:
-              type: string
-              enum:
-              - retrieve
-              xml:
-                attribute: true
-        errors: null
-        warnings: null
-        time_taken_ms:
-          type: number
-        data:
-          type: array
-          xml:
-            name: data
-            wrapped: true
-          items:
-            type: object
-            xml:
-              name: PIREP
-            properties:
-              receipt_time:
-                type: string
-                examples:
-                - '2024-12-04T19:22:42.000Z'
-              observation_time:
-                type: string
-                examples:
-                - '2024-12-04T19:20:00.000Z'
-              quality_control_flags:
-                type: number
-              aircraft_ref:
-                type: string
-                examples:
-                - B738
-              latitude:
-                type: number
-                examples:
-                - '41.3032'
-              longitude:
-                type: number
-                examples:
-                - '-95.8941'
-              altitude_ft_msl:
-                type: number
-                examples:
-                - '36000'
-              sky_condition:
-                type: string
-              turbulence_condition:
-                properties:
-                  turbulence_type:
-                    type: string
-                    xml:
-                      attribute: true
-                  turbulence_intensity:
-                    type: string
-                    xml:
-                      attribute: true
-                  turbulence_base_ft_msl:
-                    type: string
-                    xml:
-                      attribute: true
-                  turbulence_top_ft_msl:
-                    type: string
-                    xml:
-                      attribute: true
-                  turbulence_freq:
-                    type: string
-                    xml:
-                      attribute: true
-              icing_condition:
-                properties:
-                  icing_type:
-                    type: string
-                    xml:
-                      attribute: true
-                  icing_intensity:
-                    type: string
-                    xml:
-                      attribute: true
-                  icing_base_ft_msl:
-                    type: number
-                    xml:
-                      attribute: true
-                  icing_top_ft_msl:
-                    type: number
-                    xml:
-                      attribute: true
-                  turbulence_freq:
-                    type: string
-                    xml:
-                      attribute: true
-              visibility_statute_mi:
-                type: string
-              wx_string:
-                type: string
-              temp_c:
-                type: number
-                description: Temperature in Celsius
-                examples:
-                - 14.4
-              wind_dir_degrees:
-                description: Wind direction in degrees or VRB for variable winds
-                anyOf:
-                - type: integer
-                - type: string
-                examples:
-                - 230
-              wind_speed_kt:
-                type: number
-                description: Wind speed in knots
-                examples:
-                - 6
-              vert_gust_kt:
-                type: number
-                description: Wind gust in knots
-                examples:
-                - 12
-              pirep_type:
-                type: string
-                enum:
-                - PIREP
-                - Urgent PIREP
-                - AIREP
-                - AMDAR
-                examples:
-                - PIREP
-              raw_text:
-                type: string
     ISigmetJSON:
       type: array
       items:
@@ -991,581 +845,7 @@ components:
             type: number
           chng:
             type: string
-    CloudInfo:
-      type: array
-      default: []
-      description: Clouds
-      items:
-        type: object
-        description: Cloud layer
-        required:
-        - cover
-        - base
-        properties:
-          cover:
-            type: string
-            description: Cover coverage
-            enum:
-            - CLR
-            - CAVOK
-            - FEW
-            - SCT
-            - BKN
-            - OVC
-            - OVX
-            examples:
-            - BKN
-          base:
-            type: integer
-            description: Cloud base in feet
-            examples:
-            - 11000
-          top:
-            type: integer
-            description: Cloud top in feet
-            examples:
-            - 28000
-    METARproperties:
-      type: object
-      properties:
-        icaoId:
-          type: string
-          default: ''
-          description: ICAO identifier
-          examples:
-          - KORD
-        receiptTime:
-          type: string
-          default: ''
-          description: The time the observation was received (yyyy-mm-dd hh:mm:ss.sssZ)
-          examples:
-          - '2023-11-03 21:54:03.000Z'
-        obsTime:
-          type: integer
-          description: The observation time (UNIX timestamp)
-          examples:
-          - 1699048260
-        reportTime:
-          type: string
-          default: ''
-          description: The time of the report (yyyy-mm-dd hh:mm:ss.sssZ)
-          examples:
-          - '2023-11-03 22:00:00.000Z'
-        temp:
-          type: number
-          default: 0
-          description: Temperature in Celsius
-          examples:
-          - 14.4
-        dewp:
-          type: number
-          default: null
-          description: Dewpoint temperature in Celsius
-          examples:
-          - 2.8
-        wdir:
-          minimum: 0
-          default: null
-          description: Wind direction in degrees or VRB for variable winds
-          anyOf:
-          - type: integer
-          - type: string
-          examples:
-          - 230
-        wspd:
-          type: integer
-          default: null
-          minimum: 0
-          description: Wind speed in knots
-          examples:
-          - 6
-        wgst:
-          type: integer
-          default: null
-          minimum: 0
-          description: Wind gusts in knots
-          examples:
-          - 12
-        visib:
-          default: null
-          description: Visibility in statute miles, 10+ is greater than 10 sm
-          anyOf:
-          - type: number
-          - type: string
-          examples:
-          - 3
-        altim:
-          type: number
-          default: null
-          description: Altimeter setting in hectopascals
-          examples:
-          - 1016.3
-        slp:
-          type: number
-          default: null
-          description: Sea level pressure in hectopascals
-          examples:
-          - 1016.2
-        wxString:
-          type: string
-          default: null
-          description: Encoded present weather string
-          examples:
-          - -RA
-        presTend:
-          type: number
-          default: null
-          description: Pressure tendency over last 3 hours in hectopascals
-          examples:
-          - null
-        maxT:
-          type: number
-          default: null
-          description: Maximum temperature over last 6 hours in Celsius
-          examples:
-          - 23.4
-        minT:
-          type: number
-          default: null
-          description: Minimum temperature over last 6 hours in Celsius
-          examples:
-          - 12.3
-        maxT24:
-          type: number
-          default: null
-          description: Maximum temperature over last 24 hours in Celsius
-          examples:
-          - 23.4
-        minT24:
-          type: number
-          default: null
-          description: Minimum temperature over last 24 hours in Celsius
-          examples:
-          - 12.3
-        precip:
-          type: number
-          default: null
-          minimum: 0
-          description: Precipitation over last hour in inches
-          examples:
-          - 0.01
-        pcp3hr:
-          type: number
-          default: null
-          minimum: 0
-          description: Precipitation over last 3 hours in inches
-          examples:
-          - 0.1
-        pcp6hr:
-          type: number
-          default: null
-          minimum: 0
-          description: Precipitation over last 6 hours in inches
-          examples:
-          - 0.23
-        pcp24hr:
-          type: number
-          default: null
-          minimum: 0
-          description: Precipitation over last 24 hours in inches
-          examples:
-          - 0.53
-        snow:
-          type: number
-          default: null
-          minimum: 0
-          description: Snow depth in inches
-          examples:
-          - 1
-        vertVis:
-          type: integer
-          default: null
-          minimum: 0
-          description: Vertical visibility in feet
-          examples:
-          - 100
-        metarType:
-          type: string
-          default: ''
-          description: Type of encoding
-          enum:
-          - METAR
-          - SPECI
-          - SYNOP
-          - BUOY
-          - CMAN
-          examples:
-          - METAR
-        rawOb:
-          type: string
-          default: ''
-          description: Raw text of observation
-          examples:
-          - KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028
-        lat:
-          type: number
-          default: 0
-          description: Latitude of site in degrees
-          examples:
-          - 41.9602
-        lon:
-          type: number
-          default: 0
-          description: Longitude of site in degrees
-          examples:
-          - -87.9316
-        elev:
-          type: integer
-          default: 0
-          description: Elevation of site in meters
-          examples:
-          - 202
-        name:
-          type: string
-          default: ''
-          description: Full name of the site
-          examples:
-          - Chicago/O'Hare Intl
-          - IL
-          - US
-        clouds:
-          $ref: '#/components/schemas/CloudInfo'
-        fltCat:
-          type: string
-          default: ''
-          description: Flight category restriction
-          examples:
-          - IFR
-    GairmetJSON:
-      type: array
-      items:
-        type: object
-        properties:
-          tag:
-            type: string
-            description: Forecast component tag
-            examples:
-            - 1C
-          forecastHour:
-            type: integer
-            examples:
-            - 0
-          validTime:
-            type: string
-            examples:
-            - 2025-09-30 03:00:00+00:00
-          hazard:
-            type: string
-            description: Hazard type
-            examples:
-            - IFR
-          geometryType:
-            type: string
-            enum:
-            - AREA
-            - LINE
-          latlonpairs:
-            type: integer
-            examples:
-            - 23
-          due_to:
-            type: string
-            examples:
-            - CIG BLW 010/VIS BLW 3SM PCPN/BR
-          receiptTime:
-            type: integer
-            examples:
-            - 1759200749
-          issueTime:
-            type: integer
-            examples:
-            - 1759200300
-          expireTime:
-            type: integer
-            examples:
-            - 1759222800
-          product:
-            type: string
-            enum:
-            - SIERRA
-            - TANGO
-            - ZULU
-          coords:
-            type: array
-            items:
-              type: object
-              parameters:
-                lat:
-                  type: number
-                lon:
-                  type: number
-    METARJSON:
-      type: array
-      items:
-        $ref: '#/components/schemas/METARproperties'
-    TAFJSON:
-      type: array
-      items:
-        $ref: '#/components/schemas/TAFproperties'
-    METARtext:
-      type: string
-      description: Raw text of observation
-      examples:
-      - KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028
-    PIREPtext:
-      type: string
-      examples:
-      - COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW
-    TAFGeoJSON:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              id:
-                type: number
-              properties:
-                $ref: '#/components/schemas/TAFproperties'
-              geometry:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - Point
-                  coordinates:
-                    type: array
-                    minItems: 2
-                    maxItems: 2
-                    items:
-                      type: number
-                    examples:
-                    - - -87.9316
-                      - 41.9602
-    PIREPJSON:
-      type: array
-      items:
-        type: object
-        properties:
-          receiptTime:
-            type: string
-            description: Time received by AWC
-            examples:
-            - '2023-11-07 18:08:15.000Z'
-          obsTime:
-            type: number
-            description: Observed time (UNIX epoch)
-            examples:
-            - 1699379880
-          qcField:
-            type: number
-            examples:
-            - 0
-          icaoId:
-            type: string
-            examples:
-            - KWBC
-          acType:
-            type: string
-            description: ICAO aircraft type
-            examples:
-            - LJ35
-          lat:
-            type: number
-            description: Latitude
-            examples:
-            - 40.938
-          lon:
-            type: number
-            description: Longitude
-            examples:
-            - -90.4311
-          fltLvl:
-            type: string
-            description: Flight level (hundreds of feet)
-            examples:
-            - '230'
-          fltLvlType:
-            type: string
-            description: Phase of flight
-            enum:
-            - GRND
-            - DURC
-            - DURD
-            - CRUISE
-            - OTHER
-            - UNKN
-          clouds:
-            $ref: '#/components/schemas/CloudInfo'
-          visib:
-            type: string
-            description: Visibility
-          wxString:
-            type: string
-            description: Observed weather
-          temp:
-            type: number
-            description: Temperature in Celsius
-          wdir:
-            type: number
-            description: Wind direction
-          wspd:
-            type: number
-            description: Wind speed
-          icgBas1:
-            type: number
-          icgTop1:
-            type: number
-            enum:
-            - RIME
-            - CLEAR
-            - MIXED
-            examples:
-            - RIME
-          icgInt1:
-            type: string
-            enum:
-            - NEG
-            - NEGclr
-            - TRC
-            - TRC-LGT
-            - LGT
-            - LGT-MOD
-            - MOD
-            - MOD-SEV
-            - HVY
-            - SEV
-            examples:
-            - LGT
-          icgType1:
-            type: string
-          icgBas2:
-            type: number
-          icgTop2:
-            type: number
-          icgInt2:
-            type: string
-            enum:
-            - NEG
-            - NEGclr
-            - TRC
-            - TRC-LGT
-            - LGT
-            - LGT-MOD
-            - MOD
-            - MOD-SEV
-            - HVY
-            - SEV
-          icgType2:
-            type: string
-            enum:
-            - RIME
-            - CLEAR
-            - MIXED
-          tbBas1:
-            type: number
-          tbTop1:
-            type: number
-          tbInt1:
-            type: string
-            enum:
-            - NEG
-            - SMTH-LGT
-            - LGT
-            - LGT-MOD
-            - MOD
-            - MOD-SEV
-            - SEV
-            - MOD-EXTM
-            - SEV-EXTM
-            - EXTM
-            examples:
-            - LGT-MOD
-          tbType1:
-            type: string
-            enum:
-            - CAT
-            - CHOP
-            - LLWS
-            - MWAVE
-            examples:
-            - CAT
-          tbFreq1:
-            type: string
-            enum:
-            - ISOL
-            - OCNL
-            - CONT
-            examples:
-            - OCNL
-          tbBas2:
-            type: number
-          tbTop2:
-            type: number
-          tbInt2:
-            type: string
-            enum:
-            - NEG
-            - SMTH-LGT
-            - LGT
-            - LGT-MOD
-            - MOD
-            - MOD-SEV
-            - SEV
-            - MOD-EXTM
-            - SEV-EXTM
-            - EXTM
-          tbType2:
-            type: string
-            enum:
-            - CAT
-            - CHOP
-            - LLWS
-            - MWAVE
-          tbFreq2:
-            type: string
-            enum:
-            - ISOL
-            - OCNL
-            - CONT
-          vertGust:
-            type: number
-          brkAction:
-            type: string
-            description: Breaking action conditions
-            enum:
-            - GOOD
-            - GOOD-MED
-            - MED
-            - MED-POOR
-            - POOR
-            - NIL
-          pirepType:
-            type: string
-            description: Aircraft report type
-            enum:
-            - PIREP
-            - Urgent PIREP
-            - AIREP
-            - AMDAR
-            examples:
-            - PIREP
-          rawOb:
-            type: string
-            description: Raw data
-            examples:
-            - COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW
-    CwaGeoJSON:
+    ISigmetGeoJSON:
       type: object
       properties:
         type:
@@ -1586,16 +866,18 @@ components:
               properties:
                 type: object
                 properties:
-                  cwsu:
+                  icaoId:
                     type: string
-                    description: Issuing CWSU identifier
                     examples:
-                    - ZJX
-                  name:
+                    - PAWU
+                  firId:
                     type: string
-                    description: Issuing CWSU name
                     examples:
-                    - Jacksonville
+                    - PAZA
+                  firName:
+                    type: string
+                    examples:
+                    - ANCHORAGE
                   validTimeFrom:
                     type: integer
                     examples:
@@ -1604,22 +886,33 @@ components:
                     type: integer
                     examples:
                     - 1733378400
+                  seriesId:
+                    type: string
+                    examples:
+                    - LIMA 2
                   hazard:
                     type: string
-                    description: Hazard type
                     examples:
-                    - IFR
-                  seriesId:
-                    type: integer
-                    examples:
-                    - 101
+                    - TURB
                   qualifier:
                     type: string
+                    examples:
+                    - OCNL
                   base:
                     type: integer
+                    examples:
+                    - 37000
                   top:
                     type: integer
-                  cwaText:
+                    examples:
+                    - 42000
+                  dir:
+                    type: string
+                  spd:
+                    type: number
+                  chng:
+                    type: string
+                  rawSigmet:
                     type: string
               geometry:
                 type: object
@@ -1925,7 +1218,470 @@ components:
                     validTime: 1699369200
                     sfcTemp: 1
                     maxOrMin: MAX
-    METARGeoJSON:
+    PIREPJSON:
+      type: array
+      items:
+        type: object
+        properties:
+          receiptTime:
+            type: string
+            description: Time received by AWC
+            examples:
+            - '2023-11-07 18:08:15.000Z'
+          obsTime:
+            type: number
+            description: Observed time (UNIX epoch)
+            examples:
+            - 1699379880
+          qcField:
+            type: number
+            examples:
+            - 0
+          icaoId:
+            type: string
+            examples:
+            - KWBC
+          acType:
+            type: string
+            description: ICAO aircraft type
+            examples:
+            - LJ35
+          lat:
+            type: number
+            description: Latitude
+            examples:
+            - 40.938
+          lon:
+            type: number
+            description: Longitude
+            examples:
+            - -90.4311
+          fltLvl:
+            type: string
+            description: Flight level (hundreds of feet)
+            examples:
+            - '230'
+          fltLvlType:
+            type: string
+            description: Phase of flight
+            enum:
+            - GRND
+            - DURC
+            - DURD
+            - CRUISE
+            - OTHER
+            - UNKN
+          clouds:
+            $ref: '#/components/schemas/CloudInfo'
+          visib:
+            type: string
+            description: Visibility
+          wxString:
+            type: string
+            description: Observed weather
+          temp:
+            type: number
+            description: Temperature in Celsius
+          wdir:
+            type: number
+            description: Wind direction
+          wspd:
+            type: number
+            description: Wind speed
+          icgBas1:
+            type: number
+          icgTop1:
+            type: number
+            enum:
+            - RIME
+            - CLEAR
+            - MIXED
+            examples:
+            - RIME
+          icgInt1:
+            type: string
+            enum:
+            - NEG
+            - NEGclr
+            - TRC
+            - TRC-LGT
+            - LGT
+            - LGT-MOD
+            - MOD
+            - MOD-SEV
+            - HVY
+            - SEV
+            examples:
+            - LGT
+          icgType1:
+            type: string
+          icgBas2:
+            type: number
+          icgTop2:
+            type: number
+          icgInt2:
+            type: string
+            enum:
+            - NEG
+            - NEGclr
+            - TRC
+            - TRC-LGT
+            - LGT
+            - LGT-MOD
+            - MOD
+            - MOD-SEV
+            - HVY
+            - SEV
+          icgType2:
+            type: string
+            enum:
+            - RIME
+            - CLEAR
+            - MIXED
+          tbBas1:
+            type: number
+          tbTop1:
+            type: number
+          tbInt1:
+            type: string
+            enum:
+            - NEG
+            - SMTH-LGT
+            - LGT
+            - LGT-MOD
+            - MOD
+            - MOD-SEV
+            - SEV
+            - MOD-EXTM
+            - SEV-EXTM
+            - EXTM
+            examples:
+            - LGT-MOD
+          tbType1:
+            type: string
+            enum:
+            - CAT
+            - CHOP
+            - LLWS
+            - MWAVE
+            examples:
+            - CAT
+          tbFreq1:
+            type: string
+            enum:
+            - ISOL
+            - OCNL
+            - CONT
+            examples:
+            - OCNL
+          tbBas2:
+            type: number
+          tbTop2:
+            type: number
+          tbInt2:
+            type: string
+            enum:
+            - NEG
+            - SMTH-LGT
+            - LGT
+            - LGT-MOD
+            - MOD
+            - MOD-SEV
+            - SEV
+            - MOD-EXTM
+            - SEV-EXTM
+            - EXTM
+          tbType2:
+            type: string
+            enum:
+            - CAT
+            - CHOP
+            - LLWS
+            - MWAVE
+          tbFreq2:
+            type: string
+            enum:
+            - ISOL
+            - OCNL
+            - CONT
+          vertGust:
+            type: number
+          brkAction:
+            type: string
+            description: Breaking action conditions
+            enum:
+            - GOOD
+            - GOOD-MED
+            - MED
+            - MED-POOR
+            - POOR
+            - NIL
+          pirepType:
+            type: string
+            description: Aircraft report type
+            enum:
+            - PIREP
+            - Urgent PIREP
+            - AIREP
+            - AMDAR
+            examples:
+            - PIREP
+          rawOb:
+            type: string
+            description: Raw data
+            examples:
+            - COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW
+    CloudInfo:
+      type: array
+      default: []
+      description: Clouds
+      items:
+        type: object
+        description: Cloud layer
+        required:
+        - cover
+        - base
+        properties:
+          cover:
+            type: string
+            description: Cover coverage
+            enum:
+            - CLR
+            - CAVOK
+            - FEW
+            - SCT
+            - BKN
+            - OVC
+            - OVX
+            examples:
+            - BKN
+          base:
+            type: integer
+            description: Cloud base in feet
+            examples:
+            - 11000
+          top:
+            type: integer
+            description: Cloud top in feet
+            examples:
+            - 28000
+    AirSigmetJSON:
+      type: array
+      items:
+        type: object
+        properties:
+          icaoId:
+            type: string
+            examples:
+            - KKCI
+          alphaChar:
+            type: string
+            examples:
+            - W
+          seriesId:
+            type: string
+            examples:
+            - NOVEMBER 7
+          receiptTime:
+            type: string
+            description: Time received by AWC
+            examples:
+            - 2025-09-27 11:48:24.974000+00:00
+          creationTime:
+            type: string
+            description: Issuance time
+            examples:
+            - 2025-09-27T11:55:00.000Z8
+          validTimeFrom:
+            type: integer
+            examples:
+            - 1758974100
+          validTimeTo:
+            type: integer
+            examples:
+            - 1758981300
+          airSigmetType:
+            type: string
+            description: Product type (always SIGMET)
+            enum:
+            - SIGMET
+          hazard:
+            type: string
+            description: Hazard type
+            examples:
+            - CONVECTIVE
+          qualifier:
+            type: string
+            examples:
+            - OCNL
+          altitudeHi1:
+            type: integer
+            examples:
+            - 35000
+          altitudeHi2:
+            type: integer
+            examples:
+            - 35000
+          altitudeLo1:
+            type: integer
+          altitudeLo2:
+            type: integer
+          movementDir:
+            type: integer
+            examples:
+            - 90
+          movementSpd:
+            type: integer
+            examples:
+            - 10
+          postProcessFlag:
+            type: integer
+            examples:
+            - 10
+          severity:
+            type: integer
+            examples:
+            - 5
+          rawAirSigmet:
+            type: string
+            description: Raw product
+            examples:
+            - WSUS33 KKCI 271155\nSIGW \nCONVECTIVE SIGMET 24W\nVALID UNTIL 1355Z\nAZ CA\nFROM 10SSW EED-30NNE BZA-50S TRM-30NNW TRM-10SSW EED\nAREA TS MOV FROM 09010KT. TOPS TO FL350.\n\nOUTLOOK VALID 271355-271755\nFROM BCE-RSK-60SSW SJN-BZA-HEC-BCE\nWST ISSUANCES POSS. REFER TO MOST RECENT ACUS01 KWNS FROM STORM\nPREDICTION CENTER FOR SYNOPSIS AND METEOROLOGICAL DETAILS.
+          coords:
+            type: array
+            items:
+              type: object
+              parameters:
+                lat:
+                  type: number
+                lon:
+                  type: number
+    GairmetJSON:
+      type: array
+      items:
+        type: object
+        properties:
+          tag:
+            type: string
+            description: Forecast component tag
+            examples:
+            - 1C
+          forecastHour:
+            type: integer
+            examples:
+            - 0
+          validTime:
+            type: string
+            examples:
+            - 2025-09-30 03:00:00+00:00
+          hazard:
+            type: string
+            description: Hazard type
+            examples:
+            - IFR
+          geometryType:
+            type: string
+            enum:
+            - AREA
+            - LINE
+          latlonpairs:
+            type: integer
+            examples:
+            - 23
+          due_to:
+            type: string
+            examples:
+            - CIG BLW 010/VIS BLW 3SM PCPN/BR
+          receiptTime:
+            type: integer
+            examples:
+            - 1759200749
+          issueTime:
+            type: integer
+            examples:
+            - 1759200300
+          expireTime:
+            type: integer
+            examples:
+            - 1759222800
+          product:
+            type: string
+            enum:
+            - SIERRA
+            - TANGO
+            - ZULU
+          coords:
+            type: array
+            items:
+              type: object
+              parameters:
+                lat:
+                  type: number
+                lon:
+                  type: number
+    CwaJSON:
+      type: array
+      items:
+        type: object
+        properties:
+          cwsu:
+            type: string
+            description: Issuing CWSU identifier
+            examples:
+            - ZJX
+          name:
+            type: string
+            description: Issuing CWSU name
+            examples:
+            - Jacksonville
+          receiptTime:
+            type: string
+            examples:
+            - 2025-09-30 03:00:00+00:00
+          validTimeFrom:
+            type: integer
+            examples:
+            - 1733364000
+          validTimeTo:
+            type: integer
+            examples:
+            - 1733378400
+          hazard:
+            type: string
+            description: Hazard type
+            examples:
+            - IFR
+          seriesId:
+            type: integer
+            examples:
+            - 101
+          qualifier:
+            type: string
+          base:
+            type: integer
+          top:
+            type: integer
+          geom:
+            type: string
+            enum:
+            - AREA
+            - LINE
+          coords:
+            type: array
+            items:
+              type: object
+              parameters:
+                lat:
+                  type: number
+                lon:
+                  type: number
+          rawText:
+            type: string
+    TAFtext:
+      type: string
+      examples:
+      - KORD 032320Z 0400/0506 VRB05KT P6SM FEW050 SCT080 OVC110 TEMPO 0401/0403 -SHRA BKN050 OVC080 FM040600 34006KT P6SM FEW015 SCT100 BKN150 FM041400 01008KT P6SM SCT020 SCT100 TEMPO 0415/0419 BKN015 FM050100 32004KT P6SM FEW020 SCT250
+    PIREPGeoJSON:
       type: object
       properties:
         type:
@@ -1944,7 +1700,84 @@ components:
               id:
                 type: number
               properties:
-                $ref: '#/components/schemas/METARproperties'
+                type: object
+                properties:
+                  receiptTime:
+                    type: string
+                    description: Time received by AWC
+                  obsTime:
+                    type: number
+                    description: Observed time (UNIX epoch)
+                  qcField:
+                    type: number
+                  icaoId:
+                    type: string
+                  acType:
+                    type: string
+                  lat:
+                    type: number
+                  lon:
+                    type: number
+                  fltLvl:
+                    type: string
+                  fltLvlType:
+                    type: string
+                  clouds:
+                    $ref: '#/components/schemas/CloudInfo'
+                  visib:
+                    type: string
+                  wxString:
+                    type: string
+                  temp:
+                    type: number
+                  wdir:
+                    type: number
+                  wspd:
+                    type: number
+                  icgBas1:
+                    type: number
+                  icgTop1:
+                    type: number
+                  icgInt1:
+                    type: string
+                  icgType1:
+                    type: string
+                  icgBas2:
+                    type: number
+                  icgTop2:
+                    type: number
+                  icgInt2:
+                    type: string
+                  icgType2:
+                    type: string
+                  tbBas1:
+                    type: number
+                  tbTop1:
+                    type: number
+                  tbInt1:
+                    type: string
+                  tbType1:
+                    type: string
+                  tbFreq1:
+                    type: string
+                  tbBas2:
+                    type: number
+                  tbTop2:
+                    type: number
+                  tbInt2:
+                    type: string
+                  tbType2:
+                    type: string
+                  tbFreq2:
+                    type: string
+                  vertGust:
+                    type: number
+                  brkAction:
+                    type: string
+                  pirepType:
+                    type: string
+                  rawOb:
+                    type: string
               geometry:
                 type: object
                 properties:
@@ -1961,7 +1794,222 @@ components:
                     examples:
                     - - -87.9316
                       - 41.9602
-    AirSigmetGeoJSON:
+    METARJSON:
+      type: array
+      items:
+        $ref: '#/components/schemas/METARproperties'
+    METARproperties:
+      type: object
+      properties:
+        icaoId:
+          type: string
+          default: ''
+          description: ICAO identifier
+          examples:
+          - KORD
+        receiptTime:
+          type: string
+          default: ''
+          description: The time the observation was received (yyyy-mm-dd hh:mm:ss.sssZ)
+          examples:
+          - '2023-11-03 21:54:03.000Z'
+        obsTime:
+          type: integer
+          description: The observation time (UNIX timestamp)
+          examples:
+          - 1699048260
+        reportTime:
+          type: string
+          default: ''
+          description: The time of the report (yyyy-mm-dd hh:mm:ss.sssZ)
+          examples:
+          - '2023-11-03 22:00:00.000Z'
+        temp:
+          type: number
+          default: 0
+          description: Temperature in Celsius
+          examples:
+          - 14.4
+        dewp:
+          type: number
+          default: null
+          description: Dewpoint temperature in Celsius
+          examples:
+          - 2.8
+        wdir:
+          minimum: 0
+          default: null
+          description: Wind direction in degrees or VRB for variable winds
+          anyOf:
+          - type: integer
+          - type: string
+          examples:
+          - 230
+        wspd:
+          type: integer
+          default: null
+          minimum: 0
+          description: Wind speed in knots
+          examples:
+          - 6
+        wgst:
+          type: integer
+          default: null
+          minimum: 0
+          description: Wind gusts in knots
+          examples:
+          - 12
+        visib:
+          default: null
+          description: Visibility in statute miles, 10+ is greater than 10 sm
+          anyOf:
+          - type: number
+          - type: string
+          examples:
+          - 3
+        altim:
+          type: number
+          default: null
+          description: Altimeter setting in hectopascals
+          examples:
+          - 1016.3
+        slp:
+          type: number
+          default: null
+          description: Sea level pressure in hectopascals
+          examples:
+          - 1016.2
+        wxString:
+          type: string
+          default: null
+          description: Encoded present weather string
+          examples:
+          - -RA
+        presTend:
+          type: number
+          default: null
+          description: Pressure tendency over last 3 hours in hectopascals
+          examples:
+          - null
+        maxT:
+          type: number
+          default: null
+          description: Maximum temperature over last 6 hours in Celsius
+          examples:
+          - 23.4
+        minT:
+          type: number
+          default: null
+          description: Minimum temperature over last 6 hours in Celsius
+          examples:
+          - 12.3
+        maxT24:
+          type: number
+          default: null
+          description: Maximum temperature over last 24 hours in Celsius
+          examples:
+          - 23.4
+        minT24:
+          type: number
+          default: null
+          description: Minimum temperature over last 24 hours in Celsius
+          examples:
+          - 12.3
+        precip:
+          type: number
+          default: null
+          minimum: 0
+          description: Precipitation over last hour in inches
+          examples:
+          - 0.01
+        pcp3hr:
+          type: number
+          default: null
+          minimum: 0
+          description: Precipitation over last 3 hours in inches
+          examples:
+          - 0.1
+        pcp6hr:
+          type: number
+          default: null
+          minimum: 0
+          description: Precipitation over last 6 hours in inches
+          examples:
+          - 0.23
+        pcp24hr:
+          type: number
+          default: null
+          minimum: 0
+          description: Precipitation over last 24 hours in inches
+          examples:
+          - 0.53
+        snow:
+          type: number
+          default: null
+          minimum: 0
+          description: Snow depth in inches
+          examples:
+          - 1
+        vertVis:
+          type: integer
+          default: null
+          minimum: 0
+          description: Vertical visibility in feet
+          examples:
+          - 100
+        metarType:
+          type: string
+          default: ''
+          description: Type of encoding
+          enum:
+          - METAR
+          - SPECI
+          - SYNOP
+          - BUOY
+          - CMAN
+          examples:
+          - METAR
+        rawOb:
+          type: string
+          default: ''
+          description: Raw text of observation
+          examples:
+          - KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028
+        lat:
+          type: number
+          default: 0
+          description: Latitude of site in degrees
+          examples:
+          - 41.9602
+        lon:
+          type: number
+          default: 0
+          description: Longitude of site in degrees
+          examples:
+          - -87.9316
+        elev:
+          type: integer
+          default: 0
+          description: Elevation of site in meters
+          examples:
+          - 202
+        name:
+          type: string
+          default: ''
+          description: Full name of the site
+          examples:
+          - Chicago/O'Hare Intl
+          - IL
+          - US
+        clouds:
+          $ref: '#/components/schemas/CloudInfo'
+        fltCat:
+          type: string
+          default: ''
+          description: Flight category restriction
+          examples:
+          - IFR
+    CwaGeoJSON:
       type: object
       properties:
         type:
@@ -1982,62 +2030,41 @@ components:
               properties:
                 type: object
                 properties:
-                  icaoId:
+                  cwsu:
                     type: string
+                    description: Issuing CWSU identifier
                     examples:
-                    - KKCI
-                  alphaChar:
+                    - ZJX
+                  name:
                     type: string
+                    description: Issuing CWSU name
                     examples:
-                    - W
-                  seriesId:
-                    type: string
-                    examples:
-                    - NOVEMBER 7
+                    - Jacksonville
                   validTimeFrom:
-                    type: string
+                    type: integer
                     examples:
-                    - 2025-09-27 11:55:00+00:00
+                    - 1733364000
                   validTimeTo:
-                    type: string
+                    type: integer
                     examples:
-                    - 2025-09-27 13:55:00+00:00
-                  airSigmetType:
-                    type: string
-                    enum:
-                    - SIGMET
+                    - 1733378400
                   hazard:
                     type: string
+                    description: Hazard type
                     examples:
-                    - CONVECTIVE
-                  altitudeHi1:
-                    type: integer
-                    examples:
-                    - 35000
-                  altitudeHi2:
+                    - IFR
+                  seriesId:
                     type: integer
                     examples:
-                    - 35000
-                  altitudeLo1:
-                    type: integer
-                  altitudeLo2:
-                    type: integer
-                  movementDir:
-                    type: integer
-                    examples:
-                    - 90
-                  movementSpd:
-                    type: integer
-                    examples:
-                    - 10
-                  severity:
-                    type: integer
-                    examples:
-                    - 5
-                  rawAirSigmet:
+                    - 101
+                  qualifier:
                     type: string
-                    examples:
-                    - WSUS33 KKCI 271155\nSIGW \nCONVECTIVE SIGMET 24W\nVALID UNTIL 1355Z\nAZ CA\nFROM 10SSW EED-30NNE BZA-50S TRM-30NNW TRM-10SSW EED\nAREA TS MOV FROM 09010KT. TOPS TO FL350.\n\nOUTLOOK VALID 271355-271755\nFROM BCE-RSK-60SSW SJN-BZA-HEC-BCE\nWST ISSUANCES POSS. REFER TO MOST RECENT ACUS01 KWNS FROM STORM\nPREDICTION CENTER FOR SYNOPSIS AND METEOROLOGICAL DETAILS.
+                  base:
+                    type: integer
+                  top:
+                    type: integer
+                  cwaText:
+                    type: string
               geometry:
                 type: object
                 properties:
@@ -2156,69 +2183,162 @@ components:
                 type: string
               elevation_m:
                 type: number
-    TAFtext:
+    PIREPXML:
+      xml:
+        name: response
+      type: object
+      properties:
+        request_index:
+          type: number
+        data_source:
+          properties:
+            name:
+              type: string
+              enum:
+              - aircraftreports
+              xml:
+                attribute: true
+        request:
+          properties:
+            type:
+              type: string
+              enum:
+              - retrieve
+              xml:
+                attribute: true
+        errors: null
+        warnings: null
+        time_taken_ms:
+          type: number
+        data:
+          type: array
+          xml:
+            name: data
+            wrapped: true
+          items:
+            type: object
+            xml:
+              name: PIREP
+            properties:
+              receipt_time:
+                type: string
+                examples:
+                - '2024-12-04T19:22:42.000Z'
+              observation_time:
+                type: string
+                examples:
+                - '2024-12-04T19:20:00.000Z'
+              quality_control_flags:
+                type: number
+              aircraft_ref:
+                type: string
+                examples:
+                - B738
+              latitude:
+                type: number
+                examples:
+                - '41.3032'
+              longitude:
+                type: number
+                examples:
+                - '-95.8941'
+              altitude_ft_msl:
+                type: number
+                examples:
+                - '36000'
+              sky_condition:
+                type: string
+              turbulence_condition:
+                properties:
+                  turbulence_type:
+                    type: string
+                    xml:
+                      attribute: true
+                  turbulence_intensity:
+                    type: string
+                    xml:
+                      attribute: true
+                  turbulence_base_ft_msl:
+                    type: string
+                    xml:
+                      attribute: true
+                  turbulence_top_ft_msl:
+                    type: string
+                    xml:
+                      attribute: true
+                  turbulence_freq:
+                    type: string
+                    xml:
+                      attribute: true
+              icing_condition:
+                properties:
+                  icing_type:
+                    type: string
+                    xml:
+                      attribute: true
+                  icing_intensity:
+                    type: string
+                    xml:
+                      attribute: true
+                  icing_base_ft_msl:
+                    type: number
+                    xml:
+                      attribute: true
+                  icing_top_ft_msl:
+                    type: number
+                    xml:
+                      attribute: true
+                  turbulence_freq:
+                    type: string
+                    xml:
+                      attribute: true
+              visibility_statute_mi:
+                type: string
+              wx_string:
+                type: string
+              temp_c:
+                type: number
+                description: Temperature in Celsius
+                examples:
+                - 14.4
+              wind_dir_degrees:
+                description: Wind direction in degrees or VRB for variable winds
+                anyOf:
+                - type: integer
+                - type: string
+                examples:
+                - 230
+              wind_speed_kt:
+                type: number
+                description: Wind speed in knots
+                examples:
+                - 6
+              vert_gust_kt:
+                type: number
+                description: Wind gust in knots
+                examples:
+                - 12
+              pirep_type:
+                type: string
+                enum:
+                - PIREP
+                - Urgent PIREP
+                - AIREP
+                - AMDAR
+                examples:
+                - PIREP
+              raw_text:
+                type: string
+    METARtext:
       type: string
+      description: Raw text of observation
       examples:
-      - KORD 032320Z 0400/0506 VRB05KT P6SM FEW050 SCT080 OVC110 TEMPO 0401/0403 -SHRA BKN050 OVC080 FM040600 34006KT P6SM FEW015 SCT100 BKN150 FM041400 01008KT P6SM SCT020 SCT100 TEMPO 0415/0419 BKN015 FM050100 32004KT P6SM FEW020 SCT250
-    CwaJSON:
+      - KORD 032151Z 23006KT 10SM BKN110 OVC250 14/03 A3000 RMK AO2 SLP162 VIRGA OHD T01440028
+    TAFJSON:
       type: array
       items:
-        type: object
-        properties:
-          cwsu:
-            type: string
-            description: Issuing CWSU identifier
-            examples:
-            - ZJX
-          name:
-            type: string
-            description: Issuing CWSU name
-            examples:
-            - Jacksonville
-          receiptTime:
-            type: string
-            examples:
-            - 2025-09-30 03:00:00+00:00
-          validTimeFrom:
-            type: integer
-            examples:
-            - 1733364000
-          validTimeTo:
-            type: integer
-            examples:
-            - 1733378400
-          hazard:
-            type: string
-            description: Hazard type
-            examples:
-            - IFR
-          seriesId:
-            type: integer
-            examples:
-            - 101
-          qualifier:
-            type: string
-          base:
-            type: integer
-          top:
-            type: integer
-          geom:
-            type: string
-            enum:
-            - AREA
-            - LINE
-          coords:
-            type: array
-            items:
-              type: object
-              parameters:
-                lat:
-                  type: number
-                lon:
-                  type: number
-          rawText:
-            type: string
-    PIREPGeoJSON:
+        $ref: '#/components/schemas/TAFproperties'
+    TAFGeoJSON:
       type: object
       properties:
         type:
@@ -2237,84 +2357,7 @@ components:
               id:
                 type: number
               properties:
-                type: object
-                properties:
-                  receiptTime:
-                    type: string
-                    description: Time received by AWC
-                  obsTime:
-                    type: number
-                    description: Observed time (UNIX epoch)
-                  qcField:
-                    type: number
-                  icaoId:
-                    type: string
-                  acType:
-                    type: string
-                  lat:
-                    type: number
-                  lon:
-                    type: number
-                  fltLvl:
-                    type: string
-                  fltLvlType:
-                    type: string
-                  clouds:
-                    $ref: '#/components/schemas/CloudInfo'
-                  visib:
-                    type: string
-                  wxString:
-                    type: string
-                  temp:
-                    type: number
-                  wdir:
-                    type: number
-                  wspd:
-                    type: number
-                  icgBas1:
-                    type: number
-                  icgTop1:
-                    type: number
-                  icgInt1:
-                    type: string
-                  icgType1:
-                    type: string
-                  icgBas2:
-                    type: number
-                  icgTop2:
-                    type: number
-                  icgInt2:
-                    type: string
-                  icgType2:
-                    type: string
-                  tbBas1:
-                    type: number
-                  tbTop1:
-                    type: number
-                  tbInt1:
-                    type: string
-                  tbType1:
-                    type: string
-                  tbFreq1:
-                    type: string
-                  tbBas2:
-                    type: number
-                  tbTop2:
-                    type: number
-                  tbInt2:
-                    type: string
-                  tbType2:
-                    type: string
-                  tbFreq2:
-                    type: string
-                  vertGust:
-                    type: number
-                  brkAction:
-                    type: string
-                  pirepType:
-                    type: string
-                  rawOb:
-                    type: string
+                $ref: '#/components/schemas/TAFproperties'
               geometry:
                 type: object
                 properties:
@@ -2331,178 +2374,6 @@ components:
                     examples:
                     - - -87.9316
                       - 41.9602
-    AirSigmetJSON:
-      type: array
-      items:
-        type: object
-        properties:
-          icaoId:
-            type: string
-            examples:
-            - KKCI
-          alphaChar:
-            type: string
-            examples:
-            - W
-          seriesId:
-            type: string
-            examples:
-            - NOVEMBER 7
-          receiptTime:
-            type: string
-            description: Time received by AWC
-            examples:
-            - 2025-09-27 11:48:24.974000+00:00
-          creationTime:
-            type: string
-            description: Issuance time
-            examples:
-            - 2025-09-27T11:55:00.000Z8
-          validTimeFrom:
-            type: integer
-            examples:
-            - 1758974100
-          validTimeTo:
-            type: integer
-            examples:
-            - 1758981300
-          airSigmetType:
-            type: string
-            description: Product type (always SIGMET)
-            enum:
-            - SIGMET
-          hazard:
-            type: string
-            description: Hazard type
-            examples:
-            - CONVECTIVE
-          qualifier:
-            type: string
-            examples:
-            - OCNL
-          altitudeHi1:
-            type: integer
-            examples:
-            - 35000
-          altitudeHi2:
-            type: integer
-            examples:
-            - 35000
-          altitudeLo1:
-            type: integer
-          altitudeLo2:
-            type: integer
-          movementDir:
-            type: integer
-            examples:
-            - 90
-          movementSpd:
-            type: integer
-            examples:
-            - 10
-          postProcessFlag:
-            type: integer
-            examples:
-            - 10
-          severity:
-            type: integer
-            examples:
-            - 5
-          rawAirSigmet:
-            type: string
-            description: Raw product
-            examples:
-            - WSUS33 KKCI 271155\nSIGW \nCONVECTIVE SIGMET 24W\nVALID UNTIL 1355Z\nAZ CA\nFROM 10SSW EED-30NNE BZA-50S TRM-30NNW TRM-10SSW EED\nAREA TS MOV FROM 09010KT. TOPS TO FL350.\n\nOUTLOOK VALID 271355-271755\nFROM BCE-RSK-60SSW SJN-BZA-HEC-BCE\nWST ISSUANCES POSS. REFER TO MOST RECENT ACUS01 KWNS FROM STORM\nPREDICTION CENTER FOR SYNOPSIS AND METEOROLOGICAL DETAILS.
-          coords:
-            type: array
-            items:
-              type: object
-              parameters:
-                lat:
-                  type: number
-                lon:
-                  type: number
-    ISigmetGeoJSON:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              id:
-                type: number
-              properties:
-                type: object
-                properties:
-                  icaoId:
-                    type: string
-                    examples:
-                    - PAWU
-                  firId:
-                    type: string
-                    examples:
-                    - PAZA
-                  firName:
-                    type: string
-                    examples:
-                    - ANCHORAGE
-                  validTimeFrom:
-                    type: integer
-                    examples:
-                    - 1733364000
-                  validTimeTo:
-                    type: integer
-                    examples:
-                    - 1733378400
-                  seriesId:
-                    type: string
-                    examples:
-                    - LIMA 2
-                  hazard:
-                    type: string
-                    examples:
-                    - TURB
-                  qualifier:
-                    type: string
-                    examples:
-                    - OCNL
-                  base:
-                    type: integer
-                    examples:
-                    - 37000
-                  top:
-                    type: integer
-                    examples:
-                    - 42000
-                  dir:
-                    type: string
-                  spd:
-                    type: number
-                  chng:
-                    type: string
-                  rawSigmet:
-                    type: string
-              geometry:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - Polygon
-                  coordinates:
-                    type: array
-                    minItems: 4
-                    items:
-                      type: number
     TcfGeoJSON:
       type: object
       properties:
@@ -2644,8 +2515,150 @@ components:
                     minItems: 4
                     items:
                       type: number
+    PIREPtext:
+      type: string
+      examples:
+      - COU UA /OV COU260020/TM 0012/FL140/TP E170/TB LGT-MOD CHOP 140-170/RM DURC /ZKC FDC/CW
+    METARGeoJSON:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              id:
+                type: number
+              properties:
+                $ref: '#/components/schemas/METARproperties'
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Point
+                  coordinates:
+                    type: array
+                    minItems: 2
+                    maxItems: 2
+                    items:
+                      type: number
+                    examples:
+                    - - -87.9316
+                      - 41.9602
+    AirSigmetGeoJSON:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              id:
+                type: number
+              properties:
+                type: object
+                properties:
+                  icaoId:
+                    type: string
+                    examples:
+                    - KKCI
+                  alphaChar:
+                    type: string
+                    examples:
+                    - W
+                  seriesId:
+                    type: string
+                    examples:
+                    - NOVEMBER 7
+                  validTimeFrom:
+                    type: string
+                    examples:
+                    - 2025-09-27 11:55:00+00:00
+                  validTimeTo:
+                    type: string
+                    examples:
+                    - 2025-09-27 13:55:00+00:00
+                  airSigmetType:
+                    type: string
+                    enum:
+                    - SIGMET
+                  hazard:
+                    type: string
+                    examples:
+                    - CONVECTIVE
+                  altitudeHi1:
+                    type: integer
+                    examples:
+                    - 35000
+                  altitudeHi2:
+                    type: integer
+                    examples:
+                    - 35000
+                  altitudeLo1:
+                    type: integer
+                  altitudeLo2:
+                    type: integer
+                  movementDir:
+                    type: integer
+                    examples:
+                    - 90
+                  movementSpd:
+                    type: integer
+                    examples:
+                    - 10
+                  severity:
+                    type: integer
+                    examples:
+                    - 5
+                  rawAirSigmet:
+                    type: string
+                    examples:
+                    - WSUS33 KKCI 271155\nSIGW \nCONVECTIVE SIGMET 24W\nVALID UNTIL 1355Z\nAZ CA\nFROM 10SSW EED-30NNE BZA-50S TRM-30NNW TRM-10SSW EED\nAREA TS MOV FROM 09010KT. TOPS TO FL350.\n\nOUTLOOK VALID 271355-271755\nFROM BCE-RSK-60SSW SJN-BZA-HEC-BCE\nWST ISSUANCES POSS. REFER TO MOST RECENT ACUS01 KWNS FROM STORM\nPREDICTION CENTER FOR SYNOPSIS AND METEOROLOGICAL DETAILS.
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Polygon
+                  coordinates:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: number
   parameters:
-    RawGeo:
+    JSONGeoIWXXM:
+      name: format
+      in: query
+      description: Format
+      required: false
+      explode: true
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - iwxxm
+        default: json
+    RawJSONGeoXML:
       name: format
       in: query
       description: Format
@@ -2655,8 +2668,32 @@ components:
         type: string
         enum:
         - raw
+        - json
         - geojson
+        - xml
         default: raw
+    bbox:
+      name: bbox
+      in: query
+      description: Geographic bounding box (lat0, lon0, lat1, lon1)
+      required: false
+      examples:
+        '-':
+          value: ''
+        box:
+          summary: A small box around Chicago
+          value: 40,-90,45,-85
+      schema:
+        type: string
+    hours:
+      name: hours
+      in: query
+      description: Hours back to search
+      required: false
+      explode: true
+      schema:
+        type: number
+        default: 1.5
     date:
       name: date
       in: query
@@ -2674,6 +2711,18 @@ components:
           value: 2023-12-20 00:00:00+00:00
       schema:
         type: string
+    RawGeo:
+      name: format
+      in: query
+      description: Format
+      required: false
+      explode: true
+      schema:
+        type: string
+        enum:
+        - raw
+        - geojson
+        default: raw
     RawJSONGeoXMLIWXXM:
       name: format
       in: query
@@ -2689,16 +2738,7 @@ components:
         - xml
         - iwxxm
         default: raw
-    hours:
-      name: hours
-      in: query
-      description: Hours back to search
-      required: false
-      explode: true
-      schema:
-        type: number
-        default: 1.5
-    JSONGeoIWXXM:
+    RawJSONGeo:
       name: format
       in: query
       description: Format
@@ -2707,23 +2747,10 @@ components:
       schema:
         type: string
         enum:
+        - raw
         - json
         - geojson
-        - iwxxm
-        default: json
-    bbox:
-      name: bbox
-      in: query
-      description: Geographic bounding box (lat0, lon0, lat1, lon1)
-      required: false
-      examples:
-        '-':
-          value: ''
-        box:
-          summary: A small box around Chicago
-          value: 40,-90,45,-85
-      schema:
-        type: string
+        default: raw
     ids:
       name: ids
       in: query
@@ -2743,30 +2770,3 @@ components:
           value: '@WA'
       schema:
         type: string
-    RawJSONGeo:
-      name: format
-      in: query
-      description: Format
-      required: false
-      explode: true
-      schema:
-        type: string
-        enum:
-        - raw
-        - json
-        - geojson
-        default: raw
-    RawJSONGeoXML:
-      name: format
-      in: query
-      description: Format
-      required: false
-      explode: true
-      schema:
-        type: string
-        enum:
-        - raw
-        - json
-        - geojson
-        - xml
-        default: raw
