@@ -1,21 +1,19 @@
-# Kin Score artifact — aviationweather — 2026-09-01T063623
+# Kin Score artifact — aviationweather — 2026-09-25T232841
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: aviationweather
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
-  composite: 40.5
-  band: developing
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T232841
+  composite: 37.6
+  band: thin
   facets:
-    discoverability: 75.9
-    contract_quality: 68.7
-    governance: 28.8
-    operational_transparency: 31.6
+    discoverability: 73.2
+    contract_quality: 65.3
+    contract_governance: 27.3
+    operational_transparency: 28.4
     developer_ergonomics: 9.5
-    commercial_clarity: 21.1
-    contract_governance: 28.8
     access_clarity: 21.1
   agent_readiness:
     score: 22.9
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Government & Public Sector
     regime_id: government
-    score: 35.2
+    score: 18.6
     matched_via: tags
   provenance:
     agentic_access: derived
