@@ -294,66 +294,6 @@ paths:
       operationId: getApiDataObstacle
       x-operation-id-source: derived
 components:
-  parameters:
-    RawJSONGeo:
-      name: format
-      in: query
-      description: Format
-      required: false
-      explode: true
-      schema:
-        type: string
-        enum:
-        - raw
-        - json
-        - geojson
-        default: raw
-    RawJSONGeoXML:
-      name: format
-      in: query
-      description: Format
-      required: false
-      explode: true
-      schema:
-        type: string
-        enum:
-        - raw
-        - json
-        - geojson
-        - xml
-        default: raw
-    bbox:
-      name: bbox
-      in: query
-      description: Geographic bounding box (lat0, lon0, lat1, lon1)
-      required: false
-      examples:
-        '-':
-          value: ''
-        box:
-          summary: A small box around Chicago
-          value: 40,-90,45,-85
-      schema:
-        type: string
-    ids:
-      name: ids
-      in: query
-      description: Station ID(s)
-      required: false
-      examples:
-        '-':
-          value: ''
-        id:
-          summary: A single ICAO Id
-          value: KMCI
-        ids:
-          summary: A list of ICAO Ids separated by commas
-          value: KMCI,KORD,KBOS
-        states:
-          summary: A 2 letter state abbreviation preceded by a @
-          value: '@WA'
-      schema:
-        type: string
   schemas:
     StationInfoJSON:
       type: array
@@ -523,3 +463,63 @@ components:
                 properties:
                   METAR: null
                   TAF: null
+  parameters:
+    RawJSONGeo:
+      name: format
+      in: query
+      description: Format
+      required: false
+      explode: true
+      schema:
+        type: string
+        enum:
+        - raw
+        - json
+        - geojson
+        default: raw
+    bbox:
+      name: bbox
+      in: query
+      description: Geographic bounding box (lat0, lon0, lat1, lon1)
+      required: false
+      examples:
+        '-':
+          value: ''
+        box:
+          summary: A small box around Chicago
+          value: 40,-90,45,-85
+      schema:
+        type: string
+    RawJSONGeoXML:
+      name: format
+      in: query
+      description: Format
+      required: false
+      explode: true
+      schema:
+        type: string
+        enum:
+        - raw
+        - json
+        - geojson
+        - xml
+        default: raw
+    ids:
+      name: ids
+      in: query
+      description: Station ID(s)
+      required: false
+      examples:
+        '-':
+          value: ''
+        id:
+          summary: A single ICAO Id
+          value: KMCI
+        ids:
+          summary: A list of ICAO Ids separated by commas
+          value: KMCI,KORD,KBOS
+        states:
+          summary: A 2 letter state abbreviation preceded by a @
+          value: '@WA'
+      schema:
+        type: string
