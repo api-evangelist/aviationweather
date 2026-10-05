@@ -1,0 +1,12 @@
+{
+ "url": "https://aviationweather.gov/data/schema/openapi.yaml",
+ "requested_url": "https://aviationweather.gov/data/schema/openapi.yaml",
+ "status": 200,
+ "content_type": "application/octet-stream",
+ "bytes": 89092,
+ "sha256": "7333003f558848b7a73407e014262d55b1be45483dd970223916bbe2ee5cf1c2",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.952), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
