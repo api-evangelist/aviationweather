@@ -246,6 +246,8 @@ apis:
   - type: ExamplePayload
     url: examples/aviationweather-dataserver-example.json
 common:
+  - type: RateLimits
+    url: rate-limits/aviationweather-rate-limits.yml
   - type: AgenticAccess
     url: agentic-access/aviationweather-agentic-access.yml
   - type: DomainSecurity
